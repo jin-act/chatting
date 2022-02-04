@@ -7,15 +7,4 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="Gold">#FFD4AF37</color>
-    <color name="Ivory">#FFFFFFF0</color>
-    <color name="AntiqueWhite">#FFFAEBD7</color>
-    <color name="SkyBlue">#FF87CEEB</color>
-    <color name="Azure">#FF007FFF</color>
-    <color name="Bisque">#FFFFE4C4</color>
-    <color name="YellowGreen">#FF9ACD32</color>
-    <color name="PaleGoldenrod">#FFEEE8AA</color>
-    <color name="OrangeRed">#FFFF4500</color>
-    <color name="MediumPurple">#FF9370DB</color>
-    <color name="colorPrimaryDark">#FF777777</color>
 </resources>
