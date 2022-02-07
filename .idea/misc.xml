@@ -3,15 +3,26 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_feed.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_join.xml" value="0.2" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_memory.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_memory1.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_plusmemory.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_status.xml" value="0.36614583333333334" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/fragment_blank.xml" value="0.17755825734549138" />
-        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/xml/file_path.xml" value="0.17755825734549138" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/chekbox_background.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box2.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box3.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box4.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box5.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box6.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/contents_box7.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/edittext_background.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/edittext_background2.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/emphasisline.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/drawable/loginbutton.xml" value="0.166015625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_feed.xml" value="0.274609375" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_join.xml" value="0.2" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_login.xml" value="0.15390625" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_main.xml" value="0.274609375" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_memory.xml" value="0.274609375" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_memory1.xml" value="0.274609375" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_plusmemory.xml" value="0.274609375" />
+        <entry key="..\:/Users/82104/Desktop/ai_caht/ai_caht/app/src/main/res/layout/activity_status.xml" value="0.274609375" />
       </map>
     </option>
   </component>

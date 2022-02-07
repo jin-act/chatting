@@ -85,12 +85,13 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageView2"
+        app:layout_constraintBottom_toTopOf="@id/select_bar"
         android:fillViewport="true"
         android:layout_marginTop="10dp">
 
@@ -274,11 +275,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp">
+
             <ImageView
                 android:layout_width="180dp"
                 android:layout_height="130dp"
-                android:src="@drawable/contents_box"
-                ></ImageView>
+                android:src="@drawable/contents_box"></ImageView>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -306,12 +307,12 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="90dp"
                 android:fontFamily="@font/nsb"
                 android:text="동해물과 백두산이 마르고 닳도록"
                 android:textColor="#676767"
-                android:textSize="11dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginLeft="15dp"/>
+                android:textSize="11dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -330,6 +331,7 @@
 
 
     <LinearLayout
+        android:id="@+id/select_bar"
         android:layout_width="match_parent"
         android:layout_height="65dp"
         android:orientation="vertical"

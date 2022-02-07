@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#ffffff"
     android:orientation="vertical"
-    tools:context=".MainActivity">
+    tools:context=".Login.JoinActivity">
 
     <ImageView
         android:layout_width="match_parent"
@@ -121,11 +121,12 @@
 
     <ScrollView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/join"
+        app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="30dp">
 
     <LinearLayout
@@ -144,11 +145,24 @@
             android:textColor="#575757">
         </TextView>
 
-        <ImageView
+        <EditText
+            android:id="@+id/et_joinid"
             android:layout_width="330dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/contents_box"/>
+            android:textColor="#ff000000"
+            android:background="@drawable/contents_box"/>
+        <Button
+            android:id="@+id/btn_ID"
+            android:layout_width="120dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="30dp"
+            android:background="@drawable/contents_box4"
+            android:fontFamily="@font/nsed"
+            android:text="ID 중복 확인"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -159,11 +173,13 @@
             android:textColor="#575757">
         </TextView>
 
-        <ImageView
+        <EditText
+            android:id="@+id/et_joinpw"
             android:layout_width="330dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/contents_box6"/>
+            android:textColor="#ff000000"
+            android:background="@drawable/contents_box6"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,26 +200,25 @@
             android:textColor="#575757">
         </TextView>
 
-        <ImageView
+        <EditText
+            android:id="@+id/et_pwcheck"
             android:layout_width="330dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/contents_box"/>
+            android:textColor="#ff000000"
+            android:background="@drawable/contents_box"/>
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/btn_Join"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:textSize="14dp"
-            android:text="비밀번호 확인"
-            android:textColor="#575757">
-        </TextView>
-
-        <ImageView
-            android:layout_width="330dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/contents_box"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/loginbutton"
+            android:fontFamily="@font/nsed"
+            android:text="확인"
+            android:textColor="#FFFFFF"
+            android:textSize="16dp" />
 
     </LinearLayout>
 

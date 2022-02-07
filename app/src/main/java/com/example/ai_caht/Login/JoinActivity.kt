@@ -1,4 +1,4 @@
-package com.example.test
+package com.example.ai_caht.Login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,25 +9,29 @@ import android.view.KeyEvent
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import com.example.ai_caht.MainActivity
+import com.example.ai_caht.R
 import java.util.regex.Pattern
 
 
-class SignupActivity : AppCompatActivity() {
+class JoinActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_signup)
-        val btn_SignUp = findViewById<Button>(R.id.btn_sign)
-        val ed_ID = findViewById<EditText>(R.id.Get_Id)
-        val ed_Pass = findViewById<EditText>(R.id.Get_Pass)
-        val btn_ID = findViewById<Button>(R.id.ID_check)
-        val btn_Pass = findViewById<Button>(R.id.Pass_check)
+        setContentView(R.layout.activity_join)
+        val btn_SignUp = findViewById<Button>(R.id.btn_Join)
+        val btn_ID = findViewById<Button>(R.id.btn_ID)
+        val et_id = findViewById<EditText>(R.id.et_joinid)
+        val et_pw = findViewById<EditText>(R.id.et_joinpw)
+        val et_pwcheck = findViewById<EditText>(R.id.et_pwcheck)
+        val btn_loginback = findViewById<TextView>(R.id.login)
         var checkPass = 0
         var checkId = 0
 
         btn_ID.setEnabled(false)
-        btn_Pass.setEnabled(false)
-        ed_Pass.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        et_pwcheck.setEnabled(false)
+        et_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             //Enter key Action
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 Toast.makeText(this, "비밀번호를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show()
@@ -35,7 +39,7 @@ class SignupActivity : AppCompatActivity() {
                 true
             } else false
         })
-        ed_ID.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        et_id.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             //Enter key Action
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 Toast.makeText(this, "아이디를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show()
@@ -43,10 +47,11 @@ class SignupActivity : AppCompatActivity() {
                 true
             } else false
         })
-        ed_ID.addTextChangedListener(object : TextWatcher {
+        et_id.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 btn_ID.setEnabled(true)
+                btn_ID.setBackgroundResource(R.drawable.loginbutton)
                 if(btn_ID.isEnabled){
                     checkId = 0
                 }
@@ -63,37 +68,52 @@ class SignupActivity : AppCompatActivity() {
             checkId = 1
             Toast.makeText(this, "아이디를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show()
         }
-        ed_Pass.addTextChangedListener(object : TextWatcher {
+        et_pw.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                if (Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", ed_Pass.text.toString())) {
-                    btn_Pass.setEnabled(true)
+                if (Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", et_pw.text.toString())) {
+                    et_pwcheck.setEnabled(true)
+                    et_pw.setBackgroundResource(R.drawable.contents_box7)
                 }
                 else{
-                    btn_Pass.setEnabled(false)
+                    et_pwcheck.setEnabled(false)
+                    et_pw.setBackgroundResource(R.drawable.contents_box6)
                 }
-                if(btn_Pass.isEnabled){
+                if(et_pwcheck.isEnabled){
                     checkPass = 0
                 }
             }
-            
+
             // 입력이 끝났을 때 조치
             override fun afterTextChanged(arg0: Editable) {}
             // 입력하기 전에 조치
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
         })
-        btn_Pass.setOnClickListener {
-            //**추가**
-            // 웹 통신 비번 저장
-            Toast.makeText(this, "비밀번호를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show()
-            checkPass = 1
+        et_pwcheck.addTextChangedListener(object : TextWatcher {
+            // 입력난에 변화가 있을 시 조치
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                if (Pattern.matches(et_pwcheck.text.toString(), et_pw.text.toString())) {
+                    checkPass = 1
+                }
+
+            }
+
+            // 입력이 끝났을 때 조치
+            override fun afterTextChanged(arg0: Editable) {}
+            // 입력하기 전에 조치
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+        })
+        btn_loginback.setOnClickListener{
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
         btn_SignUp.setOnClickListener {
             if(checkPass == 1 && checkId == 1)
             {
-                MySharedPreferences.setUserId(this, ed_ID.text.toString())
-                MySharedPreferences.setUserPass(this, ed_Pass.text.toString())
-                val intent = Intent(this, LoginActivity::class.java)
+                MySharedPreferences.setUserId(this, et_id.text.toString())
+                MySharedPreferences.setUserPass(this, et_pw.text.toString())
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }
