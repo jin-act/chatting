@@ -15,7 +15,7 @@ import com.example.ai_caht.Login.MySharedPreferences
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_main)
         //버튼과 텍트스뷰 생성 btn mainscreen을 activity_main의 버튼과 텍스트뷰와 연동
         val btn_mainscreen = findViewById<ImageView>(R.id.start)
         val tv_info = findViewById<TextView>(R.id.tv_info)
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity() {
             //MySharedPreferences.clearUser(this)
             //자동 로그인 확인
             MySharedPreferences.autochecked(this, "0")
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
             finish()
         }

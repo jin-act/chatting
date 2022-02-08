@@ -14,15 +14,17 @@ import android.widget.TextView
 import android.widget.Toast
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.R
-import kotlinx.android.synthetic.main.activity_main.*
 import java.util.*
+import kotlin.concurrent.timer
 
 class LoginActivity : AppCompatActivity() {
     var check = 0
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
         // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> Login
         Login()
     }
@@ -30,12 +32,12 @@ class LoginActivity : AppCompatActivity() {
     fun Login(){
         val btn_login = findViewById<Button>(R.id.btn_login)
         val et_id = findViewById<EditText>(R.id.et_id)
-        val et_pass = findViewById<EditText>(R.id.et_pw)
-        et_pass.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
+        val et_pw = findViewById<EditText>(R.id.et_pw)
+        et_pw.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
         //**추가 및 변경**
         //아이디 비번 유효성 검사
         //유효성 문제가 없다면 아이디 비번 웹 통신을 통해서 확인
-        et_pass.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
+        et_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             //Enter key Action
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                 LoginButton()
@@ -60,6 +62,9 @@ class LoginActivity : AppCompatActivity() {
         }
     }
     fun LoginButton() {
+        val btn_login = findViewById<Button>(R.id.btn_login)
+        val et_id = findViewById<EditText>(R.id.et_id)
+        val et_pw = findViewById<EditText>(R.id.et_pw)
         val text_Timer = findViewById<TextView>(R.id.text_timer)
         if (et_id.text.toString() != MySharedPreferences.getUserId(this)) { // 아이디 데이터 확인
             Toast.makeText(this, "아이디를 확인하세요", Toast.LENGTH_SHORT).show()
@@ -99,7 +104,7 @@ class LoginActivity : AppCompatActivity() {
         var timerTask: Timer? = null
         var time = 0
         val text_Timer = findViewById<TextView>(R.id.text_timer)
-        timerTask = kotlin.concurrent.timer(period = 10) {	// timer() 호출
+        timerTask = timer(period = 10) {	// timer() 호출
             time++	// period=10, 0.01초마다 time를 1씩 증가
             val sec = (time / 100) + 1	// time/100, 나눗셈의 몫 (초 부분)
             val Ltime = 5-sec
