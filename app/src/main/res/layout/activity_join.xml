@@ -151,7 +151,10 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:textColor="#ff000000"
-            android:background="@drawable/contents_box"/>
+            android:background="@drawable/contents_box"
+            android:singleLine = "true"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/et_joinpw"/>
         <Button
             android:id="@+id/btn_ID"
             android:layout_width="120dp"
@@ -179,7 +182,11 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:textColor="#ff000000"
-            android:background="@drawable/contents_box6"/>
+            android:background="@drawable/contents_box"
+            android:inputType="textPassword"
+            android:singleLine = "true"
+            android:imeOptions="actionNext"
+            android:nextFocusDown="@+id/et_pwcheck"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -206,7 +213,10 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:textColor="#ff000000"
-            android:background="@drawable/contents_box"/>
+            android:background="@drawable/contents_box"
+            android:singleLine = "true"
+            android:inputType="textPassword"
+            android:imeOptions="actionDone" />
 
         <Button
             android:id="@+id/btn_Join"
