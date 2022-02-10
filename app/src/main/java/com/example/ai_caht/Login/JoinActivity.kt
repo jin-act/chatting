@@ -31,6 +31,7 @@ class JoinActivity : AppCompatActivity() {
 
         btn_ID.setEnabled(false)
         et_pwcheck.setEnabled(false)
+        et_pwcheck.setBackgroundResource(R.drawable.contents_box2)
         et_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
             //Enter key Action
             if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
@@ -73,6 +74,7 @@ class JoinActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (Pattern.matches("^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$", et_pw.text.toString())) {
                     et_pwcheck.setEnabled(true)
+                    et_pwcheck.setBackgroundResource(R.drawable.contents_box)
                     et_pw.setBackgroundResource(R.drawable.contents_box7)
                 }
                 else{

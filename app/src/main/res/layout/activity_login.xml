@@ -162,6 +162,7 @@
         android:layout_height="14dp"
         android:layout_marginStart="4dp"
         android:layout_marginTop="10dp"
+        android:checked="true"
         android:background="@drawable/chekbox_background"
         android:buttonTint="#003A3A3A"
         app:layout_constraintBottom_toBottomOf="parent"

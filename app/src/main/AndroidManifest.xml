@@ -10,15 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity android:name=".MainActivity"
-            android:windowSoftInputMode="adjustPan"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Login.JoinActivity"/>
-        <activity android:name=".Login.LoginActivity"/>
+        <activity android:name=".Login.JoinActivity"
+            android:windowSoftInputMode="adjustPan"/>
+        <activity android:name=".Login.LoginActivity" />
         <activity android:name=".PlayActivity"/>
     </application>
 
