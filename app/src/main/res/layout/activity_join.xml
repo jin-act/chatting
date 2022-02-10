@@ -154,6 +154,7 @@
             android:background="@drawable/contents_box"
             android:singleLine = "true"
             android:imeOptions="actionNext"
+            android:maxLength="12"
             android:nextFocusDown="@+id/et_joinpw"/>
         <Button
             android:id="@+id/btn_ID"
@@ -166,6 +167,15 @@
             android:text="ID 중복 확인"
             android:textColor="#FFFFFF"
             android:textSize="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="5dp"
+            android:text="*비밀번호 8-12자의 영문,숫자 및 특수문자 조합"
+            android:textColor="#A5A5A5"
+            android:textSize="10dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -186,17 +196,8 @@
             android:inputType="textPassword"
             android:singleLine = "true"
             android:imeOptions="actionNext"
+            android:maxLength="12"
             android:nextFocusDown="@+id/et_pwcheck"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:textSize="10dp"
-            android:text="*비밀번호는 영문,특수기호를 포함하여 12글자 이내로 작성해주세요"
-            android:layout_marginLeft="55dp"
-            android:textColor="#A5A5A5">
-        </TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -216,6 +217,7 @@
             android:background="@drawable/contents_box"
             android:singleLine = "true"
             android:inputType="textPassword"
+            android:maxLength="12"
             android:imeOptions="actionDone" />
 
         <Button
