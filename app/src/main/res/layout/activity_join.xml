@@ -161,6 +161,7 @@
             android:textSize="14dp"
             android:background="@drawable/contents_box"/>
 
+
         <Button
             android:id="@+id/btn_ID"
             android:layout_width="match_parent"
@@ -175,6 +176,15 @@
             android:textSize="11dp" />
 
         </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="130dp"
+            android:layout_marginTop="5dp"
+            android:text="*비밀번호 8-12자의 영문,숫자 및 특수문자 조합"
+            android:textColor="#A5A5A5"
+            android:textSize="10dp"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -204,6 +214,14 @@
             android:textColor="#9A9A9A">
         </TextView>
 
+            android:background="@drawable/contents_box"
+            android:inputType="textPassword"
+            android:singleLine = "true"
+            android:imeOptions="actionNext"
+            android:maxLength="12"
+            android:nextFocusDown="@+id/et_pwcheck"/>
+
+
 
         <TextView
             android:layout_width="wrap_content"
@@ -221,7 +239,11 @@
             android:layout_marginTop="10dp"
             android:textSize="14dp"
             android:textColor="#ff000000"
-            android:background="@drawable/contents_box"/>
+            android:background="@drawable/contents_box"
+            android:singleLine = "true"
+            android:inputType="textPassword"
+            android:maxLength="12"
+            android:imeOptions="actionDone" />
 
         <TextView
             android:layout_width="wrap_content"

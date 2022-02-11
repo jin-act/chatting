@@ -15,6 +15,12 @@ import com.example.ai_caht.Login.LoginActivity
 import com.example.ai_caht.Login.MySharedPreferences
 import java.util.*
 import kotlin.concurrent.timer
+import android.content.SharedPreferences
+
+import android.app.Activity
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,6 +29,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> Login
+        val pref = getSharedPreferences("isFirst", MODE_PRIVATE)
+        val first = pref.getBoolean("isFirst", false)
+        if (first == false) {
+            Log.d("Is first Time?", "first")
+            val editor = pref.edit()
+            editor.putBoolean("isFirst", true)
+            editor.commit()
+            MySharedPreferences.autochecked(this, "0")
+        }
         autocheck()
     }
 

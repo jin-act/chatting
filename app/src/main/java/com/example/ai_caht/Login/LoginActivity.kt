@@ -13,7 +13,7 @@ import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
 import java.util.*
-import kotlin.concurrent.timer
+
 
 class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
