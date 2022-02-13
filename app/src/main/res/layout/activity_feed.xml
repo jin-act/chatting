@@ -345,7 +345,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginTop="70dp"
-        android:background="@drawable/loginbutton"
+        android:background="@drawable/okay_button"
         android:fontFamily="@font/nsed"
         android:text="확인"
         android:textColor="#FFFFFF"

@@ -144,6 +144,7 @@
             android:layout_height="wrap_content"
             android:textSize="14dp"
             android:text="아이디"
+            android:fontFamily="@font/ns"
             android:textColor="#575757">
         </TextView>
 
@@ -172,19 +173,14 @@
             android:background="@drawable/contents_box8"
             android:fontFamily="@font/ns"
             android:text="중복 확인"
-            android:textColor="#393939"
+            android:textColor="#A0A0A0"
             android:textSize="11dp" />
 
         </LinearLayout>
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="130dp"
-            android:layout_marginTop="5dp"
-            android:text="*비밀번호 8-12자의 영문,숫자 및 특수문자 조합"
-            android:textColor="#A5A5A5"
-            android:textSize="10dp"></TextView>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
         <TextView
             android:layout_width="wrap_content"
@@ -192,8 +188,12 @@
             android:layout_marginTop="15dp"
             android:textSize="14dp"
             android:text="비밀번호"
+            android:fontFamily="@font/ns"
             android:textColor="#575757">
         </TextView>
+
+
+        </FrameLayout>
 
         <EditText
             android:id="@+id/et_joinpw"
@@ -201,25 +201,10 @@
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:textSize="14dp"
-            android:textColor="#ff000000"
-            android:background="@drawable/contents_box6"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:textSize="11dp"
-            android:layout_gravity="right"
-            android:text="* 영문,숫자를 포함하는 8자리이상의 비밀번호"
-            android:textColor="#9A9A9A">
-        </TextView>
-
-            android:background="@drawable/contents_box"
-            android:inputType="textPassword"
-            android:singleLine = "true"
-            android:imeOptions="actionNext"
-            android:maxLength="12"
-            android:nextFocusDown="@+id/et_pwcheck"/>
+            android:hint="   * 영문,숫자를 포함하는 8자리이상의 비밀번호"
+            android:textColorHint="#A5A5A5"
+            android:textColor="#ff9A9A9A"
+            android:background="@drawable/contents_box"/>
 
 
 
@@ -229,6 +214,7 @@
             android:layout_marginTop="15dp"
             android:textSize="14dp"
             android:text="비밀번호 확인"
+            android:fontFamily="@font/ns"
             android:textColor="#575757">
         </TextView>
 
@@ -251,6 +237,7 @@
             android:textSize="14dp"
             android:layout_marginTop="15dp"
             android:text="E-mail"
+            android:fontFamily="@font/ns"
             android:textColor="#575757">
         </TextView>
 
@@ -278,8 +265,35 @@
                 android:background="@drawable/contents_box8"
                 android:fontFamily="@font/ns"
                 android:text="인증 번호"
-                android:textColor="#393939"
+                android:textColor="#A0A0A0"
                 android:textSize="11dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14dp"
+            android:layout_marginTop="15dp"
+            android:text="인증번호"
+            android:fontFamily="@font/ns"
+            android:textColor="#575757">
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <EditText
+                android:id="@+id/certification"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:layout_marginTop="10dp"
+                android:textSize="14dp"
+                android:textColor="#ff000000"
+                android:background="@drawable/contents_box"/>
+
 
         </LinearLayout>
 
@@ -289,7 +303,7 @@
             android:layout_height="45dp"
             android:layout_gravity="center"
             android:layout_marginTop="30dp"
-            android:background="@drawable/loginbutton"
+            android:background="@drawable/okay_button"
             android:fontFamily="@font/nsed"
             android:text="가입하기"
             android:textColor="#FFFFFF"

@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.setPadding
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.R
@@ -38,7 +39,8 @@ class JoinActivity : AppCompatActivity() {
             // 입력난에 변화가 있을 시 조치
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 btn_ID.setEnabled(true)
-                btn_ID.setBackgroundResource(R.drawable.loginbutton)
+                btn_ID.setBackgroundResource(R.drawable.contents_box9)
+                btn_ID.setTextColor(ContextCompat.getColor(applicationContext!!,R.color.black))
                 if(btn_ID.isEnabled){
                     checkId = 0
                 }
