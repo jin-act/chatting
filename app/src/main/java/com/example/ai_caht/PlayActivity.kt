@@ -11,7 +11,7 @@ class PlayActivity : AppCompatActivity() {
         setContentView(R.layout.activity_status)
 
 
-        val ani = findViewById<ImageView>(R.id.ani)
-        Glide.with(this).load(R.raw.ani).into(ani)
+        val ani1 = findViewById<ImageView>(R.id.ani1)
+        Glide.with(this).load(R.raw.ani1).into(ani1)
     }
 }
