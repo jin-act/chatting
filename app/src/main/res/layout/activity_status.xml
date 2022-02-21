@@ -4,19 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/night_background"
     tools:context=".PlayActivity">
 
 
-    <ImageView
-        android:layout_width="500px"
-        android:layout_height="500px"
-        android:layout_marginEnd="16dp"
-        android:id="@+id/ani1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/imageView"
-        app:layout_constraintStart_toStartOf="parent">
-    </ImageView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:gravity="bottom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.41"
+        app:layout_constraintVertical_bias="0">
+
+        <ImageView
+            android:layout_width="500px"
+            android:layout_height="500px"
+            android:layout_marginEnd="16dp"
+            android:id="@+id/ani1"
+            android:layout_gravity="right"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/imageView"
+            app:layout_constraintStart_toStartOf="parent">
+        </ImageView>
+
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/imageView"
@@ -86,7 +98,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#A8A8A8"/>
+                    android:background="#DCDCDC"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -146,7 +158,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#A8A8A8"/>
+                    android:background="#DCDCDC"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -206,7 +218,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#A8A8A8"/>
+                    android:background="#DCDCDC"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -267,7 +279,7 @@
                     android:layout_height="0.5dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
-                    android:background="#A8A8A8"/>
+                    android:background="#DCDCDC"/>
 
                 <TextView
                     android:layout_width="wrap_content"
