@@ -58,11 +58,6 @@ class MainActivity : AppCompatActivity() {
         Glide.with(this).load(R.raw.ani1).into(ani1)
 
 
-
-
-
-
-
     }
 
 }
