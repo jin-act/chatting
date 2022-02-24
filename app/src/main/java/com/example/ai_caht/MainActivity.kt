@@ -15,9 +15,6 @@ import com.example.ai_caht.Login.LoginActivity
 import com.example.ai_caht.Login.MySharedPreferences
 import java.util.*
 import kotlin.concurrent.timer
-import android.content.SharedPreferences
-
-import android.app.Activity
 
 
 
@@ -141,7 +138,7 @@ class MainActivity : AppCompatActivity() {
             }
             // UI조작을 위한 메서드
             runOnUiThread {
-                text_Timer.text = "$Ltime 초 후에 다시 시도해 주세요"	// TextView 세팅
+                text_Timer.text = "5회 잘못 입력되어 $Ltime 초 로그인이 제한됩니다."	// TextView 세팅
             }
         }
 

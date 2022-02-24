@@ -189,11 +189,11 @@
 
 
     <TextView
-        android:id="@+id/wrong_id"
+        android:id="@+id/text_timer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/ns"
-        android:text="5회 잘못 입력되어 5초 로그인이 제한됩니다."
+        android:text=""
         android:textColor="#FF5722"
         android:textSize="12dp"
         android:layout_marginTop="35dp"
@@ -202,19 +202,6 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintTop_toTopOf="@id/tv_save" />
 
-    <TextView
-        android:id="@+id/text_timer"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/ns"
-        android:textColor="#323232"
-        android:textSize="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.698"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tv_save"
-        app:layout_constraintVertical_bias="0.158" />
 
     <Button
         android:id="@+id/btn_login"
