@@ -51,7 +51,7 @@
                             android:layout_weight="1"
                             android:layout_height="40dp"
                             android:layout_marginTop="10dp"
-                            android:textColor="#ff000000"
+                            android:textColor="#ff515151"
                             android:textSize="13dp"
                             android:background="@drawable/contents_box"/>
 
@@ -96,6 +96,7 @@
                         android:textSize="13dp"
                         android:hint="   * 영문,숫자를 포함하는 8자리이상의 비밀번호"
                         android:textColorHint="#C8C8C8"
+                        android:textColor="#ff515151"
                         android:background="@drawable/contents_box"/>
 
 
@@ -116,7 +117,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="10dp"
                         android:textSize="13dp"
-                        android:textColor="#ff000000"
+                        android:textColor="#ff515151"
                         android:background="@drawable/contents_box"
                         android:singleLine = "true"
                         android:inputType="textPassword"
@@ -144,7 +145,7 @@
                             android:layout_weight="1"
                             android:layout_marginTop="10dp"
                             android:textSize="13dp"
-                            android:textColor="#ff000000"
+                            android:textColor="#ff515151"
                             android:background="@drawable/contents_box"/>
 
                         <Button
@@ -183,7 +184,7 @@
                             android:layout_weight="1"
                             android:layout_marginTop="10dp"
                             android:textSize="13dp"
-                            android:textColor="#ff000000"
+                            android:textColor="#ff515151"
                             android:background="@drawable/contents_box"/>
 
 

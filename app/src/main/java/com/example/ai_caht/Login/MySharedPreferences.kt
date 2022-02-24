@@ -7,8 +7,8 @@ object MySharedPreferences {
     private val MY_ACCOUNT : String = "account"
 
 
-    fun autochecked(context: Context, input: String){
-        val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+    fun autochecked(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.putString("AUTO", input)
         editor.commit()
@@ -19,8 +19,8 @@ object MySharedPreferences {
         editor.putString("FIRST", input)
         editor.commit()
     }
-    fun getautochecked(context: Context): String{
-        val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+    fun getautochecked(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return prefs.getString("AUTO", "").toString()
     }
     fun setUserId(context: Context, input: String) {
@@ -30,8 +30,8 @@ object MySharedPreferences {
         editor.commit()
     }
 
-    fun getUserId(context: Context): String {
-        val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+    fun getUserId(context: Context?): String {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return prefs.getString("MY_ID", "").toString()
     }
 
@@ -42,8 +42,8 @@ object MySharedPreferences {
         editor.commit()
     }
 
-    fun getUserPass(context: Context): String {
-        val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+    fun getUserPass(context: Context?): String {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return prefs.getString("MY_PASS", "").toString()
     }
 

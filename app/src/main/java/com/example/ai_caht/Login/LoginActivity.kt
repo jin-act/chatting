@@ -3,16 +3,10 @@ package com.example.ai_caht.Login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.InputType
-import android.view.KeyEvent
-import android.view.View
 import android.widget.*
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
-import java.util.*
 
 
 class LoginActivity : AppCompatActivity() {
