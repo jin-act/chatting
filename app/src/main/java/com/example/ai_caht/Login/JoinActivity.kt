@@ -67,6 +67,7 @@ class JoinActivity : AppCompatActivity() {
             checkId = 1
             Toast.makeText(this, "아이디를 사용하실 수 있습니다.", Toast.LENGTH_SHORT).show()
         }
+
         et_pw.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {

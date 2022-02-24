@@ -1,23 +1,13 @@
 package com.example.ai_caht
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
-import android.text.InputType
-import android.util.Log
-import android.view.KeyEvent
-import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.example.ai_caht.Login.JoinActivity
-import com.example.ai_caht.Login.LoginActivity
-import com.example.ai_caht.Login.MySharedPreferences
 import java.util.*
 import kotlin.concurrent.timer
-
-
-
+import android.graphics.Color
+import com.bumptech.glide.Glide
+import com.example.ai_caht.Login.login
 
 
 class MainActivity : AppCompatActivity() {
@@ -25,104 +15,30 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-        // SharedPreferences 안에 값이 저장되어 있지 않을 때 -> Login
-        val pref = getSharedPreferences("isFirst", MODE_PRIVATE)
-        val first = pref.getBoolean("isFirst", false)
-        if (first == false) {
-            Log.d("Is first Time?", "first")
-            val editor = pref.edit()
-            editor.putBoolean("isFirst", true)
-            editor.commit()
-            MySharedPreferences.autochecked(this, "0")
-        }
-        autocheck()
-    }
 
-    fun autocheck() {
-        if (MySharedPreferences.getautochecked(this) == "0") {
-            Login()
-        } else {
-            var intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
+        supportFragmentManager.beginTransaction()
+                .replace(R.id.login_join, login())
+                .commit()
 
-    fun Login(){
-        val btn_login = findViewById<Button>(R.id.btn_login)
-        val et_id = findViewById<EditText>(R.id.et_id)
-        val et_pw = findViewById<EditText>(R.id.et_pw)
-        et_pw.setInputType(InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD)
-        //**추가 및 변경**
-        //아이디 비번 유효성 검사
-        //유효성 문제가 없다면 아이디 비번 웹 통신을 통해서 확인
-        et_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            //Enter key Action
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                LoginButton()
-                true
-            } else false
+        val login = findViewById<TextView>(R.id.login)
+        val join = findViewById<TextView>(R.id.join)
+
+        login.setOnClickListener({
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.login_join, com.example.ai_caht.Login.login())
+                    .commit()
+            login.setTextColor(Color.rgb(255,168,39));
+            join.setTextColor(Color.rgb(160,160,160));
+
         })
-        et_id.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-            //Enter key Action
-            if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                LoginButton()
-                true
-            } else false
+
+        join.setOnClickListener({
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.login_join, com.example.ai_caht.Login.join())
+                    .commit()
+            join.setTextColor(Color.rgb(255,168,39));
+            login.setTextColor(Color.rgb(160,160,160));
         })
-        btn_login.setOnClickListener {
-            LoginButton()
-        }
-        val btn_signup = findViewById<TextView>(R.id.join)
-        btn_signup.setOnClickListener {
-            var intent = Intent(this, JoinActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-    fun LoginButton() {
-        val btn_login = findViewById<Button>(R.id.btn_login)
-        val et_id = findViewById<EditText>(R.id.et_id)
-        val et_pw = findViewById<EditText>(R.id.et_pw)
-        val text_Timer = findViewById<TextView>(R.id.text_timer)
-        val autologin = findViewById<CheckBox>(R.id.previous)
-
-        if (et_id.text.toString() != MySharedPreferences.getUserId(this)) { // 아이디 데이터 확인
-            Toast.makeText(this, "아이디를 확인하세요", Toast.LENGTH_SHORT).show()
-            check += 1
-        } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(this)) { // 아이디 패스워드 매칭 확인
-            Toast.makeText(this, "비밀번호를 확인하세요", Toast.LENGTH_SHORT).show()
-            check += 1
-        } else {
-            if(autologin.isChecked){
-                MySharedPreferences.autochecked(this, "1")
-            }
-            else if(!autologin.isChecked){
-                MySharedPreferences.autochecked(this, "0") }
-            var intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-        if (check >= 5) {
-            btn_login.setEnabled(false) //버튼 비활성화
-            btn_login.setBackgroundResource(R.drawable.contents_box4)
-            et_id.setEnabled(false)
-            et_id.setBackgroundResource(R.drawable.edittext_background2)
-            et_pw.setEnabled(false)
-            et_pw.setBackgroundResource(R.drawable.edittext_background2)
-
-            start()
-            Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                btn_login.setEnabled(true) //버튼 활성화
-                btn_login.setBackgroundResource(R.drawable.loginbutton)
-                et_id.setEnabled(true)
-                et_id.setBackgroundResource(R.drawable.edittext_background)
-                et_pw.setEnabled(true)
-                et_pw.setBackgroundResource(R.drawable.edittext_background)
-                check = 0
-                text_Timer.setText("")
-            }, 5000)
-        }
 
     }
     private fun start() {
@@ -141,6 +57,8 @@ class MainActivity : AppCompatActivity() {
                 text_Timer.text = "5회 잘못 입력되어 $Ltime 초 로그인이 제한됩니다."	// TextView 세팅
             }
         }
+        val ani1 = findViewById<ImageView>(R.id.ani1)
+        Glide.with(this).load(R.raw.ani1).into(ani1)
 
     }
 

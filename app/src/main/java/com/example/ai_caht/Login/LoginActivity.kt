@@ -19,6 +19,9 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+   
+
         //버튼과 텍트스뷰 생성 btn mainscreen을 activity_main의 버튼과 텍스트뷰와 연동
         val btn_mainscreen = findViewById<ImageView>(R.id.start)
         val tv_info = findViewById<TextView>(R.id.tv_info)
