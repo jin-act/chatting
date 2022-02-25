@@ -5,8 +5,6 @@ import android.content.SharedPreferences
 
 object MySharedPreferences {
     private val MY_ACCOUNT : String = "account"
-
-
     fun autochecked(context: Context?, input: String){
         val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
@@ -53,5 +51,4 @@ object MySharedPreferences {
         editor.clear()
         editor.commit()
     }
-
 }

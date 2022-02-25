@@ -82,11 +82,11 @@
                 android:id="@+id/text_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/ns"
                 android:text=""
                 android:textColor="#FF5722"
-                android:textSize="12dp"
-                android:layout_marginTop="10dp"/>
+                android:textSize="12dp" />
 
             <Button
                 android:id="@+id/btn_login"

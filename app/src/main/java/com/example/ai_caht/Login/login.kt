@@ -42,7 +42,6 @@ class login : Fragment() {
         if (container != null) {
             ct = container.context
         }
-
         val view:View = inflater.inflate(R.layout.fragment_login, container, false) as ViewGroup
         val btn_login = view.findViewById<Button>(R.id.btn_login)
         val et_id = view.findViewById<EditText>(R.id.et_id)
@@ -69,8 +68,10 @@ class login : Fragment() {
 
                     if (et_id.text.toString() != MySharedPreferences.getUserId(ct)) { // 아이디 데이터 확인
                         check += 1
+                        text_Timer.setText("ID를 다시 확인해 주세요")
                     } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(ct)) { // 아이디 패스워드 매칭 확인
                         check += 1
+                        text_Timer.setText("PW를 다시 확인해 주세요")
                     } else {
                         if(autologin.isChecked){
                             MySharedPreferences.autochecked(ct, "1")
@@ -121,8 +122,11 @@ class login : Fragment() {
                 if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
                     if (et_id.text.toString() != MySharedPreferences.getUserId(ct)) { // 아이디 데이터 확인
                         check += 1
+                        text_Timer.setText("ID를 다시 확인해 주세요")
                     } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(ct)) { // 아이디 패스워드 매칭 확인
                         check += 1
+                        text_Timer.setText("PW를 다시 확인해 주세요")
+
                     } else {
                         if(autologin.isChecked){
                             MySharedPreferences.autochecked(ct, "1")
@@ -171,8 +175,10 @@ class login : Fragment() {
             btn_login.setOnClickListener {
                 if (et_id.text.toString() != MySharedPreferences.getUserId(ct)) { // 아이디 데이터 확인
                     check += 1
+                    text_Timer.setText("ID를 다시 확인해 주세요")
                 } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(ct)) { // 아이디 패스워드 매칭 확인
                     check += 1
+                    text_Timer.setText("PW를 다시 확인해 주세요")
                 } else {
                     if(autologin.isChecked){
                         MySharedPreferences.autochecked(ct, "1")
