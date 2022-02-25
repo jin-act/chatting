@@ -23,13 +23,25 @@ class PlayActivity : AppCompatActivity() {
                     .commit()
         })
 
+        val feedimg = findViewById<ImageView>(R.id.feedimg)
+        feedimg.setOnClickListener({
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.infospace, feed())
+                .commit()
+        })
+
         val status = findViewById<TextView>(R.id.status)
         status.setOnClickListener({
             supportFragmentManager.beginTransaction()
                     .replace(R.id.infospace, status())
                     .commit()
         })
-
+        val statusimg = findViewById<ImageView>(R.id.statusimg)
+        statusimg.setOnClickListener({
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.infospace, status())
+                .commit()
+        })
         val ani1 = findViewById<ImageView>(R.id.ani1)
         Glide.with(this).load(R.raw.ani1).into(ani1)
     }

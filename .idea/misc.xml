@@ -38,6 +38,7 @@
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/drawable/loginbutton.xml" value="0.28671875" />
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/drawable/second_background.xml" value="0.28671875" />
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/drawable/under_bar.xml" value="0.28671875" />
+<<<<<<< HEAD
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_feed.xml" value="0.1" />
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_join.xml" value="0.33" />
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_login.xml" value="0.33" />
@@ -48,6 +49,11 @@
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/fragment_join.xml" value="0.25" />
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/fragment_login.xml" value="0.274609375" />
         <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/fragment_status.xml" value="0.274609375" />
+=======
+        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_join.xml" value="0.274609375" />
+        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="..\:/Users/82104/Desktop/new pro/mobile2/chatting/app/src/main/res/layout/activity_main.xml" value="0.15390625" />
+>>>>>>> parent of c22da58 (2022_02_24:test)
       </map>
     </option>
   </component>

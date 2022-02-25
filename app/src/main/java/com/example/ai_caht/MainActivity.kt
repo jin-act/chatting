@@ -3,8 +3,6 @@ package com.example.ai_caht
 import android.os.Bundle
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import java.util.*
-import kotlin.concurrent.timer
 import android.graphics.Color
 import com.bumptech.glide.Glide
 import com.example.ai_caht.Login.login
@@ -43,7 +41,7 @@ class MainActivity : AppCompatActivity() {
         val ani1 = findViewById<ImageView>(R.id.ani1)
         Glide.with(this).load(R.raw.ani1).into(ani1)
 
-    }
 
+    }
 
 }

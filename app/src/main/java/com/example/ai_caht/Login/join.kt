@@ -10,16 +10,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import com.example.ai_caht.R
 import android.content.Intent
-import android.widget.TextView
 import androidx.annotation.Nullable
-import androidx.appcompat.app.AlertDialog.*
-import androidx.appcompat.app.AlertDialog
-import androidx.core.view.setPadding
 import com.example.ai_caht.MainActivity
 import java.util.regex.Pattern
 
@@ -151,6 +144,8 @@ class join : Fragment() {
             //ID, pw 유효성이 모두 완료되었을 때, 회원가입 완료
             if(checkPass == 1 && checkId == 1)
             {
+                MySharedPreferences.setUserId(ct, et_joinid.text.toString())
+                MySharedPreferences.setUserPass(ct, et_joinpw.text.toString())
                 val intent = Intent(activity, MainActivity::class.java)
                 startActivity(intent)
             }

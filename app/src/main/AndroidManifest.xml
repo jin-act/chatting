@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ai_caht">
-    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
@@ -25,8 +24,6 @@
         <activity android:name=".Login.LoginActivity"
             android:screenOrientation="portrait"/>
         <activity android:name=".PlayActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name=".signal.test"
             android:screenOrientation="portrait"/>
     </application>
 

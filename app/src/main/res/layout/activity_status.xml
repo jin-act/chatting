@@ -56,12 +56,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
             <ImageView
+                android:id="@+id/statusimg"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:src="@drawable/underbar_parrot1"
                 android:layout_weight="1"
                 ></ImageView>
             <ImageView
+                android:id="@+id/feedimg"
                 android:layout_width="0dp"
                 android:layout_height="20dp"
                 android:src="@drawable/underbar_food"
