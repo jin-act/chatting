@@ -13,23 +13,15 @@
         android:background="@drawable/second_background">
 
 
-        <View
-            android:layout_width="30dp"
-            android:layout_height="3dp"
-            android:layout_marginTop="20dp"
-            android:layout_gravity="center"
-            android:background="#AFAFAF" />
-
-
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
             android:background="@drawable/contents_box">
 
             <LinearLayout
@@ -76,7 +68,7 @@
                     android:fontFamily="@font/nsel"
                     android:text="가나다라마바사"
                     android:textColor="#676767"
-                    android:textSize="13dp"
+                    android:textSize="11dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="7dp"/>
 
@@ -90,8 +82,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
             android:background="@drawable/contents_box">
 
             <LinearLayout
@@ -136,7 +128,7 @@
                     android:fontFamily="@font/nsel"
                     android:text="가나다라마바사"
                     android:textColor="#676767"
-                    android:textSize="13dp"
+                    android:textSize="11dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="7dp"/>
 
@@ -150,8 +142,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
             android:background="@drawable/contents_box">
 
             <LinearLayout
@@ -196,7 +188,7 @@
                     android:fontFamily="@font/nsel"
                     android:text="가나다라마바사"
                     android:textColor="#676767"
-                    android:textSize="13dp"
+                    android:textSize="11dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="7dp"/>
 
@@ -211,8 +203,8 @@
             android:layout_marginTop="10dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:paddingTop="15dp"
-            android:paddingBottom="15dp"
+            android:paddingTop="14dp"
+            android:paddingBottom="14dp"
             android:background="@drawable/contents_box">
 
             <LinearLayout
@@ -257,7 +249,7 @@
                     android:fontFamily="@font/nsel"
                     android:text="가나다라마바사"
                     android:textColor="#676767"
-                    android:textSize="13dp"
+                    android:textSize="11dp"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="7dp"/>
 

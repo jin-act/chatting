@@ -187,6 +187,7 @@ class login : Fragment() {
                         MySharedPreferences.autochecked(ct, "0") }
                     val intent = Intent(activity, PlayActivity::class.java)
                     startActivity(intent)
+
                 }
                 if (check >= 5) {
                     btn_login.setEnabled(false) //버튼 비활성화
