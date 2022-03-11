@@ -80,7 +80,7 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:id="@+id/button_bar1"
                 android:layout_weight="1"
                 app:lottie_fileName="underbar1.json"
@@ -88,7 +88,7 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:id="@+id/button_bar2"
                 android:layout_weight="1"
                 app:lottie_fileName="underbar1.json"
@@ -96,14 +96,14 @@
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:layout_weight="1"
                 app:lottie_fileName="underbar1.json"
                 app:lottie_autoPlay="false" />
 
             <com.airbnb.lottie.LottieAnimationView
                 android:layout_width="match_parent"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:layout_weight="1"
                 android:id="@+id/button_bar4"
                 app:lottie_fileName="underbar1.json"
