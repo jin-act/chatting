@@ -33,10 +33,17 @@ class list : Fragment() {
         }
         val view:View = inflater.inflate(R.layout.fragment_list, container, false) as ViewGroup
         val logout = view.findViewById<LinearLayout>(R.id.logout)
+        val destroy = view.findViewById<LinearLayout>(R.id.destroy)
         logout.setOnClickListener {
             MySharedPreferences.autochecked(ct, "0")
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
+        }
+        destroy.setOnClickListener{
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.remove(this)
+                ?.commit()
         }
         return view
     }
