@@ -18,6 +18,13 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
+import com.example.ai_caht.test.Login.LoginRequest
+import com.example.ai_caht.test.Login.LoginResponse
+import com.example.ai_caht.test.RetrofitClient
+import com.example.ai_caht.test.initMyApi
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.*
 import kotlin.concurrent.timer
 
@@ -62,133 +69,50 @@ class login : Fragment() {
             //**추가 및 변경**
             //아이디 비번 유효성 검사
             //유효성 문제가 없다면 아이디 비번 웹 통신을 통해서 확인
-            et_pw.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-                //Enter key Action
-                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-
-                    if (et_id.text.toString() != MySharedPreferences.getUserId(ct)) { // 아이디 데이터 확인
-                        check += 1
-                        text_Timer.setText("ID를 다시 확인해 주세요")
-                    } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(ct)) { // 아이디 패스워드 매칭 확인
-                        check += 1
-                        text_Timer.setText("PW를 다시 확인해 주세요")
-                    } else {
-                        if(autologin.isChecked){
-                            MySharedPreferences.autochecked(ct, "1")
-                        }
-                        else if(!autologin.isChecked){
-                            MySharedPreferences.autochecked(ct, "0") }
-                        val intent = Intent(activity, PlayActivity::class.java)
-                        startActivity(intent)
-                    }
-                    if (check >= 5) {
-                        btn_login.setEnabled(false) //버튼 비활성화
-                        btn_login.setBackgroundResource(R.drawable.contents_box4)
-                        et_id.setEnabled(false)
-                        et_id.setBackgroundResource(R.drawable.edittext_background2)
-                        et_pw.setEnabled(false)
-                        et_pw.setBackgroundResource(R.drawable.edittext_background2)
-
-                        var timerTask: Timer? = null
-                        var time = 0
-                        timerTask = timer(period = 10) {	// timer() 호출
-                            time++	// period=10, 0.01초마다 time를 1씩 증가
-                            val sec = (time / 100) + 1	// time/100, 나눗셈의 몫 (초 부분)
-                            val Ltime = 5-sec
-                            if(sec >= 4){
-                                timerTask?.cancel()
-                            }
-                            // UI조작을 위한 메서드
-                            mainActivity?.runOnUiThread {
-                                text_Timer.text = "$Ltime 초 후에 다시 시도해 주세요"	// TextView 세팅
-                            }
-                        }
-                        Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                            btn_login.setEnabled(true) //버튼 활성화
-                            btn_login.setBackgroundResource(R.drawable.loginbutton)
-                            et_id.setEnabled(true)
-                            et_id.setBackgroundResource(R.drawable.edittext_background)
-                            et_pw.setEnabled(true)
-                            et_pw.setBackgroundResource(R.drawable.edittext_background)
-                            check = 0
-                            text_Timer.setText("")
-                        }, 5000)
-                    }
-                    true
-                } else false
-            })
-            et_id.setOnKeyListener(View.OnKeyListener { v, keyCode, event ->
-                //Enter key Action
-                if (event.action == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-                    if (et_id.text.toString() != MySharedPreferences.getUserId(ct)) { // 아이디 데이터 확인
-                        check += 1
-                        text_Timer.setText("ID를 다시 확인해 주세요")
-                    } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(ct)) { // 아이디 패스워드 매칭 확인
-                        check += 1
-                        text_Timer.setText("PW를 다시 확인해 주세요")
-
-                    } else {
-                        if(autologin.isChecked){
-                            MySharedPreferences.autochecked(ct, "1")
-                        }
-                        else if(!autologin.isChecked){
-                            MySharedPreferences.autochecked(ct, "0") }
-                        val intent = Intent(activity, PlayActivity::class.java)
-                        startActivity(intent)
-                    }
-                    if (check >= 5) {
-                        btn_login.setEnabled(false) //버튼 비활성화
-                        btn_login.setBackgroundResource(R.drawable.contents_box4)
-                        et_id.setEnabled(false)
-                        et_id.setBackgroundResource(R.drawable.edittext_background2)
-                        et_pw.setEnabled(false)
-                        et_pw.setBackgroundResource(R.drawable.edittext_background2)
-
-                        var timerTask: Timer? = null
-                        var time = 0
-                        timerTask = timer(period = 10) {	// timer() 호출
-                            time++	// period=10, 0.01초마다 time를 1씩 증가
-                            val sec = (time / 100) + 1	// time/100, 나눗셈의 몫 (초 부분)
-                            val Ltime = 5-sec
-                            if(sec >= 4){
-                                timerTask?.cancel()
-                            }
-                            // UI조작을 위한 메서드
-                            mainActivity?.runOnUiThread {
-                                text_Timer.text = "$Ltime 초 후에 다시 시도해 주세요"	// TextView 세팅
-                            }
-                        }
-                        Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                            btn_login.setEnabled(true) //버튼 활성화
-                            btn_login.setBackgroundResource(R.drawable.loginbutton)
-                            et_id.setEnabled(true)
-                            et_id.setBackgroundResource(R.drawable.edittext_background)
-                            et_pw.setEnabled(true)
-                            et_pw.setBackgroundResource(R.drawable.edittext_background)
-                            check = 0
-                            text_Timer.setText("")
-                        }, 5000)
-                    }
-                    true
-                } else false
-            })
             btn_login.setOnClickListener {
-                if (et_id.text.toString() != MySharedPreferences.getUserId(ct)) { // 아이디 데이터 확인
-                    check += 1
-                    text_Timer.setText("ID를 다시 확인해 주세요")
-                } else if (et_pw.text.toString() != MySharedPreferences.getUserPass(ct)) { // 아이디 패스워드 매칭 확인
-                    check += 1
-                    text_Timer.setText("PW를 다시 확인해 주세요")
-                } else {
-                    if(autologin.isChecked){
-                        MySharedPreferences.autochecked(ct, "1")
-                    }
-                    else if(!autologin.isChecked){
-                        MySharedPreferences.autochecked(ct, "0") }
-                    val intent = Intent(activity, PlayActivity::class.java)
-                    startActivity(intent)
+                val userID: String = et_id.getText().toString().trim { it <= ' ' }
+                val userPW: String = et_pw.getText().toString().trim { it <= ' ' }
+                val loginRequest = LoginRequest(userID, userPW)
+                var retrofitClient: RetrofitClient? = null
+                var initMyApi: initMyApi? = null
+                retrofitClient = RetrofitClient.getInstance()
+                initMyApi = RetrofitClient.getRetrofitInterface()
 
-                }
+
+                initMyApi.getLoginResponse(loginRequest).enqueue(object : Callback<LoginResponse> {
+                    override fun onResponse(
+                        call: Call<LoginResponse>,
+                        response: Response<LoginResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            var headers = response.headers()
+                            var authorization : String? = headers.get("Authorization")
+                            println(authorization)
+                            if(authorization == null){
+                                check += 1
+                                text_Timer.setText("ID,PW를 다시 확인해 주세요")
+                            }
+                            else{
+                                MySharedPreferences.token(ct, authorization)
+                                if(autologin.isChecked){
+                                    MySharedPreferences.autochecked(ct, "1")
+                                }
+                                else if(!autologin.isChecked){
+                                    MySharedPreferences.autochecked(ct, "0") }
+                                val intent = Intent(activity, PlayActivity::class.java)
+                                startActivity(intent)
+                            }
+                            //다른 통신을 하기 위해 token 저장
+                            
+
+                        }
+                    }
+
+                    override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+                        check += 1
+                        text_Timer.setText("알 수 없는 에러입니다. 통신상태를 확인해 주세요")
+                    }
+                })
                 if (check >= 5) {
                     btn_login.setEnabled(false) //버튼 비활성화
                     btn_login.setBackgroundResource(R.drawable.contents_box4)
@@ -229,6 +153,5 @@ class login : Fragment() {
         }
         // Inflate the layout for this fragment
         return view
-
     }
 }

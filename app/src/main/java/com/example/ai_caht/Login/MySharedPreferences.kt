@@ -11,6 +11,12 @@ object MySharedPreferences {
         editor.putString("AUTO", input)
         editor.commit()
     }
+    fun token(context: Context?, input: String?){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("Authorization", input)
+        editor.commit()
+    }
     fun firts(context: Context, input: String){
         val prefs : SharedPreferences = context.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()

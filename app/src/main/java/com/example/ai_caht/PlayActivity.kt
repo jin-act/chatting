@@ -9,11 +9,13 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 
 class PlayActivity : AppCompatActivity() {
-
+    var mBackWait:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,9 +91,13 @@ class PlayActivity : AppCompatActivity() {
 
         val ani1 = findViewById<ImageView>(R.id.ani1)
         Glide.with(this).load(R.raw.ani1).into(ani1)
-
-
-
-
+    }
+    override fun onBackPressed() {
+        // 뒤로가기 버튼 클릭
+        if(System.currentTimeMillis() - mBackWait >=2000 ) {
+            mBackWait = System.currentTimeMillis()
+        } else {
+            ActivityCompat.finishAffinity(this);
+        }
     }
 }
