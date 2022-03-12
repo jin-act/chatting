@@ -73,43 +73,7 @@
         android:background="#BDBDBD"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:id="@+id/button_bar1"
-                android:layout_weight="1"
-                app:lottie_fileName="underbar1.json"
-                app:lottie_autoPlay="true" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:id="@+id/button_bar2"
-                android:layout_weight="1"
-                app:lottie_fileName="underbar1.json"
-                app:lottie_autoPlay="false" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                app:lottie_fileName="underbar1.json"
-                app:lottie_autoPlay="false" />
-
-            <com.airbnb.lottie.LottieAnimationView
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_weight="1"
-                android:id="@+id/button_bar4"
-                app:lottie_fileName="underbar1.json"
-                app:lottie_autoPlay="false" />
-
-        </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -139,6 +103,7 @@
                     android:id="@+id/status"
                     android:textColor="#555555"
                     android:textSize="11dp"
+                    android:fontFamily="@font/nsb"
                     android:text="상태보기"></TextView>
             </LinearLayout>
 
@@ -164,6 +129,7 @@
                     android:id="@+id/feed"
                     android:textColor="#555555"
                     android:textSize="11dp"
+                    android:fontFamily="@font/nsb"
                     android:text="먹이주기"></TextView>
             </LinearLayout>
 
@@ -185,6 +151,7 @@
                     android:layout_height="wrap_content"
                     android:textColor="#555555"
                     android:textSize="11dp"
+                    android:fontFamily="@font/nsb"
                     android:text="상태보기"></TextView>
             </LinearLayout>
 
@@ -208,6 +175,7 @@
                     android:textColor="#555555"
                     android:id="@+id/conver"
                     android:textSize="11dp"
+                    android:fontFamily="@font/nsb"
                     android:text="대화하기"></TextView>
             </LinearLayout>
 

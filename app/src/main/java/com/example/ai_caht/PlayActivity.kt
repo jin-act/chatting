@@ -23,9 +23,6 @@ class PlayActivity : AppCompatActivity() {
                 .replace(R.id.infospace, status())
                 .commit()
 
-        val button_bar4 = findViewById<LottieAnimationView>(R.id.button_bar4)
-        val button_bar2 = findViewById<LottieAnimationView>(R.id.button_bar2)
-        val button_bar1 = findViewById<LottieAnimationView>(R.id.button_bar1)
 
         val feed = findViewById<TextView>(R.id.feed)
         val feedimg = findViewById<ImageView>(R.id.feedimg)
@@ -49,10 +46,7 @@ class PlayActivity : AppCompatActivity() {
                     .commit()
             feedimg.setImageResource(R.drawable.underbar_food1)
             statusimg.setImageResource(R.drawable.underbar_parrot)
-            button_bar2.setVisibility(View.VISIBLE)
-            button_bar2.playAnimation()
-            button_bar1.setVisibility(View.INVISIBLE)
-            button_bar4.setVisibility(View.INVISIBLE)
+
         })
 
         feedimg.setOnClickListener({
@@ -61,10 +55,7 @@ class PlayActivity : AppCompatActivity() {
                 .commit()
             feedimg.setImageResource(R.drawable.underbar_food1)
             statusimg.setImageResource(R.drawable.underbar_parrot)
-            button_bar2.setVisibility(View.VISIBLE)
-            button_bar2.playAnimation()
-            button_bar1.setVisibility(View.INVISIBLE)
-            button_bar4.setVisibility(View.INVISIBLE)
+
         })
 
         status.setOnClickListener({
@@ -73,10 +64,7 @@ class PlayActivity : AppCompatActivity() {
                     .commit()
             statusimg.setImageResource(R.drawable.underbar_parrot1)
             feedimg.setImageResource(R.drawable.underbar_food)
-            button_bar1.setVisibility(View.VISIBLE)
-            button_bar1.playAnimation()
-            button_bar2.setVisibility(View.INVISIBLE)
-            button_bar4.setVisibility(View.INVISIBLE)
+
         })
 
         statusimg.setOnClickListener({
@@ -85,10 +73,7 @@ class PlayActivity : AppCompatActivity() {
                 .commit()
             statusimg.setImageResource(R.drawable.underbar_parrot1)
             feedimg.setImageResource(R.drawable.underbar_food)
-            button_bar1.setVisibility(View.VISIBLE)
-            button_bar1.playAnimation()
-            button_bar2.setVisibility(View.INVISIBLE)
-            button_bar4.setVisibility(View.INVISIBLE)
+
         })
 
         converimg.setOnClickListener({
@@ -98,10 +83,7 @@ class PlayActivity : AppCompatActivity() {
             converimg.setImageResource(R.drawable.underbar_conver1)
             feedimg.setImageResource(R.drawable.underbar_food)
             statusimg.setImageResource(R.drawable.underbar_parrot)
-            button_bar4.setVisibility(View.VISIBLE)
-            button_bar4.playAnimation()
-            button_bar2.setVisibility(View.INVISIBLE)
-            button_bar1.setVisibility(View.INVISIBLE)
+
         })
 
 

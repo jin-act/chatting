@@ -107,7 +107,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="햄버거"
-                            android:fontFamily="@font/nsed"
+                            android:fontFamily="@font/nsb"
                             android:layout_marginLeft="14dp"
                             android:layout_gravity="center"
                             android:textColor="#676767"
@@ -150,7 +150,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="햄버거"
-                            android:fontFamily="@font/nsed"
+                            android:fontFamily="@font/nsb"
                             android:layout_marginLeft="14dp"
                             android:layout_gravity="center"
                             android:textColor="#676767"
@@ -193,7 +193,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="햄버거"
-                            android:fontFamily="@font/nsed"
+                            android:fontFamily="@font/nsb"
                             android:layout_marginLeft="14dp"
                             android:layout_gravity="center"
                             android:textColor="#676767"
@@ -236,7 +236,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="햄버거"
-                            android:fontFamily="@font/nsed"
+                            android:fontFamily="@font/nsb"
                             android:layout_marginLeft="14dp"
                             android:layout_gravity="center"
                             android:textColor="#676767"
@@ -279,7 +279,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="햄버거"
-                            android:fontFamily="@font/nsed"
+                            android:fontFamily="@font/nsb"
                             android:layout_marginLeft="14dp"
                             android:layout_gravity="center"
                             android:textColor="#676767"
@@ -316,6 +316,7 @@
             android:fontFamily="@font/nsb"
             android:textColor="#FFFFFF"
             android:text="확인"
+
             android:background="@drawable/okay_button">
 
         </Button>
