@@ -13,8 +13,9 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true" >
         <activity
-            android:name=".test.Signup.SignupActivity"
-            android:exported="false" />
+            android:name=".PlayActivitys.ChatActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustPan"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
@@ -27,7 +28,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Login.LoginActivity"
+            android:name=".PlayActivitys.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".PlayActivity"

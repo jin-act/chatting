@@ -8,8 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.example.ai_caht.Login.MySharedPreferences
-import com.example.ai_caht.test.Login.LoginActivity2
+import com.example.ai_caht.PlayActivitys.MySharedPreferences
 
 
 class list : Fragment() {

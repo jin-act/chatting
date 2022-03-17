@@ -93,6 +93,7 @@ public class LoginActivity2 extends AppCompatActivity {
         //retrofit 생성
         retrofitClient = RetrofitClient.getInstance();
         initMyApi = RetrofitClient.getRetrofitInterface();
+        initMyApi = RetrofitClient.getRetrofitInterface();
 
         //loginRequest에 저장된 데이터와 함께 init에서 정의한 getLoginResponse 함수를 실행한 후 응답을 받음
         initMyApi.getChatResponse(chatRequest).enqueue(new Callback<ChatResponse>() {

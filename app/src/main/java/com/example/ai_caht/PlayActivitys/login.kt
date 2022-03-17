@@ -1,4 +1,4 @@
-package com.example.ai_caht.Login
+package com.example.ai_caht.PlayActivitys
 
 import android.content.Context
 import android.content.Intent
@@ -7,7 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.text.InputType
 import android.util.Log
-import android.view.KeyEvent
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View

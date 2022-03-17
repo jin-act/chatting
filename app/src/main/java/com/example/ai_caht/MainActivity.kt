@@ -5,7 +5,7 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import android.graphics.Color
 import com.bumptech.glide.Glide
-import com.example.ai_caht.Login.login
+import com.example.ai_caht.PlayActivitys.login
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +23,7 @@ class MainActivity : AppCompatActivity() {
 
         login.setOnClickListener({
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.login_join, com.example.ai_caht.Login.login())
+                    .replace(R.id.login_join, com.example.ai_caht.PlayActivitys.login())
                     .commit()
             login.setTextColor(Color.rgb(255,168,39));
             join.setTextColor(Color.rgb(160,160,160));
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         join.setOnClickListener({
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.login_join, com.example.ai_caht.Login.join())
+                    .replace(R.id.login_join, com.example.ai_caht.PlayActivitys.join())
                     .commit()
             join.setTextColor(Color.rgb(255,168,39));
             login.setTextColor(Color.rgb(160,160,160));
