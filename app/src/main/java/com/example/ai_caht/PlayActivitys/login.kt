@@ -72,11 +72,8 @@ class login : Fragment() {
                 val userID: String = et_id.getText().toString().trim { it <= ' ' }
                 val userPW: String = et_pw.getText().toString().trim { it <= ' ' }
                 val loginRequest = LoginRequest(userID, userPW)
-                var retrofitClient: RetrofitClient? = null
-                var initMyApi: initMyApi? = null
-                retrofitClient = RetrofitClient.getInstance()
-                initMyApi = RetrofitClient.getRetrofitInterface()
-
+                var retrofitClient = RetrofitClient.getInstance()
+                var initMyApi = RetrofitClient.getRetrofitInterface()
 
                 initMyApi.getLoginResponse(loginRequest).enqueue(object : Callback<LoginResponse> {
                     override fun onResponse(

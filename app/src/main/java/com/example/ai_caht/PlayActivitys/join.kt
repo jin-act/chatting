@@ -14,11 +14,15 @@ import com.example.ai_caht.R
 import android.content.Intent
 import androidx.annotation.Nullable
 import com.example.ai_caht.MainActivity
+import com.example.ai_caht.PlayActivity
+import com.example.ai_caht.test.IDduplicateResponse
+import com.example.ai_caht.test.RetrofitClient
+import com.example.ai_caht.test.Signup.SignupRequest
+import com.example.ai_caht.test.Signup.SignupResponse
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.util.regex.Pattern
-
-
-
-
 
 class join : Fragment() {
     var mainActivity: MainActivity? = null
@@ -54,7 +58,10 @@ class join : Fragment() {
         var checkPass = 0                                           // 패스워드 유효성 검사
         var checkId = 0                                             // ID유효성 검사
         var num = 0
-
+        var inputId = ""
+        var inputPw = ""
+        var inputName = ""
+        var userId = ""
         //시작 ID확인 버튼, pw확인 에디트 비활성화
         btn_ID.setEnabled(false)
         et_pwcheck.setEnabled(false)
@@ -82,12 +89,32 @@ class join : Fragment() {
         btn_ID.setOnClickListener {
             //**추가**
             // 웹 통신 아이디 중복 검사 및 저장
-            et_joinid.setBackgroundResource(R.drawable.contents_box7)
-            et_joinpw.setBackgroundResource(R.drawable.contents_box)
-            if(num == 1){
+            if (num == 1) {
                 et_pwcheck.setBackgroundResource(R.drawable.contents_box)
             }
-            checkId = 1
+            userId = et_joinid.getText().toString()
+            var retrofitClient = RetrofitClient.getInstance()
+            var initMyApi = RetrofitClient.getRetrofitInterface()
+            initMyApi.getidduplicateResponse(userId).enqueue(object : Callback<IDduplicateResponse> {
+                override fun onResponse(
+                    call: Call<IDduplicateResponse>,
+                    response: Response<IDduplicateResponse>
+                ) {
+                    if(response.isSuccessful){
+                        var body = response.body()
+                        if(body!!.duplicate == "no"){
+                            et_joinid.setBackgroundResource(R.drawable.contents_box7)
+                            et_joinpw.setBackgroundResource(R.drawable.contents_box)
+                            checkId = 1
+                        }
+                        else{
+                        }
+                    }
+
+                }
+                override fun onFailure(call: Call<IDduplicateResponse>, t: Throwable) {
+                }
+            })
         }
         et_joinpw.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
@@ -144,10 +171,29 @@ class join : Fragment() {
             //ID, pw 유효성이 모두 완료되었을 때, 회원가입 완료
             if(checkPass == 1 && checkId == 1)
             {
-                MySharedPreferences.setUserId(ct, et_joinid.text.toString())
-                MySharedPreferences.setUserPass(ct, et_joinpw.text.toString())
-                val intent = Intent(activity, MainActivity::class.java)
-                startActivity(intent)
+                inputId = et_joinid.getText().toString()
+                inputPw = et_joinpw.getText().toString()
+                inputName = "no_name"
+                var signupRequest = SignupRequest(inputId, inputPw, inputName)
+                var retrofitClient = RetrofitClient.getInstance()
+                var initMyApi = RetrofitClient.getRetrofitInterface()
+                mainActivity?.fragmentChange(1);
+                initMyApi.getSignupResponse(signupRequest).enqueue(object : Callback<SignupResponse> {
+                    override fun onResponse(
+                        call: Call<SignupResponse>,
+                        response: Response<SignupResponse>
+                    ) {
+                        if (response.isSuccessful) {
+                            mainActivity?.fragmentChange(1);
+                            }
+                            else{
+
+                            }
+                        }
+
+                    override fun onFailure(call: Call<SignupResponse>, t: Throwable) {
+                    }
+                })
             }
             //ID 유효성이 완료되지 않았을 때
             else if(checkId == 0){
