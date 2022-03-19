@@ -2,13 +2,16 @@ package com.example.ai_caht.PlayActivitys
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.CheckBox
-import android.widget.EditText
-import android.widget.TextView
+import android.view.ViewGroup
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_caht.R
+import com.example.ai_caht.databinding.ActivityChatBinding
 import com.example.ai_caht.test.BackPressCloseHandler
 import com.example.ai_caht.test.Chat.ChatRequest
 import com.example.ai_caht.test.Chat.ChatResponse
@@ -20,23 +23,37 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class ChatActivity : AppCompatActivity() {
+    private var current_user : String? = null
+    private var recyclerView : RecyclerView? = null
+    val chatList = ArrayList<ChatLayout>()
+    private lateinit var binding:ActivityChatBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_chat)
+        setContentView(R.layout.activity_chat_edit)
 
         var btn_send = findViewById<Button>(R.id.sendchatbtn)
-        var UserChat = findViewById<TextView>(R.id.userchat)
+        //var UserChat = findViewById<TextView>(R.id.userchat)
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
-
 
         btn_send.setOnClickListener ({
             val chat: String = ChatEdit?.getText().toString()
             //로그인 통신
-            UserChat.setText(chat)
+            //UserChat.setText(chat)
+            current_user = "me"
+            chatList.add(ChatLayout(current_user!!, chat))
             ChatResponse()
-
+            RecyclerViewSet()
         })
     }
+
+    fun RecyclerViewSet(){
+        val adapter = RecyclerViewAdapter()
+        adapter.comments = chatList
+        recyclerView?.layoutManager = LinearLayoutManager(this)
+        recyclerView?.adapter = adapter
+    }
+
     fun ChatResponse() {
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
         val chat: String = ChatEdit.getText().toString().trim { it <= ' ' }
@@ -58,7 +75,8 @@ class ChatActivity : AppCompatActivity() {
                     val body = response.body()
                     var aichat = body!!.userchat
                     aichat = aichat.replace("answer :","")
-                    BotChat.setText(aichat)
+                    chatList.add(ChatLayout(current_user!!, aichat))
+                    //BotChat.setText(aichat)
                 }
             }
 
@@ -74,4 +92,40 @@ class ChatActivity : AppCompatActivity() {
             }
         })
     }
+    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ChatViewHolder>(){
+        var comments = ArrayList<ChatLayout>()
+
+        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.ChatViewHolder {
+            val view = LayoutInflater.from(parent.context).inflate(R.layout.chat_item, parent, false)
+            return ChatViewHolder(view)
+        }
+
+        override fun onBindViewHolder(holder: RecyclerViewAdapter.ChatViewHolder, position: Int) {
+            holder.message.text = comments[position].contents
+            if(comments[position].user.equals("me")){
+                holder.layout_main.gravity = Gravity.RIGHT
+                holder.user.visibility = View.INVISIBLE
+                holder.image.setImageResource(R.drawable.user)
+            }
+            else{
+                holder.layout_main.gravity = Gravity.LEFT
+                holder.user.visibility = View.VISIBLE
+                holder.image.setImageResource(R.drawable.ballon2)
+            }
+        }
+
+        override fun getItemCount(): Int {
+            return comments.size
+        }
+
+        inner class ChatViewHolder(view: View): RecyclerView.ViewHolder(view){
+            val user: TextView = view.findViewById(R.id.name)
+            val message: TextView = view.findViewById(R.id.bot_chat)
+            val image: ImageView = view.findViewById(R.id.chat_Image)
+            val layout_destination: LinearLayout = view.findViewById(R.id.chat_destination)
+            val layout_main: LinearLayout = view.findViewById(R.id.layout_main)
+        }
+
+    }
 }
+
