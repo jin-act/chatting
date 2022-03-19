@@ -16,7 +16,7 @@ import retrofit2.http.Path;
 public interface initMyApi {
     //@통신 방식("통신 API명")
     @POST("/app/signup")
-    Call<SignupResponse> getSignupResponse(@Body SignupRequest signupRequest);
+    Call<String> getSignupResponse(@Body SignupRequest signupRequest);
     @POST("/login")
     Call<LoginResponse> getLoginResponse(@Body LoginRequest loginRequest);
     //

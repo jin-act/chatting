@@ -9,7 +9,7 @@ public class SignupRequest {
     @SerializedName("password")
     public String inputPw;
 
-    @SerializedName("name")
+    @SerializedName("username")
     public String inputName;
 
     @SerializedName("email")
