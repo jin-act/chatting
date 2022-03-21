@@ -1,3 +1,3 @@
 package com.example.ai_caht.PlayActivitys
 
-class ChatLayout(val user: String, val contents: String)
+data class ChatLayout(val profile: Int, val contents: String, val position: Int, val time: String, val visibility: Int)

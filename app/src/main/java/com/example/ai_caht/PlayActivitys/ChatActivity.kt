@@ -1,17 +1,22 @@
 package com.example.ai_caht.PlayActivitys
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.INVISIBLE
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ActivityChatBinding
+import com.example.ai_caht.databinding.ActivityChatEditBinding
 import com.example.ai_caht.test.BackPressCloseHandler
 import com.example.ai_caht.test.Chat.ChatRequest
 import com.example.ai_caht.test.Chat.ChatResponse
@@ -21,40 +26,70 @@ import com.example.ai_caht.test.initMyApi
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChatActivity : AppCompatActivity() {
-    private var current_user : String? = null
     private var recyclerView : RecyclerView? = null
     val chatList = ArrayList<ChatLayout>()
-    private lateinit var binding:ActivityChatBinding
+    private var mBinding:ActivityChatEditBinding? = null
+    private val binding get() = mBinding!!
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_edit)
-
+        mBinding = ActivityChatEditBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         var btn_send = findViewById<Button>(R.id.sendchatbtn)
+        var whole_layout = findViewById<ConstraintLayout>(R.id.whole_layout)
         //var UserChat = findViewById<TextView>(R.id.userchat)
-        var ChatEdit = findViewById<EditText>(R.id.inputchat)
+        Initaialize()
+        RecyclerViewSet()
+
+        whole_layout.setOnClickListener {
+            HideKeyBoard()
+        }
 
         btn_send.setOnClickListener ({
+            val time = System.currentTimeMillis()
+            val dateFormat = SimpleDateFormat("a hh:mm")
+            val curTime = dateFormat.format(Date(time)).toString()
+            var ChatEdit = findViewById<EditText>(R.id.inputchat)
             val chat: String = ChatEdit?.getText().toString()
-            //로그인 통신
-            //UserChat.setText(chat)
-            current_user = "me"
-            chatList.add(ChatLayout(current_user!!, chat))
+            chatList.add(ChatLayout(R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE))
             ChatResponse()
-            RecyclerViewSet()
+            ChatEdit.setText(null)
+            HideKeyBoard()
         })
     }
-
+    fun Initaialize(){
+        val time = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("a hh:mm")
+        val curTime = dateFormat.format(Date(time)).toString()
+        with(chatList){
+            chatList.add(ChatLayout(R.drawable.ballon2,"반가워요", Gravity.START, curTime, View.VISIBLE))
+        }
+    }
     fun RecyclerViewSet(){
-        val adapter = RecyclerViewAdapter()
+        val adapter = RecycleAdapter()
         adapter.comments = chatList
-        recyclerView?.layoutManager = LinearLayoutManager(this)
-        recyclerView?.adapter = adapter
+        binding.recycleviewId.adapter = adapter
+        binding.recycleviewId.layoutManager = LinearLayoutManager(this)
+    }
+
+    fun HideKeyBoard(){
+        var view = this.currentFocus
+        if(view != null) {
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(view.windowToken, 0)
+        }
     }
 
     fun ChatResponse() {
+        val time = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("a hh:mm")
+        val curTime = dateFormat.format(Date(time)).toString()
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
         val chat: String = ChatEdit.getText().toString().trim { it <= ' ' }
         //String userPassword = passwordText.getText().toString().trim();
@@ -73,10 +108,11 @@ class ChatActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
 
                     val body = response.body()
-                    var aichat = body!!.userchat
-                    aichat = aichat.replace("answer :","")
-                    chatList.add(ChatLayout(current_user!!, aichat))
+                    val aichat = body!!.userchat
+                    //aichat = aichat.replace("answer :","")
+                    chatList.add(ChatLayout(R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE))
                     //BotChat.setText(aichat)
+                    RecyclerViewSet()
                 }
             }
 
@@ -91,41 +127,6 @@ class ChatActivity : AppCompatActivity() {
                     .show()
             }
         })
-    }
-    inner class RecyclerViewAdapter : RecyclerView.Adapter<RecyclerViewAdapter.ChatViewHolder>(){
-        var comments = ArrayList<ChatLayout>()
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerViewAdapter.ChatViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.chat_item, parent, false)
-            return ChatViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: RecyclerViewAdapter.ChatViewHolder, position: Int) {
-            holder.message.text = comments[position].contents
-            if(comments[position].user.equals("me")){
-                holder.layout_main.gravity = Gravity.RIGHT
-                holder.user.visibility = View.INVISIBLE
-                holder.image.setImageResource(R.drawable.user)
-            }
-            else{
-                holder.layout_main.gravity = Gravity.LEFT
-                holder.user.visibility = View.VISIBLE
-                holder.image.setImageResource(R.drawable.ballon2)
-            }
-        }
-
-        override fun getItemCount(): Int {
-            return comments.size
-        }
-
-        inner class ChatViewHolder(view: View): RecyclerView.ViewHolder(view){
-            val user: TextView = view.findViewById(R.id.name)
-            val message: TextView = view.findViewById(R.id.bot_chat)
-            val image: ImageView = view.findViewById(R.id.chat_Image)
-            val layout_destination: LinearLayout = view.findViewById(R.id.chat_destination)
-            val layout_main: LinearLayout = view.findViewById(R.id.layout_main)
-        }
-
     }
 }
 
