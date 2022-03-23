@@ -7,6 +7,9 @@
     android:background="#FFFFFF"
     tools:context=".Login.login">
 
+
+
+
     <LinearLayout
         android:layout_width="220dp"
         android:layout_height="0dp"
@@ -16,6 +19,30 @@
         app:layout_constraintTop_toTopOf="parent"
         android:gravity="bottom"
         app:layout_constraintHeight_percent="0.6">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="40dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:fontFamily="@font/nsed"
+            android:text="parrot.gg"
+            android:textColor="#FF9800"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="15dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/nsed"
+            android:text="당신의 앵무새와 대화해 보세요"
+            android:textColor="#616161"></TextView>
 
         <ImageView
             android:layout_width="500px"
