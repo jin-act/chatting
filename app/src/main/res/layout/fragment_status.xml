@@ -9,218 +9,226 @@
         android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/second_background">
+        android:background="@drawable/second_background"
+        android:orientation="vertical">
 
-
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-           android:paddingBottom="20dp"
-            android:orientation="vertical"
-            android:background="@drawable/contents_box"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp">
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/nsed"
-                android:text="상태보기"
-                android:layout_marginTop="30dp"
-                android:textColor="#4A4A4A"
-                android:textSize="20dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginBottom="40dp">
-            </TextView>
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginLeft="30dp"
-                android:src="@drawable/parot_logo">
-            </ImageView>
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:layout_marginLeft="10dp">
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:background="@drawable/contents_box"
+                android:orientation="vertical"
+                android:paddingBottom="20dp">
+
                 <TextView
+                    android:id="@+id/textView"
                     android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="40dp"
                     android:fontFamily="@font/nsed"
-                    android:text="앵무의 이름"
-                    android:layout_weight="1"
-                    android:layout_marginLeft="10dp"
+                    android:text="상태보기"
                     android:textColor="#4A4A4A"
-                    android:textSize="14dp">
-                </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsb"
-                        android:text="가나다라마바사"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#787878"
-                        android:textSize="13dp">
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
+                    android:textSize="20dp"></TextView>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-
-                android:layerType="software"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:src="@drawable/dash_line"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginLeft="30dp"
-                    android:src="@drawable/clock1_logo">
-                </ImageView>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsed"
-                        android:text="함께한 시간"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#4A4A4A"
-                        android:textSize="14dp">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsb"
-                        android:text="함께한 지 15일째"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#787878"
-                        android:textSize="13dp">
-                    </TextView>
-                </LinearLayout>
-            </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layerType="software"
-                android:src="@drawable/dash_line"/>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/parot_logo"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsed"
+                            android:text="앵무의 이름"
+                            android:textColor="#4A4A4A"
+                            android:textSize="14dp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsb"
+                            android:text="가나다라마바사"
+                            android:textColor="#787878"
+                            android:textSize="13dp"></TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+
                     android:layout_marginLeft="30dp"
-                    android:src="@drawable/stress_1">
-                </ImageView>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/dash_line" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsed"
-                        android:text="받은 스트레스"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#4A4A4A"
-                        android:textSize="14dp">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsb"
-                        android:text="배고파 하고 있어요"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#787878"
-                        android:textSize="13dp">
-                    </TextView>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/clock1_logo"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsed"
+                            android:text="함께한 시간"
+                            android:textColor="#4A4A4A"
+                            android:textSize="14dp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsb"
+                            android:text="함께한 지 15일째"
+                            android:textColor="#787878"
+                            android:textSize="13dp"></TextView>
+                    </LinearLayout>
                 </LinearLayout>
-            </LinearLayout>
 
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="2dp"
-                android:layout_marginLeft="30dp"
-                android:layout_marginRight="30dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="20dp"
-                android:layerType="software"
-                android:src="@drawable/dash_line"/>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
                 <ImageView
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
                     android:layout_marginLeft="30dp"
-                    android:src="@drawable/heart">
-                </ImageView>
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/dash_line" />
+
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsed"
-                        android:text="애증"
-                        android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/stress_1"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#4A4A4A"
-                        android:textSize="14dp">
-                    </TextView>
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:fontFamily="@font/nsb"
-                        android:text="매우 높음"
-                        android:layout_weight="1"
-                        android:layout_marginLeft="10dp"
-                        android:textColor="#787878"
-                        android:textSize="13dp">
-                    </TextView>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsed"
+                            android:text="받은 스트레스"
+                            android:textColor="#4A4A4A"
+                            android:textSize="14dp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsb"
+                            android:text="배고파 하고 있어요"
+                            android:textColor="#787878"
+                            android:textSize="13dp"></TextView>
+
+                    </LinearLayout>
                 </LinearLayout>
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginLeft="30dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_marginBottom="20dp"
+                    android:layerType="software"
+                    android:src="@drawable/dash_line" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="30dp"
+                        android:src="@drawable/heart"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsed"
+                            android:text="애증"
+                            android:textColor="#4A4A4A"
+                            android:textSize="14dp"></TextView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/nsb"
+                            android:text="매우 높음"
+                            android:textColor="#787878"
+                            android:textSize="13dp"></TextView>
+                    </LinearLayout>
+                </LinearLayout>
+
+
             </LinearLayout>
-
-
-        </LinearLayout>
+        </ScrollView>
 
 
     </LinearLayout>
