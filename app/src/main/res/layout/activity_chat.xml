@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayActivitys.ChatActivity">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_percent="0.93"
+            app:layout_constraintBottom_toTopOf="@id/edittext"
+            android:columnCount="2"
+            android:rowCount="1000">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_columnWeight="1">
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/ballon2">
+                </ImageView>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/contents_box5"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginLeft="10dp"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/botchat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="가나다라마바사"
+                        android:textColor="#616161"></TextView>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="20dp"
+                android:layout_columnWeight="1">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/contents_box10"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginRight="10dp"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/userchat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="가나다라마바사"
+                        android:textColor="#616161"></TextView>
+                </LinearLayout>
+                <ImageView
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/user">
+                </ImageView>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_columnWeight="1"/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:layout_marginTop="70dp"
+                android:layout_marginRight="20dp"
+                android:layout_columnWeight="1"/>
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_columnWeight="1"/>
+
+
+        </GridLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            android:background="#FFFFFF"
+            android:id="@+id/edittext"
+            app:layout_constraintHeight_percent="0.07"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FFFFFF">
+            </Button>
+
+            <EditText
+                android:id="@+id/inputchat"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:textColor="@color/black"
+                android:layout_weight="6">
+            </EditText>
+
+            <Button
+                android:id="@+id/sendchatbtn"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#FF9800">
+            </Button>
+        </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

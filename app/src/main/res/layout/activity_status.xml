@@ -156,6 +156,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/conver"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -163,9 +164,9 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:id="@+id/converimg"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:id="@+id/converimg"
                     android:src="@drawable/underbar_conver"
                     ></ImageView>
 
@@ -173,7 +174,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#555555"
-                    android:id="@+id/conver"
                     android:textSize="11dp"
                     android:fontFamily="@font/nsb"
                     android:text="대화하기"></TextView>

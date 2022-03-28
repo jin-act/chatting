@@ -8,8 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
-import com.example.ai_caht.Login.MySharedPreferences
-import com.example.ai_caht.test.Login.LoginActivity2
+import com.example.ai_caht.PlayActivitys.MySharedPreferences
 
 
 class list : Fragment() {
@@ -33,10 +32,17 @@ class list : Fragment() {
         }
         val view:View = inflater.inflate(R.layout.fragment_list, container, false) as ViewGroup
         val logout = view.findViewById<LinearLayout>(R.id.logout)
+        val destroy = view.findViewById<LinearLayout>(R.id.destroy)
         logout.setOnClickListener {
             MySharedPreferences.autochecked(ct, "0")
             val intent = Intent(activity, MainActivity::class.java)
             startActivity(intent)
+        }
+        destroy.setOnClickListener{
+            activity?.supportFragmentManager
+                ?.beginTransaction()
+                ?.remove(this)
+                ?.commit()
         }
         return view
     }
