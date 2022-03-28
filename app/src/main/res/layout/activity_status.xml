@@ -59,13 +59,14 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.6"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHeight_percent="0.53"
+        app:layout_constraintBottom_toTopOf="@id/end"
         android:id="@+id/infospace">
     </FrameLayout>
 
 
     <LinearLayout
+        android:id="@+id/end"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintHeight_percent="0.07"
