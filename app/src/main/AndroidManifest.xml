@@ -20,16 +20,13 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" >
+            android:windowSoftInputMode="adjustPan" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".PlayActivitys.LoginActivity"
-            android:screenOrientation="portrait" />
         <activity
             android:name=".PlayActivity"
             android:screenOrientation="portrait" />
