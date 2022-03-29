@@ -14,6 +14,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ActivityChatBinding
 import com.example.ai_caht.databinding.ActivityChatEditBinding
@@ -35,18 +36,21 @@ class ChatActivity : AppCompatActivity() {
     val chatList = ArrayList<ChatLayout>()
     private var mBinding:ActivityChatEditBinding? = null
     private val binding get() = mBinding!!
-
+    val helper = DBHelper(this, "android_chat", null, 1)
+    val adapter = RecycleAdapter()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_edit)
         mBinding = ActivityChatEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         var btn_send = findViewById<Button>(R.id.sendchatbtn)
         var whole_layout = findViewById<ConstraintLayout>(R.id.whole_layout)
         //var UserChat = findViewById<TextView>(R.id.userchat)
         Initaialize()
         RecyclerViewSet()
-
+        adapter.comments.clear()
+        adapter.comments.addAll(helper.select_db())
         whole_layout.setOnClickListener {
             HideKeyBoard()
         }
@@ -58,6 +62,8 @@ class ChatActivity : AppCompatActivity() {
             var ChatEdit = findViewById<EditText>(R.id.inputchat)
             val chat: String = ChatEdit?.getText().toString()
             chatList.add(ChatLayout(R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE))
+            val chat_db = ChatLayout(R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE)
+            helper.insert_db(chat_db)
             ChatResponse()
             ChatEdit.setText(null)
             HideKeyBoard()
@@ -72,7 +78,7 @@ class ChatActivity : AppCompatActivity() {
         }
     }
     fun RecyclerViewSet(){
-        val adapter = RecycleAdapter()
+        adapter.helper = helper
         adapter.comments = chatList
         binding.recycleviewId.adapter = adapter
         binding.recycleviewId.layoutManager = LinearLayoutManager(this)
@@ -86,7 +92,7 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
-    fun ChatResponse() {
+    fun ChatResponse(){
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("a hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
@@ -94,7 +100,6 @@ class ChatActivity : AppCompatActivity() {
         val chat: String = ChatEdit.getText().toString().trim { it <= ' ' }
         //String userPassword = passwordText.getText().toString().trim();
         val chatRequest = ChatRequest(chat)
-
         //retrofit 생성
         var retrofitClient = RetrofitClient.getInstance()
         var initMyApi = RetrofitClient.getRetrofitInterface()
@@ -111,6 +116,8 @@ class ChatActivity : AppCompatActivity() {
                     val aichat = body!!.userchat
                     //aichat = aichat.replace("answer :","")
                     chatList.add(ChatLayout(R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE))
+                    val chat_db = ChatLayout(R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE)
+                    helper.insert_db(chat_db)
                     //BotChat.setText(aichat)
                     RecyclerViewSet()
                 }
