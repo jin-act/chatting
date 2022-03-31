@@ -16,7 +16,7 @@ import java.lang.reflect.Array.get
 
 class RecycleAdapter : RecyclerView.Adapter<ChatViewHolder>() {
     var comments = ArrayList<ChatLayout>()
-
+    var helper:DBHelper? = null
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ChatViewHolder(view)
