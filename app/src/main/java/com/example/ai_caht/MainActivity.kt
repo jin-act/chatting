@@ -16,6 +16,12 @@ import android.widget.EditText
 import android.view.MotionEvent
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import com.example.ai_caht.TimeCheck.ForecdTerminationService
+
+import android.content.Intent
+
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -26,6 +32,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         val login = findViewById<TextView>(R.id.login)
         val join = findViewById<TextView>(R.id.join)
+
+        startService(Intent(this, ForecdTerminationService::class.java))
 
         login.setTextColor(Color.rgb(255,168,39));
         join.setTextColor(Color.rgb(160,160,160));

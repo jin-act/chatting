@@ -54,8 +54,6 @@ class login : Fragment() {
         if (container != null) {
             ct = container.context
         }
-
-
         val view:View = inflater.inflate(R.layout.fragment_login, container, false) as ViewGroup
         val btn_login = view.findViewById<Button>(R.id.btn_login)
         val et_id = view.findViewById<EditText>(R.id.et_id)

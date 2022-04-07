@@ -14,7 +14,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ActivityChatBinding
 import com.example.ai_caht.databinding.ActivityChatEditBinding
