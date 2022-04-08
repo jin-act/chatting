@@ -59,6 +59,7 @@ class ForecdTerminationService : Service() {
         //현재 시간 저장
         var current_time = System.currentTimeMillis()
         MySharedPreferences.set_Time(this, current_time)
+        println("set_time" + current_time)
         Toast.makeText(this, "onTaskRemoved ", Toast.LENGTH_SHORT).show()
         //현재 상태 저장 -> 1. 수치 저장 0~100, 2.경과 시간 0~599 -> 0초에서 10분까지 10분이 되면 허기와 무료함 1상승 만약 허기와 무료함이 50이상일 때 스트레스도 동시에 1상승 두 조건이 동시에 만족하면 2상승
 

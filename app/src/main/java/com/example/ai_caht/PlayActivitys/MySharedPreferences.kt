@@ -99,4 +99,45 @@ object MySharedPreferences {
         val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         return prefs.getLong("last_time", 0)
     }
+
+    fun get_food(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("food", "").toString()
+    }
+    fun set_food(context: Context?, food: String?){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("food", food)
+        editor.commit()
+    }
+    fun set_Hunger(context: Context?, input: String) {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("Hunger", input)
+        editor.commit()
+    }
+    fun set_Stress(context: Context?, input: String) {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("Stress", input)
+        editor.commit()
+    }
+    fun set_Boredom(context: Context?, input: String) {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("Boredom", input)
+        editor.commit()
+    }
+    fun set_Affection(context: Context?, input: String) {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("Affection", input)
+        editor.commit()
+    }
+    fun set_Level(context: Context?, input: String) {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.putString("Level", input)
+        editor.commit()
+    }
 }
