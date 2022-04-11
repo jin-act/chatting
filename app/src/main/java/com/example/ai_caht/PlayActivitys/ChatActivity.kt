@@ -4,21 +4,15 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.view.LayoutInflater
 import android.view.View
-import android.view.View.INVISIBLE
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.room.Room
 import com.example.ai_caht.R
-import com.example.ai_caht.databinding.ActivityChatBinding
 import com.example.ai_caht.databinding.ActivityChatEditBinding
-import com.example.ai_caht.test.BackPressCloseHandler
 import com.example.ai_caht.test.Chat.ChatRequest
 import com.example.ai_caht.test.Chat.ChatResponse
 import com.example.ai_caht.test.Login.LoginResponse
@@ -36,14 +30,15 @@ class ChatActivity : AppCompatActivity() {
     val chatList = ArrayList<ChatLayout>()
     private var mBinding:ActivityChatEditBinding? = null
     private val binding get() = mBinding!!
-    val helper = DBHelper(this, "android_chat", null, 1)
-    val adapter = RecycleAdapter()
+    val helper = DBHelper(this, "database_android", null, 1)
+    val adapter = RecycleAdapter(this)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_edit)
         mBinding = ActivityChatEditBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        val count = adapter.itemCount - 1
         var btn_send = findViewById<Button>(R.id.sendchatbtn)
         var whole_layout = findViewById<ConstraintLayout>(R.id.whole_layout)
         //var UserChat = findViewById<TextView>(R.id.userchat)
@@ -51,9 +46,11 @@ class ChatActivity : AppCompatActivity() {
         RecyclerViewSet()
         adapter.comments.clear()
         adapter.comments.addAll(helper.select_db())
+        binding.recycleviewId.scrollToPosition(count)
         whole_layout.setOnClickListener {
             HideKeyBoard()
         }
+
 
         btn_send.setOnClickListener ({
             val time = System.currentTimeMillis()
@@ -61,9 +58,12 @@ class ChatActivity : AppCompatActivity() {
             val curTime = dateFormat.format(Date(time)).toString()
             var ChatEdit = findViewById<EditText>(R.id.inputchat)
             val chat: String = ChatEdit?.getText().toString()
-            chatList.add(ChatLayout(R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE))
-            val chat_db = ChatLayout(R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE)
+            //chatList.add(ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE))
+            val chat_db = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10)
             helper.insert_db(chat_db)
+            adapter.comments.clear()
+            adapter.comments.addAll(helper.select_db())
+            binding.recycleviewId.scrollToPosition(count)
             ChatResponse()
             ChatEdit.setText(null)
             HideKeyBoard()
@@ -74,7 +74,7 @@ class ChatActivity : AppCompatActivity() {
         val dateFormat = SimpleDateFormat("a hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
         with(chatList){
-            chatList.add(ChatLayout(R.drawable.ballon2,"반가워요", Gravity.START, curTime, View.VISIBLE))
+            chatList.add(ChatLayout(null, R.drawable.ballon2,"반가워요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5))
         }
     }
     fun RecyclerViewSet(){
@@ -82,6 +82,7 @@ class ChatActivity : AppCompatActivity() {
         adapter.comments = chatList
         binding.recycleviewId.adapter = adapter
         binding.recycleviewId.layoutManager = LinearLayoutManager(this)
+        //binding.recycleviewId.scrollToPosition(adapter.itemCount)
     }
 
     fun HideKeyBoard(){
@@ -94,7 +95,7 @@ class ChatActivity : AppCompatActivity() {
 
     fun ChatResponse(){
         val time = System.currentTimeMillis()
-        val dateFormat = SimpleDateFormat("a hh:mm")
+        val dateFormat = SimpleDateFormat("MM/dd a hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
         val chat: String = ChatEdit.getText().toString().trim { it <= ' ' }
@@ -111,13 +112,14 @@ class ChatActivity : AppCompatActivity() {
                 response: Response<ChatResponse>) {
                 //통신 성공
                 if (response.isSuccessful) {
-
                     val body = response.body()
                     val aichat = body!!.userchat
                     //aichat = aichat.replace("answer :","")
-                    chatList.add(ChatLayout(R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE))
-                    val chat_db = ChatLayout(R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE)
+                    val chat_db = ChatLayout(null, R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5)
                     helper.insert_db(chat_db)
+                    adapter.comments.clear()
+                    adapter.comments.addAll(helper.select_db())
+                    //chatList.add(ChatLayout(null, R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE))
                     //BotChat.setText(aichat)
                     RecyclerViewSet()
                 }
