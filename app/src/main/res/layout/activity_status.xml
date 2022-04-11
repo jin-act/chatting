@@ -84,6 +84,7 @@
 
 
             <LinearLayout
+                android:id="@+id/status"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -101,7 +102,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/status"
                     android:textColor="#555555"
                     android:textSize="11dp"
                     android:fontFamily="@font/nsb"
@@ -110,6 +110,7 @@
 
 
             <LinearLayout
+                android:id="@+id/feed"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -127,7 +128,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/feed"
                     android:textColor="#555555"
                     android:textSize="11dp"
                     android:fontFamily="@font/nsb"
