@@ -32,7 +32,7 @@
                 android:fontFamily="@font/nsed"
                 android:text="먹이주기"
                 android:layout_marginTop="30dp"
-                android:textColor="#4A4A4A"
+                android:textColor="#444"
                 android:textSize="20dp"
                 android:layout_marginLeft="30dp"
                 android:layout_marginBottom="40dp">
@@ -47,7 +47,7 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
-                    android:src="@drawable/food">
+                    android:src="@drawable/edit_food">
                 </ImageView>
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -61,7 +61,7 @@
                         android:text="좋아하는 음식"
                         android:layout_weight="1"
                         android:layout_marginLeft="10dp"
-                        android:textColor="#4A4A4A"
+                        android:textColor="#444"
                         android:textSize="14dp">
                     </TextView>
                     <TextView
