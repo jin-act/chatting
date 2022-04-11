@@ -11,10 +11,6 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_columnWeight="1">
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="17dp"/>
         <ImageView
             android:id="@+id/chat_Image"
             android:layout_width="50dp"
@@ -35,7 +31,6 @@
                 android:id = "@+id/layout_box"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="10dp"
                 android:padding="10dp"
