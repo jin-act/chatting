@@ -8,9 +8,7 @@
         android:bottomRightRadius="10dp"
         android:topRightRadius="10dp" />
 
-<<<<<<< HEAD
+
     <solid android:color="#ffb830" />
-=======
-    <solid android:color="#FFB830" />
->>>>>>> 048042100e94418a5a9f35c33f52784902d2a970
+
 </shape>

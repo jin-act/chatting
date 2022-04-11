@@ -28,11 +28,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/nsed"
             android:text="parrot.gg"
-<<<<<<< HEAD
             android:textColor="#ffb830"></TextView>
-=======
-            android:textColor="#FFb830"></TextView>
->>>>>>> 048042100e94418a5a9f35c33f52784902d2a970
 
         <TextView
             android:layout_width="wrap_content"
@@ -44,7 +40,7 @@
             android:layout_marginBottom="20dp"
             android:fontFamily="@font/nsed"
             android:text="당신의 앵무새와 대화해 보세요"
-            android:textColor="#444"></TextView>
+            android:textColor="#616161"></TextView>
 
         <ImageView
             android:layout_width="500px"
