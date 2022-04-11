@@ -35,7 +35,7 @@
                     android:layout_marginBottom="40dp"
                     android:fontFamily="@font/nsed"
                     android:text="상태보기"
-                    android:textColor="#4A4A4A"
+                    android:textColor="#444"
                     android:textSize="20dp"></TextView>
 
                 <LinearLayout
@@ -45,7 +45,7 @@
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="40dp"
+                        android:layout_width="35dp"
                         android:layout_height="40dp"
                         android:layout_marginLeft="30dp"
                         android:src="@drawable/edit_status"></ImageView>
@@ -63,7 +63,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/nsed"
                             android:text="앵무의 이름"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
 
                         <TextView
@@ -98,7 +98,11 @@
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="40dp"
+<<<<<<< HEAD
                         android:layout_marginLeft="35dp"
+=======
+                        android:layout_marginLeft="30dp"
+>>>>>>> 048042100e94418a5a9f35c33f52784902d2a970
                         android:src="@drawable/edit_time"></ImageView>
 
                     <LinearLayout
@@ -113,8 +117,8 @@
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/nsed"
-                            android:text="앵무의 생일"
-                            android:textColor="#4A4A4A"
+                            android:text="앵무와 함께한 시간"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
 
                         <TextView
@@ -148,7 +152,11 @@
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="50dp"
+<<<<<<< HEAD
                         android:layout_marginLeft="35dp"
+=======
+                        android:layout_marginLeft="30dp"
+>>>>>>> 048042100e94418a5a9f35c33f52784902d2a970
                         android:src="@drawable/edit_stress"></ImageView>
 
                     <LinearLayout
@@ -164,13 +172,14 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/nsed"
                             android:text="받은 스트레스"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
                         <ProgressBar
                             android:id="@+id/stress"
                             style="@android:style/Widget.ProgressBar.Horizontal"
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
+                            android:layout_marginLeft="10dp"
                             android:layout_width="120dp"
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
@@ -186,6 +195,7 @@
                             android:layout_marginLeft="10dp"
                             android:text="배고파 하고 있어요"
                             android:textColor="#787878"
+                            android:layout_marginLeft="10dp"
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -208,7 +218,11 @@
                     <ImageView
                         android:layout_width="35dp"
                         android:layout_height="40dp"
+<<<<<<< HEAD
                         android:layout_marginLeft="35dp"
+=======
+                        android:layout_marginLeft="30dp"
+>>>>>>> 048042100e94418a5a9f35c33f52784902d2a970
                         android:src="@drawable/edit_heart"></ImageView>
 
                     <LinearLayout
@@ -224,7 +238,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/nsed"
                             android:text="애증"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
 
                         <TextView

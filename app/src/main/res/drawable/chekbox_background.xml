@@ -15,7 +15,7 @@
             <item>
                 <shape>
                     <corners android:radius="10dp" />
-                    <solid android:color="#FF9800" />
+                    <solid android:color="#FFb830" />
                 </shape>
             </item>
             <!-- 이미지 영역 -->
