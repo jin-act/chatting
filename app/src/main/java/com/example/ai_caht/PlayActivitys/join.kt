@@ -183,7 +183,7 @@ class join : Fragment() {
             if (checkPass == 1 && checkId == 1) {
                 inputId = et_joinid.getText().toString()
                 inputPw = et_joinpw.getText().toString()
-                inputName = "no_name"
+                inputName = "dw"
                 var signupRequest = SignupRequest(inputId, inputPw, inputName)
                 var retrofitClient = RetrofitClient.getInstance()
                 var initMyApi = RetrofitClient.getRetrofitInterface()
