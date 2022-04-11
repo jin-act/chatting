@@ -128,7 +128,7 @@ class PlayActivity : AppCompatActivity() {
                     .replace(R.id.infospace, status())
                     .commit()
             statusimg.setImageResource(R.drawable.underbar_parrot1)
-            feedimg.setImageResource(R.drawable.underbar_food1)
+            feedimg.setImageResource(R.drawable.underbar_food)
 
         })
 
