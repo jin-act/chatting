@@ -7,7 +7,7 @@
     android:id="@+id/playactivity"
 
     tools:context=".PlayActivity">
-    
+
     <ImageView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -121,7 +121,7 @@
                     android:id="@+id/feedimg"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/underbar_food1"
+                    android:src="@drawable/underbar_food"
                     ></ImageView>
 
                 <TextView
@@ -167,7 +167,7 @@
                     android:id="@+id/converimg"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/underbar_conver1"
+                    android:src="@drawable/underbar_conver"
                     ></ImageView>
 
                 <TextView
