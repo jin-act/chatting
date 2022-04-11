@@ -28,7 +28,7 @@
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/nsed"
             android:text="parrot.gg"
-            android:textColor="#FF9800"></TextView>
+            android:textColor="#ffb830"></TextView>
 
         <TextView
             android:layout_width="wrap_content"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nsed"
                 android:text="로그인"
-                android:textColor="#FFA827"
+                android:textColor="#ffb830"
                 android:textSize="17dp"
                 android:layout_weight="1" />
 

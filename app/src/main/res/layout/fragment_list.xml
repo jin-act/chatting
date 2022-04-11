@@ -16,7 +16,7 @@
             android:layout_height="120dp"
 
             android:orientation="vertical"
-            android:background="@drawable/contents_box5">
+            android:background="@drawable/contents_box">
 
             <LinearLayout
                 android:id="@+id/logout"
