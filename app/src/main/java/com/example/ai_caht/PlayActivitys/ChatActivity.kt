@@ -32,7 +32,6 @@ class ChatActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
     val helper = DBHelper(this, "database_android", null, 1)
     val adapter = RecycleAdapter(this)
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_edit)
