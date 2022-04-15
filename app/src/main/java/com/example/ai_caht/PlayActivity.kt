@@ -228,6 +228,8 @@ class PlayActivity : AppCompatActivity() {
         startService(intent_condition)
         //더 좋은 방법을 생각하기 현재 -> 매 순간 sharedpreferences를 최신화하여 저장
         MySharedPreferences.set_condition(this,hunger.toString(),boredom.toString(),stress.toString(),affection.toString(),level.toString(),counter.toString())
+        var current_time = System.currentTimeMillis()
+        MySharedPreferences.set_Time(this, current_time)
         print("save")
     }
 
