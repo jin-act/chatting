@@ -9,7 +9,7 @@
 
     <LinearLayout
         android:id="@+id/imageView"
-        android:layout_width="429dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/second_background"
         android:gravity="center_horizontal"
@@ -21,9 +21,9 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"
             android:layout_marginRight="20dp"
+            android:paddingBottom="20dp"
             android:background="@drawable/contents_box"
-            android:orientation="vertical"
-            android:paddingBottom="20dp">
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
@@ -44,8 +44,8 @@
                 android:orientation="horizontal">
 
                 <ImageView
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
                     android:layout_marginLeft="30dp"
                     android:src="@drawable/edit_food"></ImageView>
 
@@ -80,6 +80,7 @@
                         android:layout_height="0dp"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:fontFamily="@font/nsb"
                         android:text=""
                         android:textColor="#FF3333"
@@ -115,34 +116,46 @@
                         android:layout_marginTop="10dp"
                         android:orientation="horizontal">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
                         <TextView
                             android:layout_width="wrap_content"
+                            android:layout_weight="4"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginLeft="14dp"
                             android:fontFamily="@font/nsb"
-                            android:text="일반"
+                            android:text="피자"
                             android:textColor="#676767"
                             android:textSize="13dp" />
 
                         <CheckBox
                             android:id="@+id/no.1"
-                            android:layout_width="9dp"
-                            android:layout_height="9dp"
+                            android:layout_weight="1"
+                            android:layout_width="0dp"
                             android:layout_gravity="center"
-                            android:layout_marginLeft="23dp"
+                            android:layout_height="9dp"
+                            android:layout_marginRight="10dp"
                             android:background="@drawable/chekbox_background"
                             android:buttonTint="#003A3A3A" />
+                        </LinearLayout>
 
                     </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:gravity="right">
 
                     <ImageView
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="35dp"
+                        android:layout_width="37dp"
+                        android:layout_height="37dp"
+                        android:layout_gravity="center"
                         android:layout_marginRight="10dp"
                         android:src="@drawable/pizza" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -165,7 +178,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="14dp"
                             android:fontFamily="@font/nsb"
-                            android:text="감자"
+                            android:text="햄버거"
                             android:textColor="#676767"
                             android:textSize="13dp" />
 
@@ -180,13 +193,19 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/pizza" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="33dp"
+                            android:layout_height="37dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/hambuger" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -209,7 +228,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="14dp"
                             android:fontFamily="@font/nsb"
-                            android:text="고구마"
+                            android:text="파스타"
                             android:textColor="#676767"
                             android:textSize="13dp" />
 
@@ -224,13 +243,19 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/pizza" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="33dp"
+                            android:layout_height="37dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/pasta" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -268,13 +293,19 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/pizza" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="33dp"
+                            android:layout_height="37dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/pasta" />
+                    </LinearLayout>
                 </LinearLayout>
 
                 <LinearLayout
@@ -312,13 +343,19 @@
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:layout_width="33dp"
-                        android:layout_height="33dp"
-                        android:layout_gravity="right"
-                        android:layout_marginTop="35dp"
-                        android:layout_marginRight="10dp"
-                        android:src="@drawable/pizza" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="30dp"
+                        android:gravity="right">
+
+                        <ImageView
+                            android:layout_width="33dp"
+                            android:layout_height="37dp"
+                            android:layout_gravity="center"
+                            android:layout_marginRight="10dp"
+                            android:src="@drawable/pasta" />
+                    </LinearLayout>
                 </LinearLayout>
 
 
@@ -329,7 +366,7 @@
             android:id="@+id/btn_sel"
             android:layout_width="200dp"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/okay_button"
             android:fontFamily="@font/nsb"
             android:text="확인"
