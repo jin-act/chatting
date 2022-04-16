@@ -32,7 +32,8 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#FFFFFF">
+            android:background="#ffb830"
+            android:id="@+id/remove_btn">
         </Button>
 
         <EditText
@@ -50,6 +51,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#ffb830"
+
             >
         </Button>
     </LinearLayout>

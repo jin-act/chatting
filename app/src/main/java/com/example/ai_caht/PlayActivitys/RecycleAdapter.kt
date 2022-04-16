@@ -7,11 +7,9 @@ import android.content.Context
 import android.content.DialogInterface
 import android.text.style.StrikethroughSpan
 import android.view.*
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.LinearLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.cardview.widget.CardView
+import androidx.core.view.isVisible
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_caht.R
@@ -30,34 +28,14 @@ import kotlin.collections.ArrayList
 class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder>() {
     var comments = ArrayList<ChatLayout>()
     var helper:DBHelper? = null
+    var selectedItem = -1
+    var list = ArrayList<Int>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return ChatViewHolder(view).apply {
-            view.setOnLongClickListener {
-
-                val cursor = adapterPosition
-                var data = ""
-                data = comments.get(cursor).contents
-                ChatResponse(cursor, data)
-                //helper?.delete_db(comments.get(cursor))
-                //comments.remove(comments.get(cursor))
-                helper?.update_db(comments.get(cursor))
-
-                comments.set(adapterPosition, ChatLayout(0, R.drawable.ballon2, "삭제된 메세지 입니다", Gravity.START, "", View.VISIBLE, R.drawable.contents_box5))
-                notifyDataSetChanged()
-                true
-            }
-        }
+        return ChatViewHolder(view)
     }
 
-    /*
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
-        val binding = ListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-        //val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
-        return ChatViewHolder(binding)
-    }
-    */
     override fun onBindViewHolder(holder: ChatViewHolder, position: Int) {
         val text = comments.get(position)
         holder.message.text = text.contents
@@ -66,19 +44,34 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         holder.time.text = text.time
         holder.image.visibility = text.visibility
         holder.id.text = text.id.toString()
+        holder.radio_btn.visibility = text.radio
         holder.layout_box.setBackgroundResource(text.textBox)
-        //holder.image.setImageResource(comments.get(position).profile)
-        //holder.message.text = comments[position].contents
-        /*
-        if(position/2 == 0){
-            //holder.layout_main.gravity = Gravity.RIGHT
-            holder.image.setImageResource(R.drawable.user)
+
+        holder.radio_btn.setOnClickListener {
+            if(holder.radio_btn.isChecked && !list.contains(position)){
+                list.add(position)
+                list.sortDescending()
+                holder.radio_btn.isChecked = true
+                Toast.makeText(context, list.toString(), Toast.LENGTH_SHORT).show()
+            }
+            else{
+                list.remove(position)
+                list.sortDescending()
+                holder.radio_btn.isChecked = false
+                Toast.makeText(context, list.toString(), Toast.LENGTH_SHORT).show()
+            }
         }
-        else{
-            //holder.layout_main.gravity = Gravity.LEFT
-            holder.image.setImageResource(R.drawable.ballon2)
+
+        holder.itemView.setOnLongClickListener {
+            var data = ""
+            for(i :Int in 0 until itemCount){
+                helper?.update_db(comments.get(i))
+                comments.clear()
+                comments.addAll(helper!!.select_db())
+                notifyDataSetChanged()
+            }
+            true
         }
-        */
     }
 
     override fun getItemCount(): Int {
@@ -91,9 +84,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         val curTime = dateFormat.format(Date(time)).toString()
         val ChatEdit = "Delete$data"
         val chat: String = ChatEdit.trim { it <= ' ' }
-        //String userPassword = passwordText.getText().toString().trim();
         val chatRequest = ChatRequest(chat)
-        //retrofit 생성
         var retrofitClient = RetrofitClient.getInstance()
         var initMyApi = RetrofitClient.getRetrofitInterface()
         initMyApi.getChatResponse(chatRequest)?.enqueue(object : Callback<ChatResponse> {
@@ -124,13 +115,6 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         })
     }
 }
-/*
-class ChatViewHolder(val binding: ListItemBinding):RecyclerView.ViewHolder(binding.root){
-    fun setData(text:ChatLayout){
-        binding.tvName.text = text.contents
-    }
-}
-*/
 
 class ChatViewHolder(view: View): RecyclerView.ViewHolder(view){
     val message: TextView = view.findViewById(R.id.tv_name)
@@ -139,6 +123,7 @@ class ChatViewHolder(view: View): RecyclerView.ViewHolder(view){
     val time: TextView = view.findViewById(R.id.time)
     val id: TextView = view.findViewById(R.id.id_num)
     val layout_box: LinearLayout = view.findViewById(R.id.layout_box)
+    val radio_btn: RadioButton = view.findViewById(R.id.radio_btn)
     //val layout_main: LinearLayout = view.findViewById(R.id.layout_main)
 
 }
