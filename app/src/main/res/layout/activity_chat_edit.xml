@@ -32,15 +32,18 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ffb830"
+            android:background="#fff"
             android:id="@+id/remove_btn">
         </Button>
 
         <EditText
             android:id="@+id/inputchat"
             android:layout_width="0dp"
+            android:background="@drawable/edit_background"
+            android:textCursorDrawable="@drawable/text_cursor"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:textSize="15dp"
             android:textColor="@color/black"
             android:layout_weight="6">
         </EditText>
@@ -50,9 +53,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#ffb830"
-
-            >
+            android:background="#ffb830">
         </Button>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

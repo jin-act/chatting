@@ -113,7 +113,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/nsed"
-                            android:text="앵무의 생일"
+                            android:text="앵무와 함께한 시간"
                             android:textColor="#4A4A4A"
                             android:textSize="14dp"></TextView>
 
@@ -172,9 +172,8 @@
                             android:layout_marginTop="5dp"
                             android:layout_marginBottom="5dp"
                             android:layout_width="120dp"
-                            android:layout_height="0dp"
+                            android:layout_height="10dp"
                             android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
                             android:progress="0">
                         </ProgressBar>
                         <TextView
