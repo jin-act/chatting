@@ -32,6 +32,8 @@ class ChatActivity : AppCompatActivity() {
     private val binding get() = mBinding!!
     val helper = DBHelper(this, "db_phone", null, 1)
     val adapter = RecycleAdapter(this)
+    private val context = this
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_chat_edit)
@@ -70,22 +72,32 @@ class ChatActivity : AppCompatActivity() {
         btn_remove.setOnClickListener({
             var list = adapter.list
             val data = list.iterator()
-            if(!list.isEmpty()){
-                while(data.hasNext()){
-                    val str = data.next()
-                    helper.delete_db(adapter.comments.get(str))
-                    adapter.comments.remove(adapter.comments.get(str))
-                    adapter.notifyDataSetChanged()
+            val dialog = DeleteDialog(this)
+            dialog.showDialog()
+            dialog.setOnClickListener(object: DeleteDialog.OnDialogClickListener{
+                override fun onClicked(text: String){
+                    if(text == "delete"){
+                        if(!list.isEmpty()){
+                            while(data.hasNext()){
+                                val str = data.next()
+                                helper.delete_db(adapter.comments.get(str))
+                                adapter.comments.remove(adapter.comments.get(str))
+                                adapter.notifyDataSetChanged()
+                            }
+                            for(i :Int in 0 until adapter.itemCount){
+                                helper.update_db2(adapter.comments.get(i))
+                                adapter.comments.clear()
+                                adapter.comments.addAll(helper.select_db())
+                                adapter.notifyDataSetChanged()
+                            }
+                            list.clear()
+                        }
+                    }
+                    else{
+                        Toast.makeText(context, "취소됨", Toast.LENGTH_SHORT).show()
+                    }
                 }
-                for(i :Int in 0 until adapter.itemCount){
-                    helper.update_db2(adapter.comments.get(i))
-                    adapter.comments.clear()
-                    adapter.comments.addAll(helper.select_db())
-                    adapter.notifyDataSetChanged()
-                }
-                list.clear()
-            }
-
+            })
         })
 
     }
