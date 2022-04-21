@@ -113,7 +113,46 @@ class feed : Fragment() {
             num5.isChecked = true
             sel = 5
         }
-
+        num1.setOnClickListener{
+            num1.isChecked = true
+            num2.isChecked = false
+            num3.isChecked = false
+            num4.isChecked = false
+            num5.isChecked = false
+            sel = 1
+        }
+        num2.setOnClickListener{
+            num1.isChecked = false
+            num2.isChecked = true
+            num3.isChecked = false
+            num4.isChecked = false
+            num5.isChecked = false
+            sel = 2
+        }
+        num3.setOnClickListener{
+            num1.isChecked = false
+            num2.isChecked = false
+            num3.isChecked = true
+            num4.isChecked = false
+            num5.isChecked = false
+            sel = 3
+        }
+        num4.setOnClickListener{
+            num1.isChecked = false
+            num2.isChecked = false
+            num3.isChecked = false
+            num4.isChecked = true
+            num5.isChecked = false
+            sel = 4
+        }
+        num5.setOnClickListener{
+            num1.isChecked = false
+            num2.isChecked = false
+            num3.isChecked = false
+            num4.isChecked = false
+            num5.isChecked = true
+            sel = 5
+        }
         btn.setOnClickListener {
             if(hunger >= 20){
                 if(MySharedPreferences.get_food(ct) == "food")
