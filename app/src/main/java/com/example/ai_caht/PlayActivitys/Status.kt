@@ -42,9 +42,21 @@ class status : Fragment() {
         var hunger = 0
         var boredom = 0
         timerTask = timer(period = 1000) {
-            stressbar = MySharedPreferences.get_Stress(ct).toInt()
-            hunger = MySharedPreferences.get_Hunger(ct).toInt()
-            boredom = MySharedPreferences.ger_Boredom(ct).toInt()
+            if(playActivity?.stress == null){
+                stressbar = 0
+            }else{
+                stressbar = playActivity!!.stress
+            }
+            if(playActivity?.hunger == null){
+                hunger = 0
+            }else{
+                hunger = playActivity!!.hunger
+            }
+            if(playActivity?.boredom == null){
+                boredom = 0
+            }else{
+                boredom = playActivity!!.boredom
+            }
             println("new get")
             println("stress = " + stressbar + ", hunger = " + hunger + ", boredom = " + boredom)
             playActivity?.runOnUiThread{
