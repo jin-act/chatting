@@ -10,9 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import androidx.fragment.app.FragmentManager
-import com.example.ai_caht.MainActivity
-import com.example.ai_caht.PlayActivity
-import com.example.ai_caht.R
+import com.example.ai_caht.*
 import kotlinx.coroutines.delay
 import org.w3c.dom.Text
 import java.util.*
@@ -54,11 +52,11 @@ class feed : Fragment() {
         var btn = view.findViewById<Button>(R.id.btn_sel)
         var txsatisfied = view.findViewById<TextView>(R.id.Feed_hint)
         var text_condition = view.findViewById<TextView>(R.id.text_condition)
-        btn.setEnabled(false)
         var hunger : Int
         var stress : Int
         if(playActivity?.hunger == null){
             hunger=0
+            btn.setEnabled(false)
         }else
         {
             hunger = playActivity!!.hunger
@@ -67,9 +65,6 @@ class feed : Fragment() {
         setText(text_condition,hunger,btn)
         num1.isChecked = true
         lay1.setOnClickListener{
-            if(btn.isEnabled == false){
-                btn.setEnabled(true)
-            }
             num1.isChecked = true
             num2.isChecked = false
             num3.isChecked = false
@@ -78,9 +73,6 @@ class feed : Fragment() {
             sel = 1
         }
         lay2.setOnClickListener{
-            if(btn.isEnabled == false){
-                btn.setEnabled(true)
-            }
             num1.isChecked = false
             num2.isChecked = true
             num3.isChecked = false
@@ -89,9 +81,6 @@ class feed : Fragment() {
             sel = 2
         }
         lay3.setOnClickListener{
-            if(btn.isEnabled == false){
-                btn.setEnabled(true)
-            }
             num1.isChecked = false
             num2.isChecked = false
             num3.isChecked = true
@@ -100,9 +89,6 @@ class feed : Fragment() {
             sel = 3
         }
         lay4.setOnClickListener{
-            if(btn.isEnabled == false){
-                btn.setEnabled(true)
-            }
             num1.isChecked = false
             num2.isChecked = false
             num3.isChecked = false
@@ -111,9 +97,6 @@ class feed : Fragment() {
             sel = 4
         }
         lay5.setOnClickListener{
-            if(btn.isEnabled == false){
-                btn.setEnabled(true)
-            }
             num1.isChecked = false
             num2.isChecked = false
             num3.isChecked = false
@@ -211,6 +194,7 @@ class feed : Fragment() {
 
                 }
                 //********************************************
+
                 playActivity?.hunger = hunger
                 playActivity?.stress = stress
                 playActivity?.changeFragment(2)
@@ -218,6 +202,9 @@ class feed : Fragment() {
                 var feedimg = playActivity?.findViewById<ImageView>(R.id.feedimg)
                 statusimg?.setImageResource(R.drawable.underbar_parrot1)
                 feedimg?.setImageResource(R.drawable.underbar_food)
+                playActivity?.supportFragmentManager?.beginTransaction()
+                    ?.replace(R.id.list, FeeddialogFragment())
+                    ?.commit()
             }
         }
 
