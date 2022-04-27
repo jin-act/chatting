@@ -9,6 +9,7 @@ import com.example.ai_caht.test.Signup.SignupResponse;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -28,4 +29,6 @@ public interface initMyApi {
     //Call<ChatResponse> getChatResponse(@Header("Authorization") String authorization);
     Call<ChatResponse> getChatResponse(@Body ChatRequest chatRequest);
 
+    @DELETE("app/chat")
+    Call<ChatResponse> getDelete(@Body ChatRequest chatRequest);
 }

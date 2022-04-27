@@ -66,6 +66,7 @@
                         android:textSize="14dp"></TextView>
 
                     <TextView
+                        android:id="@+id/text_condition"
                         android:layout_width="wrap_content"
                         android:layout_height="0dp"
                         android:layout_marginLeft="10dp"

@@ -9,5 +9,4 @@ public class ChatRequest {
     public ChatRequest(String userchat) {
         this.userchat = userchat;
     }
-
 }
