@@ -6,8 +6,12 @@ public class ChatRequest {
     @SerializedName("chat")
     public String userchat;
 
-    public ChatRequest(String userchat) {
+    @SerializedName("login_id")
+    public String userID;
+
+    public ChatRequest(String userchat, String userID) {
         this.userchat = userchat;
+        this.userID = userID;
     }
 
 }

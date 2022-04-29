@@ -28,8 +28,8 @@ import kotlin.collections.ArrayList
 class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder>() {
     var comments = ArrayList<ChatLayout>()
     var helper:DBHelper? = null
-    var selectedItem = -1
     var list = ArrayList<Int>()
+    var data = ArrayList<String>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -50,20 +50,21 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         holder.radio_btn.setOnClickListener {
             if(holder.radio_btn.isChecked && !list.contains(position)){
                 list.add(position)
+                data.add(comments.get(position).contents)
                 list.sortDescending()
                 holder.radio_btn.isChecked = true
-                Toast.makeText(context, list.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
             }
             else{
                 list.remove(position)
                 list.sortDescending()
+                data.remove(comments.get(position).contents)
                 holder.radio_btn.isChecked = false
-                Toast.makeText(context, list.toString(), Toast.LENGTH_SHORT).show()
+                Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
         holder.itemView.setOnLongClickListener {
-            var data = ""
             for(i :Int in 0 until itemCount){
                 helper?.update_db(comments.get(i))
                 comments.clear()
@@ -76,43 +77,6 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
 
     override fun getItemCount(): Int {
         return comments.size
-    }
-
-    fun ChatResponse(position: Int, data: String){
-        val time = System.currentTimeMillis()
-        val dateFormat = SimpleDateFormat("MM/dd a hh:mm")
-        val curTime = dateFormat.format(Date(time)).toString()
-        val ChatEdit = "Delete$data"
-        val chat: String = ChatEdit.trim { it <= ' ' }
-        val chatRequest = ChatRequest(chat)
-        var retrofitClient = RetrofitClient.getInstance()
-        var initMyApi = RetrofitClient.getRetrofitInterface()
-        initMyApi.getChatResponse(chatRequest)?.enqueue(object : Callback<ChatResponse> {
-            override fun onResponse(
-                    call: Call<ChatResponse>,
-                    response: Response<ChatResponse>) {
-                //통신 성공
-                if (response.isSuccessful) {
-                    //val body = response.body()
-                    //val aichat = body!!.userchat
-                    //val cursor = position
-                    //helper?.update_db(comments.get(cursor))
-                    //comments.set(position, ChatLayout(0, R.drawable.ballon2, "삭제된 메세지 입니다", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5))
-
-                }
-            }
-
-            //통신 실패
-            override fun onFailure(call: Call<ChatResponse?>, t: Throwable) {
-                val builder = androidx.appcompat.app.AlertDialog.Builder(context)
-                println(t.message)
-                builder.setTitle("알림")
-                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
-                        .setPositiveButton("확인", null)
-                        .create()
-                        .show()
-            }
-        })
     }
 }
 
