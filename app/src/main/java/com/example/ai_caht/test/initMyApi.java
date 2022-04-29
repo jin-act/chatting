@@ -33,7 +33,7 @@ public interface initMyApi {
     //Call<ChatResponse> getChatResponse(@Header("Authorization") String authorization);
     Call<ChatResponse> getChatResponse(@Body ChatRequest chatRequest);
 
-    @DELETE("app/chat")
-    Call<ChatResponse> getDelete(@Body ChatRequest chatRequest);
+    @HTTP(method = "DELETE", path = "app/chat", hasBody = true)
+    Call<ChatResponse> deleteChat(@Body ChatRequest chatRequest);
 }
 
