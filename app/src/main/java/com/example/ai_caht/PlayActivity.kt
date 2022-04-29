@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.example.ai_caht.PlayActivitys.*
 import com.example.ai_caht.TimeCheck.ForecdTerminationService
@@ -20,7 +22,7 @@ import java.util.*
 import java.util.concurrent.ThreadLocalRandom
 import kotlin.concurrent.timer
 
-class PlayActivity : AppCompatActivity() {
+open class PlayActivity : AppCompatActivity() {
     var mBackWait:Long = 0
     var hunger = 0
     var stress = 0
@@ -28,17 +30,25 @@ class PlayActivity : AppCompatActivity() {
     var level = 0
     var affection = 0
     var counter = 0.0
-    val C_time = 2
+    val C_time = 2 // 상태가 1증가하는 시간 실제 작동 시간은 15분으로 구상중이며, 배고픔이나 지루함 기준으로 0에서 100까지 1500분 즉 25시간이 필요하다.
     var timerTask: Timer? = null
+    //변수 넘기는 방법 실험
+    companion object {
+        lateinit var instance : PlayActivity
+        private set
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_status)
+
+        instance = this
 
         //최초 실행 작동
         isFirst()
         //어플 최종 종료시간과 현재 시간의 차를 계산
 
-
+        var Fmanager : FragmentManager = supportFragmentManager
+        var FTransaction : FragmentTransaction = Fmanager.beginTransaction()
 
         var feed = findViewById<LinearLayout>(R.id.feed)
         var feedimg = findViewById<ImageView>(R.id.feedimg)
@@ -87,13 +97,12 @@ class PlayActivity : AppCompatActivity() {
         boredom = calcul(boredom,TimeOfChangeCondition)
         stress = cal_stress(stress,hunger,boredom,TimeOfChangeCondition)
         save()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.infospace, status())
-            .commit()
+
+        changeFragment(2)
         //흐름 계산
         timerTask = timer(period = 1000){
             counter++
-            reset()
+            //reset()
             if(counter >= C_time){
                 hunger = calcul(hunger,1)
                 boredom = calcul(boredom,1)
@@ -115,18 +124,14 @@ class PlayActivity : AppCompatActivity() {
 
 
         feed.setOnClickListener({
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.infospace, feed())
-                    .commit()
+            changeFragment(1)
             feedimg.setImageResource(R.drawable.underbar_food1)
             statusimg.setImageResource(R.drawable.underbar_parrot)
 
         })
 
         status.setOnClickListener({
-            supportFragmentManager.beginTransaction()
-                    .replace(R.id.infospace, status())
-                    .commit()
+            changeFragment(2)
             statusimg.setImageResource(R.drawable.underbar_parrot1)
             feedimg.setImageResource(R.drawable.underbar_food)
 
@@ -209,16 +214,17 @@ class PlayActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         save()
+        savedata()
         println("stop!!")
         timerTask?.cancel()
     }
-    fun reset() {
+    /*fun reset() {
         hunger = MySharedPreferences.get_Hunger(this).toInt()
         stress = MySharedPreferences.get_Stress(this).toInt()
         boredom = MySharedPreferences.ger_Boredom(this).toInt()
         affection = MySharedPreferences.get_Affection(this).toInt()
         level = MySharedPreferences.get_Level(this).toInt()
-    }
+    }*/
     fun save() {
         var condition = (hunger + stress*1000 + boredom*1000000 + affection*1000000000 +
                 level*1000000000000 + counter*1000000000000000).toLong()
@@ -226,6 +232,8 @@ class PlayActivity : AppCompatActivity() {
         var intent_condition = Intent(this, ForecdTerminationService::class.java)
         intent_condition.putExtra("condition", condition)
         startService(intent_condition)
+    }
+    fun savedata() {
         //더 좋은 방법을 생각하기 현재 -> 매 순간 sharedpreferences를 최신화하여 저장
         MySharedPreferences.set_condition(this,hunger.toString(),boredom.toString(),stress.toString(),affection.toString(),level.toString(),counter.toString())
         var current_time = System.currentTimeMillis()
@@ -261,12 +269,9 @@ class PlayActivity : AppCompatActivity() {
         boredom = calcul(boredom,TimeOfChangeCondition)
         stress = cal_stress(stress,hunger,boredom,TimeOfChangeCondition)
         save()
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.infospace, status())
-            .commitAllowingStateLoss()
         timerTask = timer(period = 1000){
             counter++
-            reset()
+            //reset()
             if(counter >= C_time){
                 hunger = calcul(hunger,1)
                 boredom = calcul(boredom,1)
@@ -275,6 +280,20 @@ class PlayActivity : AppCompatActivity() {
                 println("status = h," + hunger + ", " + boredom + ", " + stress)
             }
             save()
+        }
+    }
+    fun changeFragment(index: Int){
+        when(index){
+            1 -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.infospace, feed())
+                    .commit()
+            }
+            2 -> {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.infospace, status())
+                    .commit()
+            }
         }
     }
 }

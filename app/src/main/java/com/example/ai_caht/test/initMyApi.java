@@ -19,18 +19,21 @@ public interface initMyApi {
     //@통신 방식("통신 API명")
     @POST("/app/signup")
     Call<String> getSignupResponse(@Body SignupRequest signupRequest);
+
     @POST("/login")
     Call<LoginResponse> getLoginResponse(@Body LoginRequest loginRequest);
+
     //
     @GET("app/duplicate/{id}")
     Call<IDduplicateResponse> getidduplicateResponse(@Path("id") String idduplicate);
+
     //
     @POST("app/chat")
     //@헤더를 보낼 경우에
     //Call<ChatResponse> getChatResponse(@Header("Authorization") String authorization);
     Call<ChatResponse> getChatResponse(@Body ChatRequest chatRequest);
 
-    @HTTP(method = "DELETE", path = "app/chat", hasBody = true)
-    Call<ChatResponse> deleteChat(@Body ChatRequest chatRequest);
-
+    @DELETE("app/chat")
+    Call<ChatResponse> getDelete(@Body ChatRequest chatRequest);
 }
+

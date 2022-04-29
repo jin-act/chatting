@@ -143,7 +143,7 @@
                 <ImageView
                     android:layout_width="20dp"
                     android:layout_height="20dp"
-                    android:src="@drawable/underbar_parrot"
+                    android:src="@drawable/underbar_memory1"
                     ></ImageView>
 
                 <TextView
@@ -152,7 +152,7 @@
                     android:textColor="#555555"
                     android:textSize="11dp"
                     android:fontFamily="@font/nsb"
-                    android:text="상태보기"></TextView>
+                    android:text="추억쌓기"></TextView>
             </LinearLayout>
 
             <LinearLayout

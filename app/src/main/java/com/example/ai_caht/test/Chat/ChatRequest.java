@@ -13,5 +13,4 @@ public class ChatRequest {
         this.userchat = userchat;
         this.userID = userID;
     }
-
 }

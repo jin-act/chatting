@@ -29,6 +29,7 @@ class ForecdTerminationService : Service() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        var play : PlayActivity
 
         val data = intent?.getLongExtra("condition", 0)!!
         println("****calculate****")
