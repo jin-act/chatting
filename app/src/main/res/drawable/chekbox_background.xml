@@ -19,7 +19,7 @@
                 </shape>
             </item>
             <!-- 이미지 영역 -->
-            <item android:drawable="@drawable/check" android:top="4dp" android:right="4dp" android:bottom="4dp" android:left="4dp" />
+
         </layer-list>
     </item>
 </selector>

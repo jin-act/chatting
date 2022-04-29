@@ -4,6 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#99232323"
     tools:context=".FeeddialogFragment">
 
     <LinearLayout
@@ -13,16 +14,30 @@
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="200dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/contents_box">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="50dp"
+                android:gravity="left">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nsb"
+                    android:textSize="16dp"
+                    android:layout_marginLeft="20dp"
+                    android:textColor="#333333"
+                    android:layout_marginTop="20dp"
+                    android:text="먹이주기">
+                </TextView>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="3">
+                android:orientation="vertical">
 
                 <com.airbnb.lottie.LottieAnimationView
                     android:id="@+id/animation_view"
@@ -35,10 +50,9 @@
                     android:id="@+id/situation"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nsb"
+                    android:fontFamily="@font/ns"
                     android:textColor="#6E6E6E"
-                    android:textSize="16dp"
-                    android:layout_marginTop="10dp"
+                    android:textSize="13dp"
                     android:text="앵무가 밥을 맛있게 먹었습니다 !">
                 </TextView>
 
@@ -46,18 +60,17 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="60dp"
                 android:gravity="center">
                 <Button
                     android:id="@+id/btn_play"
-                    android:layout_width="80dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:background="@drawable/okay_button"
-                    android:fontFamily="@font/nsed"
+                    android:fontFamily="@font/nsb"
                     android:text="확인"
                     android:textColor="#FFFFFF"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
 
         </LinearLayout>

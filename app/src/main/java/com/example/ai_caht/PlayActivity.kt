@@ -145,7 +145,7 @@ open class PlayActivity : AppCompatActivity() {
 
 
         val ani1 = findViewById<ImageView>(R.id.ani1)
-        Glide.with(this).load(R.raw.ani1).into(ani1)
+        Glide.with(this).load(R.raw.test6).into(ani1)
     }
     override fun onBackPressed() {
         // 뒤로가기 버튼 클릭

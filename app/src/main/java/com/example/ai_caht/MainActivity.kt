@@ -63,7 +63,7 @@ class MainActivity : AppCompatActivity() {
         })
 
         val ani1 = findViewById<ImageView>(R.id.ani1)
-        Glide.with(this).load(R.raw.ani1).into(ani1)
+        Glide.with(this).load(R.raw.test6).into(ani1)
     }
     fun fragmentChange(index: Int) {
         if (index == 1) {

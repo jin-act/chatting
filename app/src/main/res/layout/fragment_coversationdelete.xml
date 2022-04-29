@@ -14,15 +14,14 @@
         android:gravity="center">
 
         <LinearLayout
-            android:layout_width="300dp"
-            android:layout_height="200dp"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@drawable/contents_box">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="50dp"
                 android:gravity="left">
                 <TextView
                     android:layout_width="wrap_content"
@@ -38,7 +37,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="80dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:layout_weight="1">
@@ -46,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/ns"
-                    android:textSize="16dp"
+                    android:textSize="13dp"
                     android:textColor="#444444"
                     android:layout_marginTop="10dp"
                     android:text="대화 내용을 삭제하시겠습니까?">
@@ -56,30 +55,29 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="60dp"
                 android:gravity="right">
                 <Button
-                    android:layout_width="80dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="5dp"
                     android:background="@drawable/delete_box"
-                    android:fontFamily="@font/nsed"
+                    android:fontFamily="@font/nsb"
                     android:text="취소"
                     android:textColor="#FFFFFF"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
                 <Button
                     android:id="@+id/delete_btn"
-                    android:layout_width="80dp"
+                    android:layout_width="60dp"
                     android:layout_height="30dp"
                     android:layout_gravity="center"
                     android:layout_marginRight="20dp"
                     android:background="@drawable/okay_button"
-                    android:fontFamily="@font/nsed"
+                    android:fontFamily="@font/nsb"
                     android:text="확인"
                     android:textColor="#FFFFFF"
-                    android:textSize="14dp" />
+                    android:textSize="12dp" />
             </LinearLayout>
 
         </LinearLayout>
