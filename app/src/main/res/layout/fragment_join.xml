@@ -177,11 +177,11 @@
                             android:id="@+id/certification"
                             android:layout_width="match_parent"
                             android:layout_height="40dp"
-                            android:layout_weight="1"
                             android:layout_marginTop="10dp"
-                            android:textSize="13dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/contents_box"
                             android:textColor="#ff515151"
-                            android:background="@drawable/contents_box"/>
+                            android:textSize="13dp" />
 
 
                     </LinearLayout>

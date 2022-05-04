@@ -6,6 +6,7 @@ import com.example.ai_caht.test.Login.LoginRequest;
 import com.example.ai_caht.test.Login.LoginResponse;
 import com.example.ai_caht.test.Signup.SignupRequest;
 import com.example.ai_caht.test.Signup.SignupResponse;
+import com.example.ai_caht.test.state.ParrotState;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -26,6 +27,12 @@ public interface initMyApi {
     //
     @GET("app/duplicate/{id}")
     Call<IDduplicateResponse> getidduplicateResponse(@Path("id") String idduplicate);
+
+    @GET("app/state/{id}")
+    Call<ParrotState> getParrotState(@Path("id") String UserId);
+
+    @POST("app/state/{id}")
+    Call<ParrotState> sendParrotState(@Path("id") String UserId, @Body ParrotState parrotState);
 
     //
     @POST("app/chat")
