@@ -10,7 +10,7 @@ import androidx.core.os.persistableBundleOf
 class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorFactory?, version: Int) : SQLiteOpenHelper(context, name, factory, version){
 
     override fun onCreate(db: SQLiteDatabase?){
-        val create = "create table db_phone (id integer primary key, profile Int, contents String, position Int, time String, visibility Int, textBox Int, radio Int)"
+        val create = "create table DATABASE_CHAT (id integer primary key, profile Int, contents String, position Int, time String, visibility Int, textBox Int, radio Int, timeText Int)"
         db?.execSQL(create)
     }
 
@@ -27,15 +27,16 @@ class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
         values.put("visibility", chat.visibility)
         values.put("textBox", chat.textBox)
         values.put("radio", chat.radio)
+        values.put("timeText", chat.timeText)
         val wd = writableDatabase
-        wd.insert("db_phone", null, values)
+        wd.insert("DATABASE_CHAT", null, values)
         wd.close()
     }
 
     @SuppressLint("Range")
     fun select_db():MutableList<ChatLayout>{
         val list = mutableListOf<ChatLayout>()
-        val selectAll = "select * from db_phone"
+        val selectAll = "select * from DATABASE_CHAT"
         val rd = readableDatabase
         val cursor = rd.rawQuery(selectAll, null)
         while(cursor.moveToNext()){
@@ -47,7 +48,8 @@ class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
             val visibility = cursor.getInt(cursor.getColumnIndex("visibility"))
             val textBox = cursor.getInt(cursor.getColumnIndex("textBox"))
             val radio = cursor.getInt(cursor.getColumnIndex("radio"))
-            list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio))
+            val timeText = cursor.getInt(cursor.getColumnIndex("timeText"))
+            list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio, timeText))
         }
         cursor.close()
         rd.close()
@@ -58,7 +60,7 @@ class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
     fun delete_db(chat: ChatLayout){
         //val delete = "delete from android_chatting where id = $position"
         val wd = writableDatabase
-        wd.delete("db_phone", "id=${chat.id}", null)
+        wd.delete("DATABASE_CHAT", "id=${chat.id}", null)
         wd.close()
     }
 
@@ -72,8 +74,9 @@ class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
         values.put("visibility", chat.visibility)
         values.put("textBox", chat.textBox)
         values.put("radio", View.VISIBLE)
+        values.put("timeText", chat.timeText)
         val wd = writableDatabase
-        wd.update("db_phone", values, "id=${chat.id}", null)
+        wd.update("DATABASE_CHAT", values, "id=${chat.id}", null)
         wd.close()
     }
 
@@ -87,8 +90,9 @@ class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
         values.put("visibility", chat.visibility)
         values.put("textBox", chat.textBox)
         values.put("radio", View.GONE)
+        values.put("timeText", chat.timeText)
         val wd = writableDatabase
-        wd.update("db_phone", values, "id=${chat.id}", null)
+        wd.update("DATABASE_CHAT", values, "id=${chat.id}", null)
         wd.close()
     }
 

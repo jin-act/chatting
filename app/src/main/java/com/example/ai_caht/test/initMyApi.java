@@ -2,6 +2,8 @@ package com.example.ai_caht.test;
 
 import com.example.ai_caht.test.Chat.ChatRequest;
 import com.example.ai_caht.test.Chat.ChatResponse;
+import com.example.ai_caht.test.Chat.ParrotTalkRequest;
+import com.example.ai_caht.test.Chat.ParrotTalkResponse;
 import com.example.ai_caht.test.Login.LoginRequest;
 import com.example.ai_caht.test.Login.LoginResponse;
 import com.example.ai_caht.test.Signup.SignupRequest;
@@ -35,5 +37,8 @@ public interface initMyApi {
 
     @HTTP(method = "DELETE", path = "app/chat", hasBody = true)
     Call<ChatResponse> deleteChat(@Body ChatRequest chatRequest);
+
+    @POST("app/parrottalk")
+    Call<ParrotTalkResponse> parrotTalk(@Body ParrotTalkRequest parrotTalkRequest);
 }
 
