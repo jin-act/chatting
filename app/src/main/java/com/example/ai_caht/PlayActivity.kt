@@ -16,6 +16,11 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.example.ai_caht.PlayActivitys.*
 import com.example.ai_caht.TimeCheck.ForecdTerminationService
+import com.example.ai_caht.test.RetrofitClient
+import com.example.ai_caht.test.state.ParrotState
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.sql.Time
 import java.text.SimpleDateFormat
 import java.util.*
@@ -49,7 +54,7 @@ open class PlayActivity : AppCompatActivity() {
 
         var Fmanager : FragmentManager = supportFragmentManager
         var FTransaction : FragmentTransaction = Fmanager.beginTransaction()
-
+        var Last_Counter : Double = 0.0
         var feed = findViewById<LinearLayout>(R.id.feed)
         var feedimg = findViewById<ImageView>(R.id.feedimg)
         var status = findViewById<LinearLayout>(R.id.status)
@@ -58,31 +63,53 @@ open class PlayActivity : AppCompatActivity() {
         var converimg = findViewById<ImageView>(R.id.converimg)
         var account = findViewById<ImageView>(R.id.account)
 
-        var current_time = System.currentTimeMillis()
-        var last_time = MySharedPreferences.get_Time(this)
-        var result = (current_time - last_time)/1000
-        println("result ->" + result)
-        var TimeOfChangeCondition = (result/C_time).toInt()
-        println("TOCC ->" + TimeOfChangeCondition)
-        var TOCC_Counter = result%C_time
-        println("TOCC_C ->" + TOCC_Counter)
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
 
         //기능 변경 *********통신으로 받기***********
-        hunger = MySharedPreferences.get_Hunger(this).toInt()
-        println("hunger " + hunger)
-        stress = MySharedPreferences.get_Stress(this).toInt()
-        boredom = MySharedPreferences.ger_Boredom(this).toInt()
-        affection = MySharedPreferences.get_Affection(this).toInt()
-        level = MySharedPreferences.get_Level(this).toInt()
-        var Last_Counter = MySharedPreferences.get_Counter(this)
+        var current_time = System.currentTimeMillis()
+        var last_time : Long = 0
+
+        var result : Long = 0
+        var TimeOfChangeCondition = 0
+        var TOCC_Counter : Long = 0
+        println("TOCC_C ->" + TOCC_Counter)
+
+
+        var userId = MySharedPreferences.getUserId(this)
+        var retrofitClient = RetrofitClient.getInstance()
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        initMyApi.getParrotState(userId)
+            .enqueue(object : Callback<ParrotState> {
+                override fun onResponse(
+                    call: Call<ParrotState>,
+                    response: Response<ParrotState>
+                ) {
+                    var body = response.body()
+                    hunger = body!!.hunger.toInt()
+                    stress = body!!.stress.toInt()
+                    boredom = body!!.boredom.toInt()
+                    affection = body!!.affection.toInt()
+                    level = body!!.level.toInt()
+                    Last_Counter = body!!.counter.toDouble()
+                    last_time
+                    result = (current_time - last_time)/1000
+                    TimeOfChangeCondition = (result/C_time).toInt()
+                    TOCC_Counter = result%C_time
+                    println(body)
+                }
+
+                override fun onFailure(call: Call<ParrotState>, t: Throwable) {
+                    println(t.message)
+                }
+
+            })
         //***************************************
 
         println("L_counter -> " + Last_Counter)
         //상태의 수치 변경
-        counter = TOCC_Counter + Last_Counter.toDouble()
+        counter = TOCC_Counter + Last_Counter
         println("counter -> " + counter)
 
         if(counter > C_time){
@@ -238,6 +265,26 @@ open class PlayActivity : AppCompatActivity() {
         MySharedPreferences.set_condition(this,hunger.toString(),boredom.toString(),stress.toString(),affection.toString(),level.toString(),counter.toString())
         var current_time = System.currentTimeMillis()
         MySharedPreferences.set_Time(this, current_time)
+        var userId = MySharedPreferences.getUserId(this)
+        var parrotstate =
+            ParrotState(hunger.toString(), stress.toString(), boredom.toString(), affection.toString(), level.toString(), counter.toString(), current_time)
+        var retrofitClient = RetrofitClient.getInstance()
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        initMyApi.sendParrotState(userId, parrotstate)
+            .enqueue(object : Callback<ParrotState> {
+                override fun onResponse(
+                    call: Call<ParrotState>,
+                    response: Response<ParrotState>
+                ) {
+                    var body = response.body()
+                    println(body)
+                }
+
+                override fun onFailure(call: Call<ParrotState>, t: Throwable) {
+                    println(t.message)
+                }
+
+            })
         print("save")
     }
 
