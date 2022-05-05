@@ -74,9 +74,15 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
+<<<<<<< HEAD
+                            android:fontFamily="@font/ns"
+                            android:text="마루땅크"
+                            android:textColor="#787878"
+=======
                             android:fontFamily="@font/nsb"
                             android:text="가나다라마바사"
                             android:textColor="#777"
+>>>>>>> 9a6e0b21ab55ed099c294e2faeb634978fd2354b
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
