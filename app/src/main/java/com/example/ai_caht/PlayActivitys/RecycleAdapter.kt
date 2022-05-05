@@ -5,6 +5,8 @@ import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Context
 import android.content.DialogInterface
+import android.os.Handler
+import android.os.Looper
 import android.text.style.StrikethroughSpan
 import android.view.*
 import android.widget.*
@@ -30,6 +32,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
     var helper:DBHelper? = null
     var list = ArrayList<Int>()
     var data = ArrayList<String>()
+    var rdoCheck :Boolean = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -46,6 +49,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         holder.id.text = text.id.toString()
         holder.radio_btn.visibility = text.radio
         holder.layout_box.setBackgroundResource(text.textBox)
+        holder.textTime.gravity = text.timeText
 
         holder.radio_btn.setOnClickListener {
             if(holder.radio_btn.isChecked && !list.contains(position)){
@@ -66,6 +70,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
 
         holder.itemView.setOnLongClickListener {
             for(i :Int in 0 until itemCount){
+                rdoCheck = true
                 helper?.update_db(comments.get(i))
                 comments.clear()
                 comments.addAll(helper!!.select_db())
@@ -88,6 +93,7 @@ class ChatViewHolder(view: View): RecyclerView.ViewHolder(view){
     val id: TextView = view.findViewById(R.id.id_num)
     val layout_box: LinearLayout = view.findViewById(R.id.layout_box)
     val radio_btn: RadioButton = view.findViewById(R.id.radio_btn)
+    val textTime: LinearLayout = view.findViewById(R.id.layout_time)
     //val layout_main: LinearLayout = view.findViewById(R.id.layout_main)
 
 }

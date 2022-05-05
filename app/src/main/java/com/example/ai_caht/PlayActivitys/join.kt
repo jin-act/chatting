@@ -63,6 +63,7 @@ class join : Fragment() {
         var inputId = ""
         var inputPw = ""
         var inputName = ""
+        var userEmail = ""
         var userId = ""
         //시작 ID확인 버튼, pw확인 에디트 비활성화
         btn_ID.setEnabled(false)
@@ -180,11 +181,16 @@ class join : Fragment() {
         //회원가입 완료버튼 눌렀을 때
         btn_SignUp.setOnClickListener {
             //ID, pw 유효성이 모두 완료되었을 때, 회원가입 완료
+            userEmail = email.getText().toString()
+            if(userEmail == null){
+                "null"
+            }
+
             if (checkPass == 1 && checkId == 1) {
                 inputId = et_joinid.getText().toString()
                 inputPw = et_joinpw.getText().toString()
-                inputName = "dw"
-                var signupRequest = SignupRequest(inputId, inputPw, inputName)
+                inputName = certification.getText().toString()
+                var signupRequest = SignupRequest(inputId, inputPw, inputName, userEmail)
                 var retrofitClient = RetrofitClient.getInstance()
                 var initMyApi = RetrofitClient.getRetrofitInterface()
                 initMyApi.getSignupResponse(signupRequest)

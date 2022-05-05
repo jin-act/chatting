@@ -9,63 +9,71 @@
         android:layout_height="wrap_content"
         android:id="@+id/radio_btn"
         android:layout_marginTop="15dp"
-
         android:visibility="gone"/>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:id="@+id/layout_pos">
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_columnWeight="1">
-            <ImageView
-                android:id="@+id/chat_Image"
-                android:layout_width="40dp"
-                android:layout_height="40dp" />
-            <TextView
-                android:id="@+id/id_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1"
-                android:textColor="#616161"
-                android:visibility="invisible"/>
+            android:orientation="vertical"
+            android:id="@+id/layout_pos">
             <LinearLayout
-                android:layout_marginTop="3dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
-                <LinearLayout
-                    android:id = "@+id/layout_box"
+                android:layout_marginLeft="10dp"
+                android:layout_columnWeight="1">
+                <ImageView
+                    android:id="@+id/chat_Image"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginEnd="10dp"/>
+                <TextView
+                    android:id="@+id/id_num"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:padding="8dp"
+                    android:text="1"
+                    android:textColor="#616161"
+                    android:visibility="gone"/>
+                <LinearLayout
+                    android:layout_marginTop="3dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:orientation="vertical">
-                    <TextView
-                        android:id="@+id/tv_name"
+                    <LinearLayout
+                        android:id = "@+id/layout_box"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/nsb"
-                        android:text="TextView"
-                        android:textColor="#fff"/>
+                        android:layout_marginTop="15dp"
+                        android:padding="8dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:id="@+id/tv_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:textColor="#fff"/>
 
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:id="@+id/layout_time">
+                        <TextView
+                            android:id="@+id/time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="time"
+                            android:textSize="10dp"
+                            android:layout_marginTop="5dp"
+                            android:textColor="#e5e5e5"
+                            android:layout_marginBottom="3dp"
+                            android:layout_marginEnd="5dp"/>
                 </LinearLayout>
-                <TextView
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="time"
-                    android:textSize="10dp"
-                    android:layout_marginTop="5dp"
-                    android:textColor="#e5e5e5"
-                    android:layout_marginBottom="3dp"
-                    android:layout_marginEnd="15dp"/>
+
             </LinearLayout>
 
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>

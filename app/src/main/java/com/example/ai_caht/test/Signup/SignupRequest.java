@@ -15,9 +15,10 @@ public class SignupRequest {
     @SerializedName("email")
     public String inputEmail;
 
-    public SignupRequest(String inputId, String inputPw, String inputName) {
+    public SignupRequest(String inputId, String inputPw, String inputName, String inputEmail) {
         this.inputId = inputId;
         this.inputPw = inputPw;
         this.inputName = inputName;
+        this.inputEmail = inputEmail;
     }
 }

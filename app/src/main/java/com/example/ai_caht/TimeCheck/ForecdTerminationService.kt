@@ -13,39 +13,48 @@ import com.example.ai_caht.PlayActivitys.MySharedPreferences
 import java.util.*
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
+import com.example.ai_caht.test.RetrofitClient
+import com.example.ai_caht.test.state.ParrotState
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class ForecdTerminationService : Service() {
-    var hunger : String = ""
-    var stress : String = ""
-    var boredom : String = ""
-    var affection : String = ""
-    var level : String = ""
-    var counter : String = ""
-    var condition : String = ""
+    var hunger: String = ""
+    var stress: String = ""
+    var boredom: String = ""
+    var affection: String = ""
+    var level: String = ""
+    var counter: String = ""
+    var condition: String = ""
+
     @Nullable
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        var play : PlayActivity
-
+        var play: PlayActivity
         val data = intent?.getLongExtra("condition", 0)!!
         println("****calculate****")
         println(data)
-        var Counter = (data/1000000000000000).toInt()
+        var Counter = (data / 1000000000000000).toInt()
         println("C : " + Counter)
-        var Level = ((data - Counter*1000000000000000)/1000000000000).toInt()
-        println("L : " +Level)
-        var Affection = ((data - Counter*1000000000000000 - Level*1000000000000) / 1000000000).toInt()
-        println("A : " +Affection)
-        var Boredom = ((data - Counter*1000000000000000 - Level*1000000000000 - Affection*1000000000) / 1000000).toInt()
-        println("B : " +Boredom)
-        var Stress = ((data - Counter*1000000000000000 - Level*1000000000000 - Affection*1000000000 - Boredom*1000000) / 1000).toInt()
-        println("S : " +Stress)
-        var Hunger = ((data - Counter*1000000000000000 - Level*1000000000000 - Affection*1000000000 - Boredom*1000000 - Stress*1000)).toInt()
-        println("H : " +Hunger)
+        var Level = ((data - Counter * 1000000000000000) / 1000000000000).toInt()
+        println("L : " + Level)
+        var Affection =
+            ((data - Counter * 1000000000000000 - Level * 1000000000000) / 1000000000).toInt()
+        println("A : " + Affection)
+        var Boredom =
+            ((data - Counter * 1000000000000000 - Level * 1000000000000 - Affection * 1000000000) / 1000000).toInt()
+        println("B : " + Boredom)
+        var Stress =
+            ((data - Counter * 1000000000000000 - Level * 1000000000000 - Affection * 1000000000 - Boredom * 1000000) / 1000).toInt()
+        println("S : " + Stress)
+        var Hunger =
+            ((data - Counter * 1000000000000000 - Level * 1000000000000 - Affection * 1000000000 - Boredom * 1000000 - Stress * 1000)).toInt()
+        println("H : " + Hunger)
 
 
         hunger = Hunger.toString()
@@ -56,6 +65,7 @@ class ForecdTerminationService : Service() {
         counter = Counter.toString()
         return super.onStartCommand(intent, flags, startId)
     }
+
     override fun onTaskRemoved(rootIntent: Intent) { //핸들링 하는 부분
         //현재 시간 저장
         var current_time = System.currentTimeMillis()
@@ -67,10 +77,28 @@ class ForecdTerminationService : Service() {
 
         //해당 로그인의 데이터 값
         //기능 변경 *******통신으로 보내기********
-        MySharedPreferences.set_condition(this,hunger,boredom,stress,affection,level,counter)
+        MySharedPreferences.set_condition(this, hunger, boredom, stress, affection, level, counter)
+        var userId = MySharedPreferences.getUserId(this)
+        var parrotstate =
+            ParrotState(hunger, stress, boredom, affection, level, counter, current_time)
+        var retrofitClient = RetrofitClient.getInstance()
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        initMyApi.sendParrotState(userId, parrotstate)
+            .enqueue(object : Callback<ParrotState> {
+                override fun onResponse(
+                    call: Call<ParrotState>,
+                    response: Response<ParrotState>
+                ) {
+                    var body = response.body()
+                    println(body)
+                }
+
+                override fun onFailure(call: Call<ParrotState>, t: Throwable) {
+                    println(t.message)
+                }
+
+            })
         //************************************
-
-
         stopSelf() //서비스 종료
     }
 }
