@@ -63,9 +63,9 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="5dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/nsb"
+                            android:fontFamily="@font/nsed"
                             android:text="앵무의 이름"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
 
                         <TextView
@@ -74,9 +74,15 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
+<<<<<<< HEAD
                             android:fontFamily="@font/ns"
                             android:text="마루땅크"
                             android:textColor="#787878"
+=======
+                            android:fontFamily="@font/nsb"
+                            android:text="가나다라마바사"
+                            android:textColor="#777"
+>>>>>>> 9a6e0b21ab55ed099c294e2faeb634978fd2354b
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -115,10 +121,10 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/nsb"
+                            android:fontFamily="@font/nsed"
                             android:layout_marginBottom="5dp"
                             android:text="앵무와 함께한 시간"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
 
                         <TextView
@@ -127,9 +133,9 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/ns"
+                            android:fontFamily="@font/nsb"
                             android:text="함께한 지 15일째"
-                            android:textColor="#787878"
+                            android:textColor="#777"
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -167,9 +173,9 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/nsb"
+                            android:fontFamily="@font/nsed"
                             android:text="받은 스트레스"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#666"
                             android:textSize="14dp"></TextView>
                         <ProgressBar
                             android:id="@+id/stress"
@@ -186,10 +192,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/ns"
+                            android:fontFamily="@font/nsb"
                             android:layout_marginLeft="10dp"
                             android:text="배고파 하고 있어요"
-                            android:textColor="#787878"
+                            android:textColor="#777"
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>
@@ -227,10 +233,10 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/nsb"
+                            android:fontFamily="@font/nsed"
                             android:layout_marginBottom="5dp"
                             android:text="애증"
-                            android:textColor="#4A4A4A"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
 
                         <TextView
@@ -238,9 +244,9 @@
                             android:layout_height="0dp"
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
-                            android:fontFamily="@font/ns"
+                            android:fontFamily="@font/nsb"
                             android:text="매우 높음"
-                            android:textColor="#787878"
+                            android:textColor="#777"
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
                 </LinearLayout>

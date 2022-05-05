@@ -38,8 +38,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="13dp"
                         android:text="아이디"
-                        android:fontFamily="@font/ns"
-                        android:textColor="#575757">
+                        android:fontFamily="@font/nsb"
+                        android:textColor="#777">
                     </TextView>
 
                     <LinearLayout
@@ -79,8 +79,8 @@
                             android:layout_marginTop="15dp"
                             android:textSize="13dp"
                             android:text="비밀번호"
-                            android:fontFamily="@font/ns"
-                            android:textColor="#575757">
+                            android:fontFamily="@font/nsb"
+                            android:textColor="#777">
                         </TextView>
 
 
@@ -103,8 +103,8 @@
                         android:layout_marginTop="15dp"
                         android:textSize="13dp"
                         android:text="비밀번호 확인"
-                        android:fontFamily="@font/ns"
-                        android:textColor="#575757">
+                        android:fontFamily="@font/nsb"
+                        android:textColor="#777">
                     </TextView>
 
                     <EditText
@@ -126,8 +126,8 @@
                         android:textSize="13dp"
                         android:layout_marginTop="15dp"
                         android:text="E-mail"
-                        android:fontFamily="@font/ns"
-                        android:textColor="#575757">
+                        android:fontFamily="@font/nsb"
+                        android:textColor="#777">
                     </TextView>
 
                     <LinearLayout
@@ -165,8 +165,8 @@
                         android:textSize="13dp"
                         android:layout_marginTop="15dp"
                         android:text="닉네임"
-                        android:fontFamily="@font/ns"
-                        android:textColor="#575757">
+                        android:fontFamily="@font/nsb"
+                        android:textColor="#777">
                     </TextView>
 
                     <LinearLayout
@@ -195,7 +195,7 @@
                         android:layout_gravity="center"
                         android:layout_marginTop="30dp"
                         android:background="@drawable/okay_button"
-                        android:fontFamily="@font/nsed"
+                        android:fontFamily="@font/nsb"
                         android:text="가입하기"
                         android:layout_marginBottom="10dp"
                         android:textColor="#FFFFFF"

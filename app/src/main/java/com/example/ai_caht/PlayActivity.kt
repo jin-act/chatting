@@ -60,6 +60,7 @@ open class PlayActivity : AppCompatActivity() {
         var Last_Counter : Double = 0.0
         var feed = findViewById<LinearLayout>(R.id.feed)
         var feedimg = findViewById<ImageView>(R.id.feedimg)
+        var memory = findViewById<LinearLayout>(R.id.memory)
         var status = findViewById<LinearLayout>(R.id.status)
         var statusimg = findViewById<ImageView>(R.id.statusimg)
         var conver = findViewById<LinearLayout>(R.id.conver)
@@ -70,6 +71,7 @@ open class PlayActivity : AppCompatActivity() {
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
+        var draw = findViewById<ImageView>(R.id.setting)
 
         //기능 변경 *********통신으로 받기***********
         var current_time = System.currentTimeMillis()
@@ -181,15 +183,25 @@ open class PlayActivity : AppCompatActivity() {
 
         })
 
+        memory.setOnClickListener({
+            changeFragment(3)
+
+        })
+
 
         conver.setOnClickListener({
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
         })
 
+        draw.setOnClickListener({
+            val intent = Intent(this, DrawActivity::class.java)
+            startActivity(intent)
+        })
+
 
         val ani1 = findViewById<ImageView>(R.id.ani1)
-        Glide.with(this).load(R.raw.test6).into(ani1)
+        Glide.with(this).load(R.raw.test3).into(ani1)
     }
     override fun onBackPressed() {
         // 뒤로가기 버튼 클릭
@@ -358,6 +370,12 @@ open class PlayActivity : AppCompatActivity() {
                     .replace(R.id.infospace, status())
                     .commit()
             }
+            3 -> {
+                supportFragmentManager.beginTransaction()
+                        .replace(R.id.infospace, MemoryFragment())
+                        .commit()
+            }
+
         }
     }
 }
