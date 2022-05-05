@@ -36,6 +36,9 @@ open class PlayActivity : AppCompatActivity() {
     var affection = 0
     var counter = 0.0
     val C_time = 2 // 상태가 1증가하는 시간 실제 작동 시간은 15분으로 구상중이며, 배고픔이나 지루함 기준으로 0에서 100까지 1500분 즉 25시간이 필요하다.
+    var result : Long = 0
+    var TimeOfChangeCondition = 0
+    var TOCC_Counter : Long = 0
     var timerTask: Timer? = null
     //변수 넘기는 방법 실험
     companion object {
@@ -63,6 +66,7 @@ open class PlayActivity : AppCompatActivity() {
         var converimg = findViewById<ImageView>(R.id.converimg)
         var account = findViewById<ImageView>(R.id.account)
 
+
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
@@ -71,10 +75,8 @@ open class PlayActivity : AppCompatActivity() {
         var current_time = System.currentTimeMillis()
         var last_time : Long = 0
 
-        var result : Long = 0
-        var TimeOfChangeCondition = 0
-        var TOCC_Counter : Long = 0
-        println("TOCC_C ->" + TOCC_Counter)
+
+
 
 
         var userId = MySharedPreferences.getUserId(this)
@@ -86,44 +88,59 @@ open class PlayActivity : AppCompatActivity() {
                     call: Call<ParrotState>,
                     response: Response<ParrotState>
                 ) {
+                    // 통신으로 상태 받아오기
                     var body = response.body()
-                    hunger = body!!.hunger.toInt()
-                    stress = body!!.stress.toInt()
-                    boredom = body!!.boredom.toInt()
-                    affection = body!!.affection.toInt()
-                    level = body!!.level.toInt()
-                    Last_Counter = body!!.counter.toDouble()
-                    last_time
+                    if(body!!.hunger != null)
+                    {
+                        hunger = body!!.hunger.toInt()
+                        stress = body!!.stress.toInt()
+                        boredom = body!!.boredom.toInt()
+                        affection = body!!.affection.toInt()
+                        level = body!!.level.toInt()
+                        Last_Counter = body!!.counter.toDouble()
+                        last_time = body!!.lastTime
+
+                    }
+                    else{
+                        hunger = 0
+                        stress = 0
+                        boredom = 0
+                        affection = 0
+                        level = 0
+                        Last_Counter = 0.0
+                        last_time = current_time
+                    }
                     result = (current_time - last_time)/1000
+                    println("result -> " + result)
                     TimeOfChangeCondition = (result/C_time).toInt()
+                    println("TOCC1 ->" + TimeOfChangeCondition)
                     TOCC_Counter = result%C_time
+                    println("L_counter -> " + Last_Counter)
+                    //상태의 수치 변경
+                    counter = TOCC_Counter + Last_Counter
+                    println("counter -> " + counter)
+
+                    if(counter > C_time){
+                        TimeOfChangeCondition = TimeOfChangeCondition + (counter / C_time).toInt()
+                        counter = counter%C_time
+                    }
+                    println("TOCC2 ->" + TimeOfChangeCondition)
+                    println("counter -> " + counter)
+                    //10분이 되면 허기와 무료함 1상승 만약 허기와 무료함이 50이상일 때 스트레스도 동시에 1상승 두 조건이 동시에 만족하면 2상승
+                    hunger = calcul(hunger,TimeOfChangeCondition)
+                    println("hunger " + hunger)
+                    boredom = calcul(boredom,TimeOfChangeCondition)
+                    stress = cal_stress(stress,hunger,boredom,TimeOfChangeCondition)
+                    save()
+
                     println(body)
                 }
-
                 override fun onFailure(call: Call<ParrotState>, t: Throwable) {
                     println(t.message)
                 }
 
             })
         //***************************************
-
-        println("L_counter -> " + Last_Counter)
-        //상태의 수치 변경
-        counter = TOCC_Counter + Last_Counter
-        println("counter -> " + counter)
-
-        if(counter > C_time){
-            TimeOfChangeCondition = TimeOfChangeCondition + (counter / C_time).toInt()
-            counter = counter%C_time
-        }
-        println("TOCC ->" + TimeOfChangeCondition)
-        println("counter -> " + counter)
-                //10분이 되면 허기와 무료함 1상승 만약 허기와 무료함이 50이상일 때 스트레스도 동시에 1상승 두 조건이 동시에 만족하면 2상승
-        hunger = calcul(hunger,TimeOfChangeCondition)
-        println("hunger " + hunger)
-        boredom = calcul(boredom,TimeOfChangeCondition)
-        stress = cal_stress(stress,hunger,boredom,TimeOfChangeCondition)
-        save()
 
         changeFragment(2)
         //흐름 계산

@@ -75,7 +75,7 @@
                             android:layout_marginLeft="10dp"
                             android:layout_weight="1"
                             android:fontFamily="@font/ns"
-                            android:text="가나다라마바사"
+                            android:text="마루땅크"
                             android:textColor="#787878"
                             android:textSize="13dp"></TextView>
                     </LinearLayout>
