@@ -72,6 +72,16 @@
 
                     </LinearLayout>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="11dp"
+                        android:visibility="invisible"
+                        android:textColor="#E50000"
+                        android:layout_marginTop="5dp"
+                        android:text="아이디가 중복됩니다.">
+                   </TextView>
+
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -94,6 +104,15 @@
                         android:textColorHint="#C8C8C8"
                         android:textColor="#ff515151"
                         android:background="@drawable/contents_box"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="11dp"
+                        android:visibility="invisible"
+                        android:textColor="#E50000"
+                        android:layout_marginTop="5dp"
+                        android:text="비밀번호가 조건에 맞지 않습니다.">
+                    </TextView>
 
 
 
@@ -144,18 +163,7 @@
                             android:textColor="#ff515151"
                             android:background="@drawable/contents_box"/>
 
-                        <Button
-                            android:id="@+id/btn_email"
-                            android:layout_width="match_parent"
-                            android:layout_height="25dp"
-                            android:layout_marginTop="7dp"
-                            android:layout_marginLeft="7dp"
-                            android:layout_weight="3"
-                            android:background="@drawable/contents_box8"
-                            android:fontFamily="@font/ns"
-                            android:text="인증 번호"
-                            android:textColor="#A0A0A0"
-                            android:textSize="11dp" />
+
 
                     </LinearLayout>
 
