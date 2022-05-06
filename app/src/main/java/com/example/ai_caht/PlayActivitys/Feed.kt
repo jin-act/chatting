@@ -2,6 +2,7 @@ package com.example.ai_caht.PlayActivitys
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import androidx.fragment.app.Fragment
@@ -49,9 +50,10 @@ class feed : Fragment() {
         var lay3 = view.findViewById<LinearLayout>(R.id.lay_3)
         var lay4 = view.findViewById<LinearLayout>(R.id.lay_4)
         var lay5 = view.findViewById<LinearLayout>(R.id.lay_5)
-        var btn = view.findViewById<Button>(R.id.btn_sel)
+        var btn = view.findViewById<FrameLayout>(R.id.btn_sel)
         var txsatisfied = view.findViewById<TextView>(R.id.Feed_hint)
         var text_condition = view.findViewById<TextView>(R.id.text_condition)
+        var btn_text = view.findViewById<TextView>(R.id.btn_sel_text)
         var hunger : Int
         var stress : Int
         if(playActivity?.hunger == null){
@@ -62,7 +64,7 @@ class feed : Fragment() {
             hunger = playActivity!!.hunger
         }
         println("hunger -> " + hunger)
-        setText(text_condition,hunger,btn)
+        setText(text_condition,hunger,btn, btn_text)
         num1.isChecked = true
         lay1.setOnClickListener{
             num1.isChecked = true
@@ -211,17 +213,19 @@ class feed : Fragment() {
         return view
 
     }
-    fun setText(text_condition : TextView, hunger : Int, btn : Button){
+    fun setText(text_condition : TextView, hunger : Int, btn : FrameLayout, btn_text : TextView){
         var late = 20
         var text_late = ""
         if(hunger >= 20){
             btn.setEnabled(true)
-            btn.setBackgroundResource(R.drawable.okay_button)
+            btn.setBackgroundColor(Color.parseColor("#ffb830"))
+            btn_text.setTextColor(Color.parseColor("#ffffff"))
             text_condition.setText("앵무가 좋아하는 음식을 줘보세요")
         }
         else{
             btn.setEnabled(false)
-            btn.setBackgroundResource(R.drawable.contents_box12)
+            btn.setBackgroundColor(Color.parseColor("#777777"))
+            btn_text.setTextColor(Color.parseColor("#aaaaaa"))
             late = 20-hunger
             if(late > 0 && late <= 4){
                 text_late = "지금은 배가 좀 부른것 같아요"
