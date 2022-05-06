@@ -13,13 +13,16 @@ import android.widget.EditText
 import com.example.ai_caht.R
 import android.content.Intent
 import android.graphics.Color
+import android.widget.TextView
 import androidx.annotation.Nullable
+import androidx.core.view.isVisible
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.test.IDduplicateResponse
 import com.example.ai_caht.test.RetrofitClient
 import com.example.ai_caht.test.Signup.SignupRequest
 import com.example.ai_caht.test.Signup.SignupResponse
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -57,9 +60,10 @@ class join : Fragment() {
         val email = view.findViewById<EditText>(R.id.email)
         val certification = view.findViewById<EditText>(R.id.certification)
         val btn_Join = view.findViewById<Button>(R.id.btn_Join)
+        val Text_id = view.findViewById<TextView>(R.id.id_check)
+        val Text_pw = view.findViewById<TextView>(R.id.pass_check)
         var checkPass = 0                                           // 패스워드 유효성 검사
         var checkId = 0                                             // ID유효성 검사
-        var num = 0
         var inputId = ""
         var inputPw = ""
         var inputName = ""
@@ -67,7 +71,6 @@ class join : Fragment() {
         var userId = ""
         //시작 ID확인 버튼, pw확인 에디트 비활성화
         btn_ID.setEnabled(false)
-        et_pwcheck.setEnabled(false)
         et_pwcheck.setBackgroundResource(R.drawable.contents_box2)
         et_joinid.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
@@ -85,19 +88,14 @@ class join : Fragment() {
 
             // 입력하기 전에 조치
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                et_joinid.setBackgroundResource(R.drawable.edittext_background)
-                et_joinpw.setBackgroundResource(R.drawable.contents_box)
-                if (num == 1) {
-                    et_pwcheck.setBackgroundResource(R.drawable.contents_box)
-                }
-            }
+                Text_id.setText("아이디 중복 확인을 해주세요!")
+                Text_id.setTextColor(Color.parseColor("#E50000"))
+                Text_id.setVisibility(View.VISIBLE)
+                            }
         })
         btn_ID.setOnClickListener {
             //**추가**
             // 웹 통신 아이디 중복 검사 및 저장
-            if (num == 1) {
-                et_pwcheck.setBackgroundResource(R.drawable.contents_box)
-            }
             userId = et_joinid.getText().toString()
             var retrofitClient = RetrofitClient.getInstance()
             var initMyApi = RetrofitClient.getRetrofitInterface()
@@ -110,10 +108,14 @@ class join : Fragment() {
                         if (response.isSuccessful) {
                             var body = response.body()
                             if (body!!.duplicate == "no") {
-                                et_joinid.setBackgroundResource(R.drawable.contents_box7)
-                                et_joinpw.setBackgroundResource(R.drawable.contents_box)
+                                Text_id.setText("사용 가능한 아이디 입니다.")
+                                Text_id.setTextColor(Color.parseColor("#ffb830"))
+                                Text_id.setVisibility(View.VISIBLE)
                                 checkId = 1
                             } else {
+                                Text_id.setText("아이디가 중복 됩니다.")
+                                Text_id.setTextColor(Color.parseColor("#E50000"))
+                                Text_id.setVisibility(View.VISIBLE)
                             }
                         }
 
@@ -135,15 +137,13 @@ class join : Fragment() {
                         et_joinpw.text.toString()
                     )
                 ) {
-                    et_pwcheck.setEnabled(true)
-                    num = 1
-                    et_joinpw.setBackgroundResource(R.drawable.contents_box7)
-                    et_pwcheck.setBackgroundResource(R.drawable.contents_box)
+                    Text_pw.setText("사용 가능한 패스워드 입니다.")
+                    Text_pw.setTextColor(Color.parseColor("#ffb830"))
+                    Text_pw.setVisibility(View.VISIBLE)
                 } else {
-                    et_pwcheck.setEnabled(false)
-                    num = 0
-                    et_joinpw.setBackgroundResource(R.drawable.edittext_background)
-                    et_pwcheck.setBackgroundResource(R.drawable.contents_box2)
+                    Text_pw.setText("패스워드 조건 : 숫자, 알파벳, 특수기호를 포함한 8~20자")
+                    Text_pw.setTextColor(Color.parseColor("#E50000"))
+                    Text_pw.setVisibility(View.VISIBLE)
                 }
             }
 
@@ -153,15 +153,15 @@ class join : Fragment() {
 
             // 입력하기 전에 조치
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                et_joinid.setBackgroundResource(R.drawable.contents_box)
-                et_joinpw.setBackgroundResource(R.drawable.edittext_background)
             }
         })
         et_pwcheck.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 if (Pattern.matches(et_pwcheck.text.toString(), et_joinpw.text.toString())) {
-                    et_pwcheck.setBackgroundResource(R.drawable.contents_box7)
+                    Text_pw.setText("비밀번호 확인이 끝났습니다.")
+                    Text_pw.setTextColor(Color.parseColor("#ffb830"))
+                    Text_pw.setVisibility(View.VISIBLE)
                     checkPass = 1
                 } else {
                     checkPass = 0
@@ -174,9 +174,9 @@ class join : Fragment() {
 
             // 입력하기 전에 조치
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
-                et_joinid.setBackgroundResource(R.drawable.contents_box)
-                et_joinpw.setBackgroundResource(R.drawable.contents_box)
-                et_pwcheck.setBackgroundResource(R.drawable.edittext_background)
+                Text_pw.setText("비밀번호가 다릅니다.")
+                Text_pw.setTextColor(Color.parseColor("#E50000"))
+                Text_pw.setVisibility(View.VISIBLE)
             }
         })
         //회원가입 완료버튼 눌렀을 때
@@ -217,17 +217,13 @@ class join : Fragment() {
             //ID 유효성이 완료되지 않았을 때
             else if (checkId == 0) {
 
-                et_joinid.setBackgroundResource(R.drawable.contents_box6)
-                et_joinpw.setBackgroundResource(R.drawable.contents_box)
-                if (num == 1) {
-                    et_pwcheck.setBackgroundResource(R.drawable.contents_box)
-                }
+                Text_id.setText("아이디 중복 확인을 해주세요!")
+                Text_id.setTextColor(Color.parseColor("#E50000"))
+                Text_id.setVisibility(View.VISIBLE)
             } else {
-                et_joinid.setBackgroundResource(R.drawable.contents_box)
-                et_joinpw.setBackgroundResource(R.drawable.contents_box6)
-                if (num == 1) {
-                    et_pwcheck.setBackgroundResource(R.drawable.contents_box)
-                }
+                Text_pw.setText("비밀번호가 다릅니다.")
+                Text_pw.setTextColor(Color.parseColor("#E50000"))
+                Text_pw.setVisibility(View.VISIBLE)
             }
         }
         // Inflate the layout for this fragment
