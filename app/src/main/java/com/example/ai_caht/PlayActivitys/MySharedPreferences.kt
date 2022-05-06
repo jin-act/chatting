@@ -7,6 +7,7 @@ import java.util.*
 
 object MySharedPreferences {
     val MY_ACCOUNT : String = "account"
+    val CHECK_TEST : String = "check"
     fun autochecked(context: Context?, input: String){
         val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
@@ -138,6 +139,28 @@ object MySharedPreferences {
         val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.putString("Level", input)
+        editor.commit()
+    }
+    fun set_check(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(CHECK_TEST, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("check", input)
+        editor.commit()
+
+    }
+
+    fun get_check(context: Context?): String {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(CHECK_TEST, Context.MODE_PRIVATE)
+        return prefs.getString("check", "").toString()
+
+    }
+
+    fun clear_check(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(CHECK_TEST, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("check", input)
         editor.commit()
     }
 }
