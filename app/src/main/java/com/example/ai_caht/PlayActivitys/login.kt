@@ -123,7 +123,7 @@ class login : Fragment() {
                     if (response.isSuccessful) {
                         var headers = response.headers()
                         var authorization : String? = headers.get("Authorization")
-                        println(authorization)
+                        println("authorization -> " + authorization)
                         if(authorization == null){
                             check += 1
                             text_Timer.setText("ID,PW를 다시 확인해 주세요")
@@ -140,23 +140,28 @@ class login : Fragment() {
                             startActivity(intent)
                         }
                         //다른 통신을 하기 위해 token 저장
-
-
+                    }
+                    else{
+                        var headers = response.headers()
+                        var authorization : String? = headers.get("Authorization")
+                        if(authorization == null){
+                            check += 1
+                            text_Timer.setText("ID,PW를 다시 확인해 주세요")
+                        }
                     }
                 }
 
                 override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
                     check += 1
+                    println("authorization -> ")
                     text_Timer.setText("알 수 없는 에러입니다. 통신상태를 확인해 주세요")
                 }
             })
             if (check >= 5) {
                 btn_login.setEnabled(false) //버튼 비활성화
-                btn_login.setBackgroundResource(R.drawable.contents_box4)
+                btn_login.setBackgroundResource(R.drawable.contents_box12)
                 et_id.setEnabled(false)
-                et_id.setBackgroundResource(R.drawable.edittext_background2)
                 et_pw.setEnabled(false)
-                et_pw.setBackgroundResource(R.drawable.edittext_background2)
 
                 var timerTask: Timer? = null
                 var time = 0
@@ -174,11 +179,9 @@ class login : Fragment() {
                 }
                 Handler(Looper.getMainLooper()).postDelayed(Runnable {
                     btn_login.setEnabled(true) //버튼 활성화
-                    btn_login.setBackgroundResource(R.drawable.loginbutton)
+                    btn_login.setBackgroundResource(R.drawable.okay_button)
                     et_id.setEnabled(true)
-                    et_id.setBackgroundResource(R.drawable.edittext_background)
                     et_pw.setEnabled(true)
-                    et_pw.setBackgroundResource(R.drawable.edittext_background)
                     check = 0
                     text_Timer.setText("")
                 }, 5000)
