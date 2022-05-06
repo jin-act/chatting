@@ -62,7 +62,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:layout_marginBottom="5dp"
-                        android:fontFamily="@font/nsb"
+                        android:fontFamily="@font/nsed"
                         android:text="좋아하는 음식"
                         android:textColor="#444"
                         android:textSize="14dp"></TextView>
@@ -73,9 +73,9 @@
                         android:layout_height="0dp"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:fontFamily="@font/ns"
-                        android:text="앵무가 좋아하는 음식을 줘보세요"
-                        android:textColor="#787878"
+                        android:fontFamily="@font/nsb"
+                        android:text="앵무에게 좋아하는 음식을 물어보고 줘보세요"
+                        android:textColor="#777"
                         android:textSize="13dp"></TextView>
                     <TextView
                         android:id="@+id/Feed_hint"
@@ -97,7 +97,7 @@
         <HorizontalScrollView
             android:id="@+id/scrollview"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginTop="10dp">
 
             <LinearLayout
@@ -366,17 +366,36 @@
         </HorizontalScrollView>
 
         <Button
-            android:id="@+id/btn_sel"
             android:layout_width="200dp"
             android:layout_height="40dp"
             android:layout_marginTop="10dp"
             android:background="@drawable/okay_button"
             android:fontFamily="@font/nsb"
+            android:visibility="gone"
             android:text="확인"
-
             android:textColor="#FFFFFF">
-
         </Button>
+
+
     </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/btn_sel"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_gravity="center_horizontal|bottom"
+        android:background="#ffb830">
+
+        <TextView
+            android:id="@+id/btn_sel_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nsb"
+            android:layout_gravity="center"
+            android:textColor="#fff"
+            android:text="먹이주기">
+        </TextView>
+
+    </FrameLayout>
 
 </FrameLayout>

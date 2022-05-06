@@ -94,7 +94,7 @@
                 android:layout_width="220dp"
                 android:layout_height="43dp"
                 android:background="@drawable/okay_button"
-                android:fontFamily="@font/nsed"
+                android:fontFamily="@font/nsb"
                 android:text="확인"
                 android:layout_marginTop="10dp"
                 android:textColor="#FFFFFF"

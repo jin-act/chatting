@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.EditText
 import com.example.ai_caht.R
 import android.content.Intent
+import android.graphics.Color
 import androidx.annotation.Nullable
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
@@ -54,7 +55,6 @@ class join : Fragment() {
         val et_joinpw = view.findViewById<EditText>(R.id.et_joinpw)
         val et_pwcheck = view.findViewById<EditText>(R.id.et_pwcheck)
         val email = view.findViewById<EditText>(R.id.email)
-        val btn_email = view.findViewById<Button>(R.id.btn_email)
         val certification = view.findViewById<EditText>(R.id.certification)
         val btn_Join = view.findViewById<Button>(R.id.btn_Join)
         var checkPass = 0                                           // 패스워드 유효성 검사
@@ -74,6 +74,7 @@ class join : Fragment() {
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                 btn_ID.setEnabled(true)
                 btn_ID.setBackgroundResource(R.drawable.contents_box9)
+                btn_ID.setTextColor(Color.parseColor("#444444"))
                 if (btn_ID.isEnabled) {
                     checkId = 0
                 }
