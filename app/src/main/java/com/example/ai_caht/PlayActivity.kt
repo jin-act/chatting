@@ -4,11 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentManager
@@ -21,10 +18,7 @@ import com.example.ai_caht.test.state.ParrotState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.sql.Time
-import java.text.SimpleDateFormat
 import java.util.*
-import java.util.concurrent.ThreadLocalRandom
 import kotlin.concurrent.timer
 
 open class PlayActivity : AppCompatActivity() {
@@ -71,7 +65,7 @@ open class PlayActivity : AppCompatActivity() {
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
-        var draw = findViewById<ImageView>(R.id.setting)
+        var setting = findViewById<ImageView>(R.id.setting)
 
         //기능 변경 *********통신으로 받기***********
         var current_time = System.currentTimeMillis()
@@ -194,10 +188,6 @@ open class PlayActivity : AppCompatActivity() {
             startActivity(intent)
         })
 
-        draw.setOnClickListener({
-            val intent = Intent(this, DrawActivity::class.java)
-            startActivity(intent)
-        })
 
 
         val ani1 = findViewById<ImageView>(R.id.ani1)

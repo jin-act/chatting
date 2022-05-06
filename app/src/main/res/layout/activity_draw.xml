@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#444"
-    tools:context=".DrawActivity">
+    tools:context=".PlayActivitys.DrawActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +18,7 @@
             android:gravity="center"
             android:layout_weight="2">
             <ImageView
+                android:id="@+id/backspace"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/backarrow1"/>
