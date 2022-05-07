@@ -33,6 +33,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
     var list = ArrayList<Int>()
     var data = ArrayList<String>()
     var rdoCheck :Boolean = false
+    var check :Boolean = false
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -57,14 +58,14 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
                 data.add(comments.get(position).contents)
                 list.sortDescending()
                 holder.radio_btn.isChecked = true
-                Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
             }
             else{
                 list.remove(position)
                 list.sortDescending()
                 data.remove(comments.get(position).contents)
                 holder.radio_btn.isChecked = false
-                Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
+                //Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 

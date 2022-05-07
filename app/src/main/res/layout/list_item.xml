@@ -69,11 +69,7 @@
                             android:layout_marginBottom="3dp"
                             android:layout_marginEnd="5dp"/>
                 </LinearLayout>
-
             </LinearLayout>
-
         </LinearLayout>
-
     </LinearLayout>
-
 </LinearLayout>

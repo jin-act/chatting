@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#444"
-    tools:context=".DrawActivity">
+    tools:context=".PlayActivitys.DrawActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -18,6 +20,7 @@
             android:gravity="center"
             android:layout_weight="2">
             <ImageView
+                android:id="@+id/backspace"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:src="@drawable/backarrow1"/>
@@ -99,14 +102,15 @@
         </LinearLayout>
 
     </LinearLayout>
-    <LinearLayout
+
+
+    <com.example.ai_caht.PlayActivitys.drawView
+        android:id="@+id/drawView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="70dp"
-        android:background="#eee">
-
-
-    </LinearLayout>
+        android:layout_marginBottom="55dp"
+        android:background="#ffffff"/>
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -120,7 +124,8 @@
             android:fontFamily="@font/nsb"
             android:layout_gravity="center"
             android:textColor="#fff"
-            android:text="보여주기">
+            android:text="보여주기"
+            android:id="@+id/out">
         </TextView>
 
     </FrameLayout>

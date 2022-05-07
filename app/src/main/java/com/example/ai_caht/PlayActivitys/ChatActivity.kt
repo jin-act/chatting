@@ -50,7 +50,6 @@ class ChatActivity : AppCompatActivity() {
     var boredem: Int = 0
     var stress: Int = 0
     var condition: String = ""
-    var cond: Boolean = false
     var mBackWait:Long = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -73,6 +72,7 @@ class ChatActivity : AppCompatActivity() {
         whole_layout.setOnClickListener {
             HideKeyBoard()
         }
+        val check = MySharedPreferences.get_check(context)
         userID = MySharedPreferences.getUserId(context)
         food_num = MySharedPreferences.get_food(context)
         food = Want_food.want_food(food_num.toInt())
@@ -80,7 +80,6 @@ class ChatActivity : AppCompatActivity() {
         boredem = MySharedPreferences.ger_Boredom(context).toInt()
         stress = MySharedPreferences.get_Stress(context).toInt()
         // Toast.makeText(context, hunger, Toast.LENGTH_SHORT).show()
-        val intent = Intent(this, ChatActivity::class.java)
         if(stress >= 50){
             condition = "스트레스"
         }
@@ -97,6 +96,10 @@ class ChatActivity : AppCompatActivity() {
             condition = "보통"
         }
 
+        if(check != "true"){
+            start_message()
+        }
+        /*
         val handlerTask = object : Runnable{
             override fun run() {
                 val time = System.currentTimeMillis()
@@ -153,13 +156,13 @@ class ChatActivity : AppCompatActivity() {
 
         if(!adapter.rdoCheck) {
             //Toast.makeText(context, adapter.rdoCheck.toString(), Toast.LENGTH_SHORT).show()
-            Handler(Looper.getMainLooper()).postDelayed(handlerTask, 30000)
+            Handler(Looper.getMainLooper()).postDelayed(handlerTask, 60000)
         }
 
         if(adapter.rdoCheck){
             //Toast.makeText(context, adapter.rdoCheck.toString(), Toast.LENGTH_SHORT).show()
             Handler(Looper.getMainLooper()).removeCallbacksAndMessages(handlerTask)
-        }
+        } */
 
         btn_send.setOnClickListener {
             val time = System.currentTimeMillis()
@@ -204,28 +207,28 @@ class ChatActivity : AppCompatActivity() {
                                 helper.delete_db(adapter.comments.get(str))
                                 adapter.comments.remove(adapter.comments.get(str))
                                 adapter.notifyDataSetChanged()
-                                for (i in 0 until list_size) {
-                                    val chatRequest = ChatRequest(data_list[i], userID)
-                                    //Toast.makeText(context, data_list.toString(), Toast.LENGTH_SHORT).show()
-                                    var initMyApi = RetrofitClient.getRetrofitInterface()
-                                    initMyApi.deleteChat(chatRequest)?.enqueue(object : Callback<ChatResponse> {
-                                        override fun onResponse(call: Call<ChatResponse>, response: Response<ChatResponse>) {
-                                            //통신 성공
-                                            if (response.isSuccessful) {
-                                            }
+                            }
+                            for (i in 0 until list_size) {
+                                val chatRequest = ChatRequest(data_list[i], userID)
+                                Toast.makeText(context, data_list.toString(), Toast.LENGTH_SHORT).show()
+                                var initMyApi = RetrofitClient.getRetrofitInterface()
+                                initMyApi.deleteChat(chatRequest)?.enqueue(object : Callback<ChatResponse> {
+                                    override fun onResponse(call: Call<ChatResponse>, response: Response<ChatResponse>) {
+                                        //통신 성공
+                                        if (response.isSuccessful) {
                                         }
+                                    }
 
-                                        override fun onFailure(call: Call<ChatResponse?>, t: Throwable) {
-                                            val builder = AlertDialog.Builder(this@ChatActivity)
-                                            println(t.message)
-                                            builder.setTitle("알림")
-                                                    .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
-                                                    .setPositiveButton("확인", null)
-                                                    .create()
-                                                    .show()
-                                        }
-                                    })
-                                }
+                                    override fun onFailure(call: Call<ChatResponse?>, t: Throwable) {
+                                        val builder = AlertDialog.Builder(this@ChatActivity)
+                                        println(t.message)
+                                        builder.setTitle("알림")
+                                                .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                                                .setPositiveButton("확인", null)
+                                                .create()
+                                                .show()
+                                    }
+                                })
                             }
                             for (i: Int in 0 until adapter.itemCount) {
                                 helper.update_db2(adapter.comments.get(i))
@@ -262,7 +265,7 @@ class ChatActivity : AppCompatActivity() {
         }
         else{
             if(!adapter.rdoCheck) {
-                adapter.rdoCheck = true
+                MySharedPreferences.clear_check(context, "false")
                 super.onBackPressed()
             }
         }
@@ -271,6 +274,59 @@ class ChatActivity : AppCompatActivity() {
     override fun onStop() {
         adapter.rdoCheck = true
         super.onStop()
+    }
+
+    fun start_message() {
+        val time = System.currentTimeMillis()
+        val dateFormat = SimpleDateFormat("a hh:mm")
+        val curTime = dateFormat.format(Date(time)).toString()
+        val parrotTalk = ParrotTalkRequest(condition)
+        var ChatEdit = findViewById<EditText>(R.id.inputchat)
+        var btn_send = findViewById<Button>(R.id.sendchatbtn)
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        initMyApi.parrotTalk(parrotTalk)?.enqueue(object : Callback<ParrotTalkResponse> {
+            override fun onResponse(call: Call<ParrotTalkResponse>, response: Response<ParrotTalkResponse>) {
+                //통신 성공
+                if(response.isSuccessful) {
+                    val body = response.body()
+                    val ai_question = body!!.question
+                    val ai_answer = body.answer
+                    val chat_db = ChatLayout(null, R.drawable.ballon2, ai_question, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+                    helper.insert_db(chat_db)
+                    adapter.comments.clear()
+                    adapter.comments.addAll(helper.select_db())
+                    RecyclerViewSet()
+
+                    btn_send.setOnClickListener {
+                        val chat: String = ChatEdit?.getText().toString()
+                        val chat_me = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
+                        helper.insert_db(chat_me)
+                        adapter.comments.clear()
+                        adapter.comments.addAll(helper.select_db())
+                        val chat_db2 = ChatLayout(null, R.drawable.ballon2, ai_answer, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+                        helper.insert_db(chat_db2)
+                        adapter.comments.clear()
+                        adapter.comments.addAll(helper.select_db())
+                        RecyclerViewSet()
+                        ChatEdit.setText(null)
+                        HideKeyBoard()
+                        MySharedPreferences.set_check(context, "true")
+                        finish()
+                        startActivity(intent)
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<ParrotTalkResponse?>, t: Throwable) {
+                val builder = AlertDialog.Builder(this@ChatActivity)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
     }
 
     fun Initaialize(){

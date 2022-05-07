@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MemoryFragment">
+    tools:context=".PlayActivitys.MemoryFragment">
 
     <LinearLayout
         android:id="@+id/imageView"
@@ -159,6 +159,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/btn_draw"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_gravity="center_horizontal|bottom"
