@@ -27,7 +27,7 @@
             android:layout_gravity="center"
             android:layout_marginBottom="5dp"
             android:fontFamily="@font/nsed"
-            android:text="parrot.gg"
+            android:text="Project-p"
             android:textColor="#ffb830"></TextView>
 
         <TextView

@@ -118,7 +118,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/nsb"
                             android:textSize="16dp"
-                            android:text="오토바이"
+                            android:text="' 내가 말한걸 '"
                             android:textColor="#666"/>
                     </LinearLayout>
 

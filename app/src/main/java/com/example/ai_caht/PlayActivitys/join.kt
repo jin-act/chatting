@@ -55,7 +55,6 @@ class join : Fragment() {
         val et_joinpw = view.findViewById<EditText>(R.id.et_joinpw)
         val et_pwcheck = view.findViewById<EditText>(R.id.et_pwcheck)
         val email = view.findViewById<EditText>(R.id.email)
-        val btn_email = view.findViewById<Button>(R.id.btn_email)
         val certification = view.findViewById<EditText>(R.id.certification)
         val btn_Join = view.findViewById<Button>(R.id.btn_Join)
         var checkPass = 0                                           // 패스워드 유효성 검사
