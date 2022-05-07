@@ -5,25 +5,30 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#444"
     tools:context=".PlayActivitys.DrawActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="70dp"
+        android:layout_height="105dp"
+        android:orientation="vertical">
 
-        android:orientation="horizontal">
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:gravity="center"
+            android:background="#444"
+            android:orientation="horizontal">
+        <LinearLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_weight="2">
             <ImageView
                 android:id="@+id/backspace"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
-                android:src="@drawable/backarrow1"/>
+                android:src="@drawable/baselinearrow"/>
         </LinearLayout>
 
         <LinearLayout
@@ -42,7 +47,7 @@
                     android:fontFamily="@font/nsb"
                     android:textSize="14dp"
                     android:textColor="#eee"
-                    android:text="이 사물들중에 하나를 골라서 그려 보세요">
+                    android:text="제시어들중에 하나를 골라서 그려 보세요">
                 </TextView>
             </LinearLayout>
             <LinearLayout
@@ -100,21 +105,55 @@
                 </TextView>
             </LinearLayout>
         </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#555">
+
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:src="@drawable/pencil">
+            </ImageView>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+
+                android:src="@drawable/modify">
+            </ImageView>
+            <ImageView
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="25dp"
+
+                android:src="@drawable/refresh">
+            </ImageView>
+
+
+        </LinearLayout>
 
     </LinearLayout>
+
+
 
 
     <com.example.ai_caht.PlayActivitys.drawView
         android:id="@+id/drawView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="55dp"
+        android:layout_marginTop="105dp"
+        android:layout_marginBottom="50dp"
         android:background="#ffffff"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_gravity="center_horizontal|bottom"
         android:background="#ffb830">
 
