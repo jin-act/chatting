@@ -119,6 +119,7 @@
                             android:fontFamily="@font/nsb"
                             android:textSize="15dp"
                             android:text="' 내가 말한걸 그려주면 맞춰 볼께'"
+                            android:id="@+id/text_dog"
                             android:textColor="#666"/>
                     </LinearLayout>
 

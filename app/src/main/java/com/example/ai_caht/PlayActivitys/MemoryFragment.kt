@@ -3,14 +3,13 @@ package com.example.ai_caht.PlayActivitys
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.Toast
+import android.widget.*
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
 
@@ -38,27 +37,33 @@ class MemoryFragment : Fragment() {
         var no_btn = view.findViewById<Button>(R.id.no)
         var btn = view.findViewById<FrameLayout>(R.id.btn_draw)
         var layout = view.findViewById<LinearLayout>(R.id.layout_memory)
+        var text = view.findViewById<TextView>(R.id.text_dog)
 
         if(check == "true"){
             layout.visibility = View.VISIBLE
+            text.text = "개"
         }
 
         ok_btn.setOnClickListener {
-            Toast.makeText(context, "정답", Toast.LENGTH_SHORT).show()
-            MySharedPreferences.clear_finish(context)
+            //Toast.makeText(context, "정답", Toast.LENGTH_SHORT).show()
+            MySharedPreferences.set_finish(context, "false")
+            val test = MySharedPreferences.get_finish(context)
+            Toast.makeText(context, test, Toast.LENGTH_SHORT).show()
             layout.visibility = View.GONE
+            text.text = "' 내가 말한걸 그려주면 맞춰 볼께'"
         }
 
         no_btn.setOnClickListener {
             Toast.makeText(context, "오답", Toast.LENGTH_SHORT).show()
-            MySharedPreferences.clear_finish(context)
+            MySharedPreferences.set_finish(context, "false")
             layout.visibility = View.GONE
+            text.text = "' 내가 말한걸 그려주면 맞춰 볼께'"
         }
 
         btn.setOnClickListener {
             val intent = Intent(activity, DrawActivity::class.java)
             startActivity(intent)
-            MySharedPreferences.clear_finish(context)
+            MySharedPreferences.set_finish(context, "false")
         }
         return view
     }

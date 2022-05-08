@@ -179,11 +179,4 @@ object MySharedPreferences {
         return prefs.getString("finish", "").toString()
 
     }
-
-    fun clear_finish(context: Context?){
-        val prefs : SharedPreferences = context!!.getSharedPreferences(CHECK_TEST, Context.MODE_PRIVATE)
-        val editor : SharedPreferences.Editor = prefs.edit()
-        editor.clear()
-        editor.commit()
-    }
 }

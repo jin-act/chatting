@@ -196,11 +196,13 @@ open class PlayActivity : AppCompatActivity() {
         val ani1 = findViewById<ImageView>(R.id.ani1)
         Glide.with(this).load(R.raw.test3).into(ani1)
     }
+
     override fun onBackPressed() {
         // 뒤로가기 버튼 클릭
         if(System.currentTimeMillis() - mBackWait >=2000 ) {
             mBackWait = System.currentTimeMillis()
         } else {
+            MySharedPreferences.set_finish(this, "false")
             ActivityCompat.finishAffinity(this);
         }
     }
@@ -254,6 +256,7 @@ open class PlayActivity : AppCompatActivity() {
             //앵무의 상태 초기화
             MySharedPreferences.set_condition(this, "0", "0", "0", "0", "0", "0")
             MySharedPreferences.set_food(this, "food")
+            MySharedPreferences.set_finish(this, "false")
 
             editor.putBoolean("isFirst", true)
             editor.commit()
