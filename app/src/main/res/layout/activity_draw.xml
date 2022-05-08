@@ -118,20 +118,22 @@
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-                android:src="@drawable/pencil">
+                android:src="@drawable/pencil"
+                android:id="@+id/draw">
             </ImageView>
+
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
-
+                android:id="@+id/modify"
                 android:src="@drawable/modify">
             </ImageView>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="25dp"
-
+                android:id="@+id/refresh"
                 android:src="@drawable/refresh">
             </ImageView>
 
@@ -139,9 +141,6 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-
 
     <com.example.ai_caht.PlayActivitys.drawView
         android:id="@+id/drawView"

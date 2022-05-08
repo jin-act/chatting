@@ -1,35 +1,21 @@
 package com.example.ai_caht.PlayActivitys
 
-import android.annotation.SuppressLint
-import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
-import android.net.Uri
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
-import androidx.annotation.RequiresApi
+import android.widget.*
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ActivityDrawBinding
-import java.io.File
-import java.io.FileNotFoundException
-import java.io.FileOutputStream
-
 
 class DrawActivity:AppCompatActivity(){
     lateinit var binding :ActivityDrawBinding
-    // private var draw: drawView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -40,15 +26,31 @@ class DrawActivity:AppCompatActivity(){
         //setContentView(drawView(this))
         var btn_back = findViewById<ImageView>(R.id.backspace)
         var out_btn = findViewById<TextView>(R.id.out)
+        var pencil = findViewById<ImageView>(R.id.draw)
+        var modify = findViewById<ImageView>(R.id.modify)
+        var refresh = findViewById<ImageView>(R.id.refresh)
+
         btn_back.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
         }
-        /*
-        out_btn.setOnClickListener {
-            save(view)
+        pencil.setOnClickListener{
+            Toast.makeText(this, "BLACK", Toast.LENGTH_SHORT).show()
         }
-        */
+        modify.setOnClickListener {
+            Toast.makeText(this, "WHITE", Toast.LENGTH_SHORT).show()
+        }
+        refresh.setOnClickListener{
+            val intent = Intent(this, DrawActivity::class.java)
+            Toast.makeText(this, "초기화", Toast.LENGTH_SHORT).show()
+            finish()
+            startActivity(intent)
+        }
+        out_btn.setOnClickListener {
+            MySharedPreferences.set_finish(this, "true")
+            val intent = Intent(this, PlayActivity::class.java)
+            startActivity(intent)
+        }
 
     }
     /*
