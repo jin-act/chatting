@@ -175,6 +175,7 @@
             android:fontFamily="@font/nsb"
             android:layout_gravity="center"
             android:textColor="#fff"
+            android:id="@+id/text_color"
             android:text="그리기">
         </TextView>
 
