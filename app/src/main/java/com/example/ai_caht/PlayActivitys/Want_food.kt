@@ -10,9 +10,9 @@ object Want_food {
         }else if(num == 3){
             food = "파스타"
         }else if(num == 4){
-            food = "불고기"
+            food = "초밥"
         }else if(num == 5){
-            food = "치즈"
+            food = "김밥"
         }else if(num == 6){
             food = "페퍼로니피자"
         }else if(num == 7){
