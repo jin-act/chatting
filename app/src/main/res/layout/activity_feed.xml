@@ -75,7 +75,7 @@
                 android:layout_weight="1"
                 android:textColor="#555555"
                 android:textSize="11dp"
-                android:text="기억하기"></TextView>
+                android:text="놀아주기"></TextView>
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="25dp"
