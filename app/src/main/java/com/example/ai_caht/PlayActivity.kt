@@ -61,6 +61,8 @@ open class PlayActivity : AppCompatActivity() {
         var conver = findViewById<LinearLayout>(R.id.conver)
         var converimg = findViewById<ImageView>(R.id.converimg)
         var account = findViewById<ImageView>(R.id.account)
+        val brush = findViewById<LinearLayout>(R.id.memory)
+        val brushimg = findViewById<ImageView>(R.id.brushimg)
         val check  = MySharedPreferences.get_finish(this)
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
@@ -170,6 +172,7 @@ open class PlayActivity : AppCompatActivity() {
             changeFragment(1)
             feedimg.setImageResource(R.drawable.underbar_forknife1)
             statusimg.setImageResource(R.drawable.underbar_dashboard)
+            brushimg.setImageResource(R.drawable.underbar_brush)
 
         })
 
@@ -177,11 +180,15 @@ open class PlayActivity : AppCompatActivity() {
             changeFragment(2)
             statusimg.setImageResource(R.drawable.underbar_dashboard1)
             feedimg.setImageResource(R.drawable.underbar_forknife)
+            brushimg.setImageResource(R.drawable.underbar_brush)
 
         })
 
         memory.setOnClickListener({
             changeFragment(3)
+            statusimg.setImageResource(R.drawable.underbar_dashboard)
+            feedimg.setImageResource(R.drawable.underbar_forknife)
+            brushimg.setImageResource(R.drawable.underbar_brush1)
 
         })
 
