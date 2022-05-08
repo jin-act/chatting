@@ -158,7 +158,7 @@ class feed : Fragment() {
                 stress = playActivity!!.stress
             }
             if(hunger >= 20){
-                if(MySharedPreferences.get_food(ct) == "food")
+                if(MySharedPreferences.get_food(ct) == "1")
 
                 {
                     num = ThreadLocalRandom.current().nextInt(1,5)
