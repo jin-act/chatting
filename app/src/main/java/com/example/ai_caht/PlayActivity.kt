@@ -262,7 +262,7 @@ open class PlayActivity : AppCompatActivity() {
 
             //앵무의 상태 초기화
             MySharedPreferences.set_condition(this, "0", "0", "0", "0", "0", "0")
-            MySharedPreferences.set_food(this, "food")
+            MySharedPreferences.set_food(this, "1")
             MySharedPreferences.set_finish(this, "false")
 
             editor.putBoolean("isFirst", true)

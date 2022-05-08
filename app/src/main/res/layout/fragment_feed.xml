@@ -281,7 +281,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="14dp"
                             android:fontFamily="@font/nsb"
-                            android:text="불고기"
+                            android:text="초밥"
                             android:textColor="#676767"
                             android:textSize="13dp" />
 
@@ -331,7 +331,7 @@
                             android:layout_gravity="center"
                             android:layout_marginLeft="14dp"
                             android:fontFamily="@font/nsb"
-                            android:text="치즈"
+                            android:text="김밥"
                             android:textColor="#676767"
                             android:textSize="13dp" />
 
