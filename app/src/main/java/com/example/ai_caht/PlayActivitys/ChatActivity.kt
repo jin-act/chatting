@@ -177,6 +177,7 @@ class ChatActivity : AppCompatActivity() {
                 helper.insert_db(chat_db)
                 adapter.comments.clear()
                 adapter.comments.addAll(helper.select_db())
+                adapter.notifyDataSetChanged()
             }
             else {
                 ChatResponse()
