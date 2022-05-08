@@ -106,6 +106,7 @@
                         android:textColorHint="#C8C8C8"
                         android:textColor="#ff515151"
                         android:padding="10dp"
+                        android:maxLength="20"
                         android:background="@drawable/contents_box"/>
                     <TextView
                         android:id="@+id/pass_check"
@@ -141,7 +142,7 @@
                         android:singleLine = "true"
                         android:inputType="textPassword"
                         android:padding="10dp"
-                        android:maxLength="12"
+                        android:maxLength="20"
                         android:imeOptions="actionDone" />
 
                     <TextView

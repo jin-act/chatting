@@ -119,6 +119,7 @@
                             android:fontFamily="@font/nsb"
                             android:textSize="15dp"
                             android:text="' 내가 말한걸 그려주면 맞춰 볼께'"
+                            android:id="@+id/text_dog"
                             android:textColor="#666"/>
                     </LinearLayout>
 
@@ -128,7 +129,8 @@
                         android:layout_marginLeft="20dp"
                         android:visibility="gone"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:id="@+id/layout_memory">
                         <Button
                             android:layout_width="wrap_content"
                             android:layout_height="40dp"
@@ -136,6 +138,7 @@
                             android:fontFamily="@font/nsb"
                             android:layout_marginBottom="5dp"
                             android:text="정답이야"
+                            android:id="@+id/ok"
                             android:textColor="#FFFFFF">
                         </Button>
                         <Button
@@ -143,6 +146,7 @@
                             android:layout_height="40dp"
                             android:background="@drawable/delete_box"
                             android:fontFamily="@font/nsb"
+                            android:id="@+id/no"
                             android:text="틀렸어"
                             android:textColor="#FFFFFF">
                         </Button>

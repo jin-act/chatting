@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentManager
@@ -60,8 +61,7 @@ open class PlayActivity : AppCompatActivity() {
         var conver = findViewById<LinearLayout>(R.id.conver)
         var converimg = findViewById<ImageView>(R.id.converimg)
         var account = findViewById<ImageView>(R.id.account)
-
-
+        val check  = MySharedPreferences.get_finish(this)
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
@@ -70,9 +70,6 @@ open class PlayActivity : AppCompatActivity() {
         //기능 변경 *********통신으로 받기***********
         var current_time = System.currentTimeMillis()
         var last_time : Long = 0
-
-
-
 
 
         var userId = MySharedPreferences.getUserId(this)
@@ -155,6 +152,12 @@ open class PlayActivity : AppCompatActivity() {
             save()
         }
 
+        if(check == "true"){
+            supportFragmentManager.beginTransaction()
+                    .replace(R.id.infospace, MemoryFragment())
+                    .commit()
+        }
+
         account.setOnClickListener({
             supportFragmentManager.beginTransaction()
                     .replace(R.id.list,list())
@@ -193,11 +196,13 @@ open class PlayActivity : AppCompatActivity() {
         val ani1 = findViewById<ImageView>(R.id.ani1)
         Glide.with(this).load(R.raw.test3).into(ani1)
     }
+
     override fun onBackPressed() {
         // 뒤로가기 버튼 클릭
         if(System.currentTimeMillis() - mBackWait >=2000 ) {
             mBackWait = System.currentTimeMillis()
         } else {
+            MySharedPreferences.set_finish(this, "false")
             ActivityCompat.finishAffinity(this);
         }
     }
@@ -251,6 +256,7 @@ open class PlayActivity : AppCompatActivity() {
             //앵무의 상태 초기화
             MySharedPreferences.set_condition(this, "0", "0", "0", "0", "0", "0")
             MySharedPreferences.set_food(this, "food")
+            MySharedPreferences.set_finish(this, "false")
 
             editor.putBoolean("isFirst", true)
             editor.commit()

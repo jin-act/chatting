@@ -2,13 +2,14 @@ package com.example.ai_caht.PlayActivitys
 
 import android.content.Context
 import android.graphics.*
+import android.graphics.Color.BLACK
 import android.opengl.ETC1.getWidth
 import android.util.AttributeSet
 import android.view.MotionEvent
 import android.view.View
 
 class drawView: View {
-    var size = 5
+    var size = 10
     val paint = Paint()
     val path = Path()
 
@@ -18,11 +19,9 @@ class drawView: View {
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        paint.color = Color.BLACK
         paint.style = Paint.Style.STROKE
         paint.strokeWidth = size.toFloat()
         canvas!!.drawPath(path, paint)
-
     }
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
