@@ -64,6 +64,11 @@ class DBHelper(context: Context?, name: String?, factory: SQLiteDatabase.CursorF
         wd.close()
     }
 
+    fun clear_db(){
+        val wd = writableDatabase
+        wd.delete("DATABASE_CHAT",null,null)
+    }
+
     fun update_db(chat: ChatLayout){
         //var query = "UPDATE android_database SET contents = '삭제된 메세지 입니다' WHERE id = ${chat.id}"
         val values = ContentValues()
