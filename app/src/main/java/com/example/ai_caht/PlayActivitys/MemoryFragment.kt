@@ -2,6 +2,7 @@ package com.example.ai_caht.PlayActivitys
 
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -38,19 +39,25 @@ class MemoryFragment : Fragment() {
         var btn = view.findViewById<FrameLayout>(R.id.btn_draw)
         var layout = view.findViewById<LinearLayout>(R.id.layout_memory)
         var text = view.findViewById<TextView>(R.id.text_dog)
+        var text_color = view.findViewById<TextView>(R.id.text_color)
 
         if(check == "true"){
             layout.visibility = View.VISIBLE
-            text.text = "개"
+            text.text = "정답은 개야!"
+            btn.setBackgroundColor(Color.parseColor("#777777"))
+            text_color.setTextColor(Color.parseColor("#aaaaaa"))
+            btn.isClickable = false
         }
 
+
         ok_btn.setOnClickListener {
-            //Toast.makeText(context, "정답", Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, "정답", Toast.LENGTH_SHORT).show()
             MySharedPreferences.set_finish(context, "false")
-            val test = MySharedPreferences.get_finish(context)
-            Toast.makeText(context, test, Toast.LENGTH_SHORT).show()
             layout.visibility = View.GONE
             text.text = "' 내가 말한걸 그려주면 맞춰 볼께'"
+            btn.setBackgroundColor(Color.parseColor("#ffb830"))
+            text_color.setTextColor(Color.parseColor("#FFFFFF"))
+            btn.isClickable = true
         }
 
         no_btn.setOnClickListener {
@@ -58,6 +65,9 @@ class MemoryFragment : Fragment() {
             MySharedPreferences.set_finish(context, "false")
             layout.visibility = View.GONE
             text.text = "' 내가 말한걸 그려주면 맞춰 볼께'"
+            btn.setBackgroundColor(Color.parseColor("#ffb830"))
+            text_color.setTextColor(Color.parseColor("#FFFFFF"))
+            btn.isClickable = true
         }
 
         btn.setOnClickListener {
@@ -67,6 +77,4 @@ class MemoryFragment : Fragment() {
         }
         return view
     }
-
-
 }
