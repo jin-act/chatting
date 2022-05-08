@@ -158,9 +158,15 @@ open class PlayActivity : AppCompatActivity() {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.infospace, MemoryFragment())
                 .commit()
+            statusimg.setImageResource(R.drawable.underbar_dashboard)
+            feedimg.setImageResource(R.drawable.underbar_forknife)
+            brushimg.setImageResource(R.drawable.underbar_brush1)
 
         }else{
             changeFragment(2)
+            statusimg.setImageResource(R.drawable.underbar_dashboard1)
+            feedimg.setImageResource(R.drawable.underbar_forknife)
+            brushimg.setImageResource(R.drawable.underbar_brush)
         }
         account.setOnClickListener({
             supportFragmentManager.beginTransaction()
