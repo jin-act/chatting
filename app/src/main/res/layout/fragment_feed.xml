@@ -157,7 +157,7 @@
                         android:layout_height="37dp"
                         android:layout_gravity="center"
                         android:layout_marginRight="10dp"
-                        android:src="@drawable/pizza" />
+                        android:src="@drawable/pizza1" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -207,7 +207,7 @@
                             android:layout_height="37dp"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/hambuger" />
+                            android:src="@drawable/burger3" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -307,7 +307,7 @@
                             android:layout_height="37dp"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/pasta" />
+                            android:src="@drawable/susi" />
                     </LinearLayout>
                 </LinearLayout>
 
@@ -357,7 +357,7 @@
                             android:layout_height="37dp"
                             android:layout_gravity="center"
                             android:layout_marginRight="10dp"
-                            android:src="@drawable/pasta" />
+                            android:src="@drawable/gimbob" />
                     </LinearLayout>
                 </LinearLayout>
 
