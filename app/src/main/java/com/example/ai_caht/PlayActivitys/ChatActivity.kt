@@ -179,8 +179,6 @@ class ChatActivity : AppCompatActivity() {
                 adapter.comments.addAll(helper.select_db())
             }
             else {
-                adapter.comments.clear()
-                adapter.comments.addAll(helper.select_db())
                 ChatResponse()
             }
             ChatEdit.setText(null)
