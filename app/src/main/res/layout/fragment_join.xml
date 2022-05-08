@@ -53,7 +53,7 @@
                             android:layout_height="40dp"
                             android:layout_marginTop="10dp"
                             android:textColor="#ff515151"
-
+                            android:padding="10dp"
                             android:textSize="13dp"
                             android:background="@drawable/contents_box"/>
 
@@ -105,6 +105,8 @@
                         android:hint="   * 영문,숫자를 포함하는 8자리이상의 비밀번호"
                         android:textColorHint="#C8C8C8"
                         android:textColor="#ff515151"
+                        android:padding="10dp"
+                        android:maxLength="20"
                         android:background="@drawable/contents_box"/>
                     <TextView
                         android:id="@+id/pass_check"
@@ -139,7 +141,8 @@
                         android:background="@drawable/contents_box"
                         android:singleLine = "true"
                         android:inputType="textPassword"
-                        android:maxLength="12"
+                        android:padding="10dp"
+                        android:maxLength="20"
                         android:imeOptions="actionDone" />
 
                     <TextView
@@ -163,6 +166,7 @@
                             android:layout_weight="1"
                             android:layout_marginTop="10dp"
                             android:textSize="13dp"
+                            android:padding="10dp"
                             android:textColor="#ff515151"
                             android:background="@drawable/contents_box"/>
 
@@ -192,6 +196,7 @@
                             android:layout_weight="1"
                             android:background="@drawable/contents_box"
                             android:textColor="#ff515151"
+                            android:padding="10dp"
                             android:textSize="13dp" />
 
 

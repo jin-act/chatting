@@ -46,7 +46,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nsb"
                     android:textSize="13dp"
-                    android:textColor="#444444"
+                    android:textColor="#6E6E6E"
                     android:layout_marginTop="10dp"
                     android:text="대화 내용을 삭제하시겠습니까?">
                 </TextView>

@@ -27,19 +27,19 @@
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:src="@drawable/underbar_parrot"
+                android:src="@drawable/underbar_dashboard1"
                 android:layout_weight="1"
                 ></ImageView>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="20dp"
-                android:src="@drawable/underbar_food1"
+                android:src="@drawable/underbar_forknife"
                 android:layout_weight="1"
                 ></ImageView>
             <ImageView
                 android:layout_width="0dp"
                 android:layout_height="22dp"
-                android:src="@drawable/underbar_memory1"
+                android:src="@drawable/underbar_brush"
                 android:layout_weight="1"
                 ></ImageView>
             <ImageView

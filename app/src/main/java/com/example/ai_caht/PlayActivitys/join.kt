@@ -13,6 +13,7 @@ import android.widget.EditText
 import com.example.ai_caht.R
 import android.content.Intent
 import android.graphics.Color
+import android.text.InputType
 import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.core.view.isVisible
@@ -71,7 +72,7 @@ class join : Fragment() {
         var userId = ""
         //시작 ID확인 버튼, pw확인 에디트 비활성화
         btn_ID.setEnabled(false)
-        et_pwcheck.setBackgroundResource(R.drawable.contents_box2)
+        et_pwcheck.setEnabled(false)
         et_joinid.addTextChangedListener(object : TextWatcher {
             // 입력난에 변화가 있을 시 조치
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
@@ -135,15 +136,20 @@ class join : Fragment() {
                 if (Pattern.matches(
                         "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$",
                         et_joinpw.text.toString()
+
                     )
                 ) {
                     Text_pw.setText("사용 가능한 패스워드 입니다.")
                     Text_pw.setTextColor(Color.parseColor("#ffb830"))
                     Text_pw.setVisibility(View.VISIBLE)
+                    et_pwcheck.setVisibility(View.VISIBLE)
+                    et_pwcheck.setEnabled(true)
+
                 } else {
                     Text_pw.setText("패스워드 조건 : 숫자, 알파벳, 특수기호를 포함한 8~20자")
                     Text_pw.setTextColor(Color.parseColor("#E50000"))
                     Text_pw.setVisibility(View.VISIBLE)
+                    et_pwcheck.setEnabled(false)
                 }
             }
 
@@ -161,7 +167,7 @@ class join : Fragment() {
                 if (Pattern.matches(et_pwcheck.text.toString(), et_joinpw.text.toString())) {
                     Text_pw.setText("비밀번호 확인이 끝났습니다.")
                     Text_pw.setTextColor(Color.parseColor("#ffb830"))
-                    Text_pw.setVisibility(View.VISIBLE)
+                    et_pwcheck.setEnabled(true)
                     checkPass = 1
                 } else {
                     checkPass = 0

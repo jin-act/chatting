@@ -168,15 +168,15 @@ open class PlayActivity : AppCompatActivity() {
 
         feed.setOnClickListener({
             changeFragment(1)
-            feedimg.setImageResource(R.drawable.underbar_food1)
-            statusimg.setImageResource(R.drawable.underbar_parrot)
+            feedimg.setImageResource(R.drawable.underbar_forknife1)
+            statusimg.setImageResource(R.drawable.underbar_dashboard)
 
         })
 
         status.setOnClickListener({
             changeFragment(2)
-            statusimg.setImageResource(R.drawable.underbar_parrot1)
-            feedimg.setImageResource(R.drawable.underbar_food)
+            statusimg.setImageResource(R.drawable.underbar_dashboard1)
+            feedimg.setImageResource(R.drawable.underbar_forknife)
 
         })
 

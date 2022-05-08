@@ -49,7 +49,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="30dp"
-                        android:src="@drawable/edit_status"></ImageView>
+                        android:src="@drawable/localoffer"></ImageView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -105,7 +105,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="30dp"
-                        android:src="@drawable/edit_time"></ImageView>
+                        android:src="@drawable/timer"></ImageView>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -172,7 +172,7 @@
                             android:layout_weight="1"
                             android:fontFamily="@font/nsed"
                             android:text="받은 스트레스"
-                            android:textColor="#666"
+                            android:textColor="#444"
                             android:textSize="14dp"></TextView>
                         <ProgressBar
                             android:id="@+id/stress"
@@ -217,7 +217,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginLeft="30dp"
-                        android:src="@drawable/edit_heart"></ImageView>
+                        android:src="@drawable/favorite"></ImageView>
 
                     <LinearLayout
                         android:layout_width="match_parent"

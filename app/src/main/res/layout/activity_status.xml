@@ -111,7 +111,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/underbar_parrot1"
+                    android:src="@drawable/underbar_dashboard1"
                     ></ImageView>
 
                 <TextView
@@ -138,7 +138,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/underbar_food"
+                    android:src="@drawable/underbar_forknife"
                     ></ImageView>
 
                 <TextView
@@ -162,7 +162,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/underbar_memory1"
+                    android:src="@drawable/underbar_brush"
                     ></ImageView>
 
                 <TextView
@@ -171,7 +171,7 @@
                     android:textColor="#555555"
                     android:textSize="11dp"
                     android:fontFamily="@font/nsb"
-                    android:text="추억쌓기"></TextView>
+                    android:text="놀아주기"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -187,7 +187,7 @@
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginBottom="5dp"
-                    android:src="@drawable/underbar_conver"
+                    android:src="@drawable/sms"
                     ></ImageView>
 
                 <TextView
