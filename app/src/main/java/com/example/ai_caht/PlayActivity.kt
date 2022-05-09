@@ -201,7 +201,7 @@ open class PlayActivity : AppCompatActivity() {
 
 
         val ani1 = findViewById<ImageView>(R.id.ani1)
-        Glide.with(this).load(R.raw.test3).into(ani1)
+        Glide.with(this).load(R.raw.animated_relay2).into(ani1)
     }
 
     override fun onBackPressed() {
