@@ -76,8 +76,8 @@ class status : Fragment() {
         return view
     }
 
-    override fun onStop() {
-        super.onStop()
+    override fun onPause() {
+        super.onPause()
         timerTask?.cancel()
     }
 }

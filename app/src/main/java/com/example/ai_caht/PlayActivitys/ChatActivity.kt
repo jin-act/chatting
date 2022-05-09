@@ -209,7 +209,7 @@ class ChatActivity : AppCompatActivity() {
                             }
                             for (i in 0 until list_size) {
                                 val chatRequest = ChatRequest(data_list[i], userID)
-                                Toast.makeText(context, data_list.toString(), Toast.LENGTH_SHORT).show()
+                                Toast.makeText(context, "삭제 완료", Toast.LENGTH_SHORT).show()
                                 var initMyApi = RetrofitClient.getRetrofitInterface()
                                 initMyApi.deleteChat(chatRequest)?.enqueue(object : Callback<ChatResponse> {
                                     override fun onResponse(call: Call<ChatResponse>, response: Response<ChatResponse>) {
@@ -290,11 +290,14 @@ class ChatActivity : AppCompatActivity() {
                     val body = response.body()
                     val ai_question = body!!.question
                     val ai_answer = body.answer
+
+                    /*
                     val chat_db = ChatLayout(null, R.drawable.ballon2, ai_question, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
                     helper.insert_db(chat_db)
                     adapter.comments.clear()
                     adapter.comments.addAll(helper.select_db())
                     RecyclerViewSet()
+                    */
 
                     btn_send.setOnClickListener {
                         val chat: String = ChatEdit?.getText().toString()

@@ -81,7 +81,7 @@ open class PlayActivity : AppCompatActivity() {
             .enqueue(object : Callback<ParrotState> {
                 override fun onResponse(
                     call: Call<ParrotState>,
-                    response: Response<ParrotState>
+                    response: Response<ParrotState>,
                 ) {
                     // 통신으로 상태 받아오기
                     var body = response.body()
@@ -135,9 +135,10 @@ open class PlayActivity : AppCompatActivity() {
                 }
 
             })
+
         //***************************************
 
-        changeFragment(2)
+
         //흐름 계산
         timerTask = timer(period = 1000){
             counter++
@@ -153,13 +154,20 @@ open class PlayActivity : AppCompatActivity() {
             }
             save()
         }
-
         if(check == "true"){
             supportFragmentManager.beginTransaction()
-                    .replace(R.id.infospace, MemoryFragment())
-                    .commit()
-        }
+                .replace(R.id.infospace, MemoryFragment())
+                .commit()
+            statusimg.setImageResource(R.drawable.underbar_dashboard)
+            feedimg.setImageResource(R.drawable.underbar_forknife)
+            brushimg.setImageResource(R.drawable.underbar_brush1)
 
+        }else{
+            changeFragment(2)
+            statusimg.setImageResource(R.drawable.underbar_dashboard1)
+            feedimg.setImageResource(R.drawable.underbar_forknife)
+            brushimg.setImageResource(R.drawable.underbar_brush)
+        }
         account.setOnClickListener({
             supportFragmentManager.beginTransaction()
                     .replace(R.id.list,list())
@@ -306,7 +314,7 @@ open class PlayActivity : AppCompatActivity() {
             .enqueue(object : Callback<ParrotState> {
                 override fun onResponse(
                     call: Call<ParrotState>,
-                    response: Response<ParrotState>
+                    response: Response<ParrotState>,
                 ) {
                     var body = response.body()
                     println(body)
