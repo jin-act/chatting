@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:usesCleartextTraffic="true" >
+
         <activity
             android:name=".PlayActivitys.DrawActivity"/>
         <activity
@@ -32,6 +33,9 @@
         <activity
             android:name=".PlayActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".WriteActivity"/>
+
         <service android:name=".TimeCheck.ForecdTerminationService"
             android:stopWithTask="false" />
     </application>

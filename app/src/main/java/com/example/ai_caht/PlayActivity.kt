@@ -63,11 +63,12 @@ open class PlayActivity : AppCompatActivity() {
         var account = findViewById<ImageView>(R.id.account)
         val brush = findViewById<LinearLayout>(R.id.memory)
         val brushimg = findViewById<ImageView>(R.id.brushimg)
+
         val check  = MySharedPreferences.get_finish(this)
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
-        var setting = findViewById<ImageView>(R.id.setting)
+
 
         //기능 변경 *********통신으로 받기***********
         var current_time = System.currentTimeMillis()
@@ -203,6 +204,13 @@ open class PlayActivity : AppCompatActivity() {
 
         conver.setOnClickListener({
             val intent = Intent(this, ChatActivity::class.java)
+            startActivity(intent)
+        })
+
+
+        val write = findViewById<ImageView>(R.id.write_button)
+        write.setOnClickListener({
+            val intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         })
 

@@ -184,16 +184,28 @@
                             android:layout_marginLeft="10dp"
                             android:progress="0">
                         </ProgressBar>
-                        <TextView
-                            android:id="@+id/textstress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/nsb"
-                            android:layout_marginLeft="10dp"
-                            android:text="배고파 하고 있어요"
-                            android:textColor="#777"
-                            android:textSize="13dp"></TextView>
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nsed"
+                                android:layout_marginLeft="10dp"
+                                android:text="55%"
+                                android:textColor="#777"
+                                android:textSize="15dp"></TextView>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nsb"
+                                android:layout_marginLeft="10dp"
+                                android:text="배고파 하고 있어요"
+                                android:textColor="#777"
+                                android:textSize="13dp"></TextView>
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
 
