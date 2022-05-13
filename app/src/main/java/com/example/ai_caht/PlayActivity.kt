@@ -65,9 +65,13 @@ open class PlayActivity : AppCompatActivity() {
         val brushimg = findViewById<ImageView>(R.id.brushimg)
 
         val check  = MySharedPreferences.get_finish(this)
+
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
+
+        var setting = findViewById<ImageView>(R.id.setting)
+        var tutorial = findViewById<ImageView>(R.id.tuto)
 
 
         //기능 변경 *********통신으로 받기***********
@@ -205,6 +209,14 @@ open class PlayActivity : AppCompatActivity() {
         conver.setOnClickListener({
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
+        })
+        setting.setOnClickListener({
+            val setintent = Intent(this, RecordActivity::class.java)
+            startActivity(setintent)
+        })
+        tutorial.setOnClickListener({
+            val tutointent = Intent(this, TutorialActivity::class.java)
+            startActivity(tutointent)
         })
 
 
