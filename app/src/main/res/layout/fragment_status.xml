@@ -189,14 +189,7 @@
                             android:layout_height="match_parent"
                             android:orientation="horizontal">
                             <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/nsed"
-                                android:layout_marginLeft="10dp"
-                                android:text="55%"
-                                android:textColor="#777"
-                                android:textSize="15dp"></TextView>
-                            <TextView
+                                android:id="@+id/textstress"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/nsb"
@@ -204,6 +197,7 @@
                                 android:text="배고파 하고 있어요"
                                 android:textColor="#777"
                                 android:textSize="13dp"></TextView>
+
                         </LinearLayout>
 
                     </LinearLayout>

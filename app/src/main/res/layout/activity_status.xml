@@ -62,7 +62,6 @@
                 android:layout_width="25dp"
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
-
                 android:layout_weight="1"
                 android:id="@+id/tuto"
                 android:src="@drawable/setting_buton">
@@ -81,7 +80,7 @@
                 android:layout_height="25dp"
                 android:layout_marginLeft="10dp"
                 android:src="@drawable/list_buton"
-                android:id="@+id/write_button">
+                android:id="@+id/account">
             </ImageView>
 
         </LinearLayout>
