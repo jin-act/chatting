@@ -59,6 +59,7 @@ class feed : Fragment() {
         var btn_text = view.findViewById<TextView>(R.id.btn_sel_text)
         var hunger : Int
         var stress : Int
+        var boredom : Int
         var ani1 = (activity as PlayActivity).findViewById<ImageView>(R.id.ani1)
         if(playActivity?.hunger == null){
             hunger=0
@@ -66,6 +67,11 @@ class feed : Fragment() {
         }else
         {
             hunger = playActivity!!.hunger
+        }
+        if(playActivity?.boredom == null){
+            boredom = 0
+        }else{
+            boredom = playActivity!!.boredom
         }
         println("hunger -> " + hunger)
         setText(text_condition,hunger,btn, btn_text)
@@ -218,7 +224,7 @@ class feed : Fragment() {
                     // UI조작을 위한 메서드
                     playActivity?.runOnUiThread {
                         if(changed == 0){
-                            Glide.with(ct!!).load(R.raw.animated_glad1).into(ani1)
+                            Glide.with(ct!!).load(R.raw.glad).into(ani1)
                             changed = 1
                             println("timer running")
                         }
@@ -226,7 +232,15 @@ class feed : Fragment() {
                     }
                 }
                 Handler(Looper.getMainLooper()).postDelayed(Runnable {
-                    Glide.with(ct!!).load(R.raw.animated_relay).into(ani1)
+                    if(stress >= 50){
+                        Glide.with(ct!!).load(R.raw.angry2).into(ani1)
+                    }else if(hunger >= 50){
+                        Glide.with(ct!!).load(R.raw.angry1).into(ani1)
+                    }else if(boredom >= 50){
+                        Glide.with(ct!!).load(R.raw.sleep).into(ani1)
+                    }else{
+                        Glide.with(ct!!).load(R.raw.stand).into(ani1)
+                    }
                 }, 2500)
                 var statusimg = playActivity?.findViewById<ImageView>(R.id.statusimg)
                 var feedimg = playActivity?.findViewById<ImageView>(R.id.feedimg)
