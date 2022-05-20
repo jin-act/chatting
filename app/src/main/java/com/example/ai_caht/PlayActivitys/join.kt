@@ -134,9 +134,8 @@ class join : Fragment() {
                 et_pwcheck.setText("")
                 //pw 유효성 검사 유효하면 pw 확인 에디트 텍스트를 활성화
                 if (Pattern.matches(
-                        "^(?=.*\\d)(?=.*[~`!@#$%\\^&*()-])(?=.*[a-zA-Z]).{8,20}$",
+                        "^(?=.*\\d)(?=.*[~`!@#%\\&-])(?=.*[a-zA-Z]).{8,20}$",
                         et_joinpw.text.toString()
-
                     )
                 ) {
                     Text_pw.setText("사용 가능한 패스워드 입니다.")
@@ -146,7 +145,7 @@ class join : Fragment() {
                     et_pwcheck.setEnabled(true)
 
                 } else {
-                    Text_pw.setText("패스워드 조건 : 숫자, 알파벳, 특수기호를 포함한 8~20자")
+                    Text_pw.setText("패스워드 조건 : 숫자, 알파벳, 특수기호(~`!@#%&-)를 포함한 8~20자")
                     Text_pw.setTextColor(Color.parseColor("#E50000"))
                     Text_pw.setVisibility(View.VISIBLE)
                     et_pwcheck.setEnabled(false)
