@@ -155,15 +155,15 @@
 
 
                     <LinearLayout
-                        android:layout_width="30dp"
+                        android:layout_width="35dp"
                         android:gravity="center"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="30dp"
+                        android:layout_marginLeft="25dp"
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="25dp"
-                            android:layout_height="25dp"
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
                             android:src="@drawable/angry"></ImageView>
 
                     <TextView
@@ -172,9 +172,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/nsed"
-                        android:text="0%"
+                        android:text="100%"
                         android:textColor="#ffb830"
-                        android:textSize="14dp"></TextView>
+                        android:textSize="11dp"></TextView>
                     </LinearLayout>
 
                     <LinearLayout
