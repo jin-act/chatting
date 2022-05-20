@@ -140,10 +140,10 @@
                         android:textColor="#ff515151"
                         android:background="@drawable/contents_box"
                         android:singleLine = "true"
-                        android:inputType="textPassword"
                         android:padding="10dp"
                         android:maxLength="20"
-                        android:imeOptions="actionDone" />
+                        android:imeOptions="actionDone"/>
+                    <!--android:inputType="textPassword"-->
 
                     <TextView
                         android:layout_width="wrap_content"
