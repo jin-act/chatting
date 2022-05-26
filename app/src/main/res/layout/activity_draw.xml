@@ -141,14 +141,18 @@
         </LinearLayout>
 
     </LinearLayout>
-
-    <com.example.ai_caht.PlayActivitys.drawView
-        android:id="@+id/drawView"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="105dp"
         android:layout_marginBottom="50dp"
-        android:background="#ffffff"/>
+        android:id="@+id/drawCanvas"
+        android:background="#ffffff">
+            <com.example.ai_caht.PlayActivitys.drawView
+                android:id="@+id/drawView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+    </LinearLayout>
 
     <FrameLayout
         android:layout_width="match_parent"
