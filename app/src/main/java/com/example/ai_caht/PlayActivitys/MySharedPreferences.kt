@@ -179,4 +179,98 @@ object MySharedPreferences {
         return prefs.getString("finish", "").toString()
 
     }
+    fun get_page(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("Page", "").toString()
+    }
+    fun set_page(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("Page", input)
+        editor.commit()
+    }
+    fun get_date(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("Date", "").toString()
+    }
+    fun set_date(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("Date", input)
+        editor.commit()
+    }
+    fun get_pState(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("PState", "").toString()
+    }
+    fun set_pState(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("PState", input)
+        editor.commit()
+    }
+
+    fun get_feedCount(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("FeedCount", "").toString()
+    }
+    fun set_feedCount(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("FeedCount", input)
+        editor.commit()
+    }
+
+    fun get_feed(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("Feed", "").toString()
+    }
+    fun set_feed(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("Feed", input)
+        editor.commit()
+    }
+
+    fun get_playType(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("PlayType", "").toString()
+    }
+    fun set_playType(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("PlayType", input)
+        editor.commit()
+    }
+
+    fun get_playResult(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("PlayResult", "").toString()
+    }
+    fun set_playResult(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("PlayResult", input)
+        editor.commit()
+    }
+
+    fun get_chatCount(context: Context?): String{
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        return prefs.getString("ChatCount", "").toString()
+    }
+    fun set_chatCount(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("ChatCount", input)
+        editor.commit()
+    }
+
 }
