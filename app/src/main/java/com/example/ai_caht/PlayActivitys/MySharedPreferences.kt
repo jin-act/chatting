@@ -9,6 +9,7 @@ object MySharedPreferences {
     val MY_ACCOUNT : String = "account"
     val CHECK_TEST : String = "check"
     val FINISH_TEST : String = "finish"
+    val IMAGE_CHECK : String = "image"
 
     fun autochecked(context: Context?, input: String){
         val prefs : SharedPreferences = context!!.getSharedPreferences(MY_ACCOUNT, Context.MODE_PRIVATE)
@@ -177,6 +178,21 @@ object MySharedPreferences {
     fun get_finish(context: Context?): String {
         val prefs : SharedPreferences = context!!.getSharedPreferences(FINISH_TEST, Context.MODE_PRIVATE)
         return prefs.getString("finish", "").toString()
+    }
 
+    fun set_image(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(IMAGE_CHECK, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("image", input)
+        editor.commit()
+    }
+
+    fun set_type(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(IMAGE_CHECK, Context.MODE_PRIVATE)
+        val editor : SharedPreferences.Editor = prefs.edit()
+        editor.clear()
+        editor.putString("type", input)
+        editor.commit()
     }
 }

@@ -2,6 +2,8 @@ package com.example.ai_caht.test;
 
 import com.example.ai_caht.test.Chat.ChatRequest;
 import com.example.ai_caht.test.Chat.ChatResponse;
+import com.example.ai_caht.test.Chat.ImageRequest;
+import com.example.ai_caht.test.Chat.ImageResponse;
 import com.example.ai_caht.test.Chat.ParrotTalkRequest;
 import com.example.ai_caht.test.Chat.ParrotTalkResponse;
 import com.example.ai_caht.test.Login.LoginRequest;
@@ -10,12 +12,15 @@ import com.example.ai_caht.test.Signup.SignupRequest;
 import com.example.ai_caht.test.Signup.SignupResponse;
 import com.example.ai_caht.test.state.ParrotState;
 
+import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.HTTP;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 
 public interface initMyApi {
@@ -47,5 +52,8 @@ public interface initMyApi {
 
     @POST("app/parrottalk")
     Call<ParrotTalkResponse> parrotTalk(@Body ParrotTalkRequest parrotTalkRequest);
+
+    @POST("file/sendimage")
+    Call<ImageResponse> imageSend(@Body ImageRequest imageRequest);
 }
 
