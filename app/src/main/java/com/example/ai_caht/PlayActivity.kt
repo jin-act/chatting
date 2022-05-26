@@ -6,6 +6,7 @@ import android.content.SharedPreferences
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.Switch
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
@@ -35,6 +36,8 @@ open class PlayActivity : AppCompatActivity() {
     var TimeOfChangeCondition = 0
     var TOCC_Counter : Long = 0
     var timerTask: Timer? = null
+    var P_state = 0
+    var last_state = 0
     //변수 넘기는 방법 실험
     companion object {
         lateinit var instance : PlayActivity
@@ -63,11 +66,14 @@ open class PlayActivity : AppCompatActivity() {
         var account = findViewById<ImageView>(R.id.account)
         val brush = findViewById<LinearLayout>(R.id.memory)
         val brushimg = findViewById<ImageView>(R.id.brushimg)
+
         val check  = MySharedPreferences.get_finish(this)
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
+
         var setting = findViewById<ImageView>(R.id.setting)
+        var tutorial = findViewById<ImageView>(R.id.tuto)
 
         //기능 변경 *********통신으로 받기***********
         var current_time = System.currentTimeMillis()
@@ -128,6 +134,15 @@ open class PlayActivity : AppCompatActivity() {
                     stress = cal_stress(stress,hunger,boredom,TimeOfChangeCondition)
                     save()
 
+                    if(stress >= 50){
+                        P_state = 3
+                    }else if(hunger >= 50){
+                        P_state = 2
+                    }else if(boredom >= 50){
+                        P_state = 1
+                    }else{
+                        P_state = 0
+                    }
                     println(body)
                 }
                 override fun onFailure(call: Call<ParrotState>, t: Throwable) {
@@ -137,6 +152,20 @@ open class PlayActivity : AppCompatActivity() {
             })
 
         //***************************************
+        val ani1 = findViewById<ImageView>(R.id.ani1)
+        if(stress >= 50){
+            Glide.with(this).load(R.raw.angry2).into(ani1)
+            last_state = 3
+        }else if(hunger >= 50){
+            Glide.with(this).load(R.raw.angry1).into(ani1)
+            last_state = 2
+        }else if(boredom >= 50){
+            Glide.with(this).load(R.raw.sleep).into(ani1)
+            last_state = 1
+        }else{
+            Glide.with(this).load(R.raw.stand).into(ani1)
+            last_state = 0
+        }
 
 
         //흐름 계산
@@ -144,12 +173,15 @@ open class PlayActivity : AppCompatActivity() {
             counter++
             //reset()
             if(counter >= C_time){
+                val ani1 = findViewById<ImageView>(R.id.ani1)
                 hunger = calcul(hunger,1)
                 boredom = calcul(boredom,1)
                 stress = cal_stress(stress,hunger,boredom,1)
                 counter = 0.0
                 println("status = h," + hunger + ", " + boredom + ", " + stress)
-
+                runOnUiThread{
+                    changeanimation(ani1, boredom,hunger, stress)
+                }
 
             }
             save()
@@ -205,11 +237,14 @@ open class PlayActivity : AppCompatActivity() {
             val intent = Intent(this, ChatActivity::class.java)
             startActivity(intent)
         })
-
-
-
-        val ani1 = findViewById<ImageView>(R.id.ani1)
-        Glide.with(this).load(R.raw.test3).into(ani1)
+        setting.setOnClickListener({
+            val setintent = Intent(this, RecordActivity::class.java)
+            startActivity(setintent)
+        })
+        tutorial.setOnClickListener({
+            val tutointent = Intent(this, TutorialActivity::class.java)
+            startActivity(tutointent)
+        })
     }
 
     override fun onBackPressed() {
@@ -365,6 +400,7 @@ open class PlayActivity : AppCompatActivity() {
                 stress = cal_stress(stress,hunger,boredom,1)
                 counter = 0.0
                 println("status = h," + hunger + ", " + boredom + ", " + stress)
+
             }
             save()
         }
@@ -388,5 +424,32 @@ open class PlayActivity : AppCompatActivity() {
             }
 
         }
+    }
+    fun changeanimation(ani1 : ImageView, boredom : Int, hunger : Int, stress : Int){
+        if(stress >= 50){
+            P_state = 3
+        }else if(hunger >= 50){
+            P_state = 2
+        }else if(boredom >= 50){
+            P_state = 1
+        }else{
+            P_state = 0
+        }
+        if(P_state != last_state){
+            if(stress >= 50){
+                Glide.with(this).load(R.raw.angry2).into(ani1)
+                last_state = 3
+            }else if(hunger >= 50){
+                Glide.with(this).load(R.raw.angry1).into(ani1)
+                last_state = 2
+            }else if(boredom >= 50){
+                Glide.with(this).load(R.raw.sleep).into(ani1)
+                last_state = 1
+            }else{
+                Glide.with(this).load(R.raw.stand).into(ani1)
+                last_state = 0
+            }
+        }
+
     }
 }

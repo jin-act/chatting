@@ -38,6 +38,7 @@ class status : Fragment() {
         val view: View = inflater.inflate(R.layout.fragment_status, container, false) as ViewGroup
         var T_stress = view.findViewById<TextView>(R.id.textstress)
         var stress = view.findViewById<ProgressBar>(R.id.stress)
+        var stat_view = view.findViewById<TextView>(R.id.Stat_TView)
         var stressbar = 0
         var hunger = 0
         var boredom = 0
@@ -69,6 +70,7 @@ class status : Fragment() {
                 }else{
                     T_stress.setText("상태가 아주 좋아요")
                 }
+                stat_view.setText("" + stressbar + "%")
                 stress.setProgress(stressbar)
             }
         }

@@ -89,9 +89,9 @@
                     android:layout_height="2dp"
 
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:layerType="software"
                     android:src="@drawable/dash_line" />
 
@@ -141,9 +141,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:layerType="software"
                     android:src="@drawable/dash_line" />
 
@@ -153,11 +153,29 @@
                     android:gravity="center"
                     android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
-                        android:layout_marginLeft="30dp"
-                        android:src="@drawable/edit_stress"></ImageView>
+
+                    <LinearLayout
+                        android:layout_width="35dp"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="25dp"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="23dp"
+                            android:layout_height="23dp"
+                            android:src="@drawable/angry"></ImageView>
+
+                    <TextView
+                        android:id="@+id/Stat_TView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:fontFamily="@font/nsed"
+                        android:text="100%"
+                        android:textColor="#ffb830"
+                        android:textSize="12dp"></TextView>
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -165,15 +183,23 @@
                         android:layout_marginLeft="10dp"
                         android:orientation="vertical">
 
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="0dp"
+                            android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
-                            android:layout_weight="1"
+
                             android:fontFamily="@font/nsed"
                             android:text="받은 스트레스"
                             android:textColor="#444"
                             android:textSize="14dp"></TextView>
+
+
+                        </LinearLayout>
+
                         <ProgressBar
                             android:id="@+id/stress"
                             style="@android:style/Widget.ProgressBar.Horizontal"
@@ -184,16 +210,23 @@
                             android:layout_marginLeft="10dp"
                             android:progress="0">
                         </ProgressBar>
-                        <TextView
-                            android:id="@+id/textstress"
-                            android:layout_width="wrap_content"
-                            android:layout_height="0dp"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/nsb"
-                            android:layout_marginLeft="10dp"
-                            android:text="배고파 하고 있어요"
-                            android:textColor="#777"
-                            android:textSize="13dp"></TextView>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal">
+                            <TextView
+                                android:id="@+id/textstress"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/nsb"
+                                android:layout_marginLeft="10dp"
+                                android:text="배고파 하고 있어요"
+                                android:textColor="#777"
+                                android:textSize="13dp"></TextView>
+
+                        </LinearLayout>
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -201,9 +234,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="2dp"
                     android:layout_marginLeft="30dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginRight="30dp"
-                    android:layout_marginBottom="20dp"
+                    android:layout_marginBottom="15dp"
                     android:layerType="software"
                     android:src="@drawable/dash_line" />
 

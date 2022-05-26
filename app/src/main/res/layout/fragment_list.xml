@@ -59,16 +59,18 @@
 
             </LinearLayout>
 
-            <View
+            <ImageView
                 android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                android:background="#DCDCDC"/>
+                android:layout_height="2dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layerType="software"
+                android:src="@drawable/dash_line" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
+                android:id="@+id/write"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
@@ -83,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="13dp"
-                    android:text="계정관리"
+                    android:text="현재까지의 기록"
                     android:fontFamily="@font/nsb"
                     android:layout_marginLeft="10dp"
                     android:textColor="#6E6E6E">
