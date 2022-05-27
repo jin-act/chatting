@@ -158,9 +158,10 @@ open class PlayActivity : AppCompatActivity() {
                     call: Call<PageSize>,
                     response: Response<PageSize>,
                 ) {
+                    var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
                     // 통신으로 상태 받아오기
                     var body = response.body()
-                    if(body!!.pageSize != null)
+                    if(body!!.pageSize != "0")
                     {
                         pageSize = body!!.pageSize.toInt()
                         println("pagesize = " + pageSize)
@@ -179,7 +180,6 @@ open class PlayActivity : AppCompatActivity() {
                         playResult = 0
                         chatCount = 0
                         saveParrotRecord()
-                        var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
                         initMyApi.sendParrotRecord(userId, pageSize.toString(), parrotRecord)
                             .enqueue(object : Callback<ParrotRecord>{
                                 override fun onResponse(
