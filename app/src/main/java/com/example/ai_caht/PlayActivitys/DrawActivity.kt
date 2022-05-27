@@ -1,22 +1,56 @@
 package com.example.ai_caht.PlayActivitys
 
+import android.Manifest
+import android.Manifest.permission.MANAGE_EXTERNAL_STORAGE
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.graphics.*
+import android.graphics.drawable.Drawable
+import android.media.Image
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Environment
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.AttributeSet
+import android.util.Base64
 import android.view.MotionEvent
 import android.view.View
 import android.widget.*
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContract
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ActivityDrawBinding
+import com.example.ai_caht.test.Chat.ChatRequest
+import com.example.ai_caht.test.Chat.ChatResponse
+import com.example.ai_caht.test.Chat.ImageRequest
+import com.example.ai_caht.test.Chat.ImageResponse
+import com.example.ai_caht.test.RetrofitClient
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+import java.io.*
+import java.lang.Exception
+import java.util.*
 
 class DrawActivity:AppCompatActivity(){
     lateinit var binding :ActivityDrawBinding
 
+    @RequiresApi(Build.VERSION_CODES.R)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDrawBinding.inflate(layoutInflater)
@@ -24,47 +58,80 @@ class DrawActivity:AppCompatActivity(){
         setContentView(view)
         //setContentView(R.layout.activity_draw)
         //setContentView(drawView(this))
-        var btn_back = findViewById<ImageView>(R.id.backspace)
-        var out_btn = findViewById<TextView>(R.id.out)
-        var pencil = findViewById<ImageView>(R.id.draw)
-        var modify = findViewById<ImageView>(R.id.modify)
-        var refresh = findViewById<ImageView>(R.id.refresh)
+        val btn_back = findViewById<ImageView>(R.id.backspace)
+        val out_btn = findViewById<TextView>(R.id.out)
+        val pencil = findViewById<ImageView>(R.id.draw)
+        val modify = findViewById<ImageView>(R.id.modify)
+        val refresh = findViewById<ImageView>(R.id.refresh)
+        val drawCanvas = findViewById<LinearLayout>(R.id.drawCanvas)
+
+        val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
+            isGranted ->
+            if(isGranted){
+                Toast.makeText(this, "허가", Toast.LENGTH_SHORT).show()
+            }
+            else{
+                Toast.makeText(this, "비허가", Toast.LENGTH_SHORT).show()
+                intent.addCategory("android.intent.category.DEFAULT");
+                intent.data = Uri.parse(String.format("package:%s", applicationContext.packageName));
+            }
+        }
+        permissionLauncher.launch(Manifest.permission.READ_EXTERNAL_STORAGE)
 
         btn_back.setOnClickListener {
             val intent = Intent(this, PlayActivity::class.java)
             startActivity(intent)
         }
+
         pencil.setOnClickListener{
             Toast.makeText(this, "BLACK", Toast.LENGTH_SHORT).show()
         }
+
         modify.setOnClickListener {
             Toast.makeText(this, "WHITE", Toast.LENGTH_SHORT).show()
         }
+
         refresh.setOnClickListener{
             val intent = Intent(this, DrawActivity::class.java)
             Toast.makeText(this, "초기화", Toast.LENGTH_SHORT).show()
             finish()
             startActivity(intent)
         }
+
         out_btn.setOnClickListener {
             MySharedPreferences.set_finish(this, "true")
-            val intent = Intent(this, PlayActivity::class.java)
-            startActivity(intent)
+            val bitmap = viewToBitmap(drawCanvas)
+            val number = " "
+            save(bitmap, "test")
+            val encodeData = bitmapEncoding(bitmap)
+            val imageRequest = ImageRequest(encodeData, number)
+            var initMyApi = RetrofitClient.getRetrofitInterface()
+            initMyApi.imageSend(imageRequest)?.enqueue(object : Callback<ImageResponse> {
+                override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
+                    //통신 성공
+                    if (response.isSuccessful) {
+                        val body = response.body()
+                        val image = body!!.image
+                        MySharedPreferences.set_image(this@DrawActivity, image)
+
+                        val intent = Intent(this@DrawActivity, PlayActivity::class.java)
+                        startActivity(intent)
+                    }
+                }
+
+                override fun onFailure(call: Call<ImageResponse?>, t: Throwable) {
+                    val builder = AlertDialog.Builder(this@DrawActivity)
+                    println(t.message)
+                    builder.setTitle("알림")
+                            .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                            .setPositiveButton("확인", null)
+                            .create()
+                            .show()
+                }
+            })
+            // Toast.makeText(this, file.toString(), Toast.LENGTH_SHORT).show()
         }
 
-    }
-    /*
-    fun save(view: View){
-        val bitmap = viewToBitmap(view)
-        Toast.makeText(this, Build.VERSION.SDK_INT.toString(), Toast.LENGTH_SHORT).show()
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            savePicture_overQ(bitmap)
-            Toast.makeText(this, "이미지 저장이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-        }
-        else{
-            savePicture_underQ(bitmap)
-            Toast.makeText(this, "이미지 저장이 완료되었습니다.", Toast.LENGTH_SHORT).show()
-        }
     }
 
     fun viewToBitmap(view: View): Bitmap{
@@ -74,56 +141,23 @@ class DrawActivity:AppCompatActivity(){
         return bitmap
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    fun savePicture_overQ(bitmap: Bitmap){
-        val fileName = "picture.png"
-        val contentValues = ContentValues()
-        contentValues.apply {
-            put(MediaStore.Images.Media.RELATIVE_PATH, "DCIM/ImageSave")
-            put(MediaStore.Images.Media.DISPLAY_NAME, fileName)
-            put(MediaStore.Images.Media.MIME_TYPE, "image/png")
-            contentValues.put(MediaStore.Images.Media.IS_PENDING, 1)
-        }
-
-        val uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)
-        try{
-            if(uri != null){
-                val image = contentResolver.openFileDescriptor(uri, "w", null)
-                if(image != null){
-                    val fos = FileOutputStream(image.fileDescriptor)
-                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-                    fos.close()
-
-                    contentValues.clear()
-                    contentValues.put(MediaStore.Images.Media.IS_PENDING, 0)
-                    contentResolver.update(uri, contentValues, null, null)
-                }
-            }
-        } catch(e: FileNotFoundException){
-            e.printStackTrace()
-        }
+    fun save(bitmap: Bitmap, name: String){
+        Toast.makeText(this, bitmap.toString(), Toast.LENGTH_SHORT).show()
+        val storage = File(this.cacheDir, "images")
+        storage.mkdirs()
+        val fileName = "$name.jpg"
+        val tempFile = File(storage, fileName)
+        tempFile.createNewFile()
+        val fo = FileOutputStream(tempFile)
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fo)
+        fo.close()
     }
 
-    fun savePicture_underQ(bitmap: Bitmap){
-        val fileName = "picture.png"
-        val externalStorage = Environment.getExternalStorageDirectory().absolutePath
-        val path = "$externalStorage/DCIM/imageSave"
-        val dir = File(path)
+    fun bitmapEncoding(bitmap: Bitmap): String{
+        val byteArrayOutputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, byteArrayOutputStream)
+        val byteArray = byteArrayOutputStream.toByteArray()
+        return Base64.encodeToString(byteArray, Base64.DEFAULT)
 
-        if(!dir.exists()){
-            dir.mkdirs()
-        }
-        try{
-            val fileItem = File("$dir/$fileName")
-            fileItem.createNewFile()
-            val fos = FileOutputStream(fileItem)
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos)
-            fos.close()
-            sendBroadcast(Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE, Uri.fromFile(fileItem)))
-
-        }catch(e: FileNotFoundException) {
-            e.printStackTrace()
-        }
     }
-    */
 }
