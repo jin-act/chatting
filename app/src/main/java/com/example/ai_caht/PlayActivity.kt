@@ -77,8 +77,23 @@ open class PlayActivity : AppCompatActivity() {
         var account = findViewById<ImageView>(R.id.account)
         val brush = findViewById<LinearLayout>(R.id.memory)
         val brushimg = findViewById<ImageView>(R.id.brushimg)
-
+        var BG = findViewById<LinearLayout>(R.id.BG)
         val check  = MySharedPreferences.get_finish(this)
+        var current_time = System.currentTimeMillis()
+        var last_time : Long = 0
+        val HOUR = SimpleDateFormat("H")
+        var H = HOUR.format(current_time).toInt()
+        println("current time = " + H)
+        if(H > 3 && H <= 8){
+            BG.setBackgroundResource(R.drawable.background_down2)
+        }else if(H > 8 && H <= 16){
+            BG.setBackgroundResource(R.drawable.background_afternoon2)
+        }else if(H > 16 && H <= 18){
+            BG.setBackgroundResource(R.drawable.background_twilight)
+        }else{
+            BG.setBackgroundResource(R.drawable.background_night2)
+        }
+
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
@@ -87,8 +102,6 @@ open class PlayActivity : AppCompatActivity() {
         var tutorial = findViewById<ImageView>(R.id.tuto)
 
         //기능 변경 *********통신으로 받기***********
-        var current_time = System.currentTimeMillis()
-        var last_time : Long = 0
 
 
         var userId = MySharedPreferences.getUserId(this)
