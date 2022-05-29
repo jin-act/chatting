@@ -15,11 +15,14 @@ import androidx.fragment.app.FragmentTransaction
 import com.bumptech.glide.Glide
 import com.example.ai_caht.PlayActivitys.*
 import com.example.ai_caht.TimeCheck.ForecdTerminationService
+import com.example.ai_caht.test.Record.PageSize
+import com.example.ai_caht.test.Record.ParrotRecord
 import com.example.ai_caht.test.RetrofitClient
 import com.example.ai_caht.test.state.ParrotState
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.concurrent.timer
 
@@ -38,6 +41,14 @@ open class PlayActivity : AppCompatActivity() {
     var timerTask: Timer? = null
     var P_state = 0
     var last_state = 0
+    var pageSize = 0
+    var date = "0000-00-00"
+    var pState = 0
+    var feedCount = 0
+    var feedKind = 0
+    var playType = 0
+    var playResult = 0
+    var chatCount = 0
     //변수 넘기는 방법 실험
     companion object {
         lateinit var instance : PlayActivity
@@ -66,8 +77,23 @@ open class PlayActivity : AppCompatActivity() {
         var account = findViewById<ImageView>(R.id.account)
         val brush = findViewById<LinearLayout>(R.id.memory)
         val brushimg = findViewById<ImageView>(R.id.brushimg)
-
+        var BG = findViewById<LinearLayout>(R.id.BG)
         val check  = MySharedPreferences.get_finish(this)
+        var current_time = System.currentTimeMillis()
+        var last_time : Long = 0
+        val HOUR = SimpleDateFormat("H")
+        var H = HOUR.format(current_time).toInt()
+        println("current time = " + H)
+        if(H > 3 && H <= 8){
+            BG.setBackgroundResource(R.drawable.background_down2)
+        }else if(H > 8 && H <= 16){
+            BG.setBackgroundResource(R.drawable.background_afternoon2)
+        }else if(H > 16 && H <= 18){
+            BG.setBackgroundResource(R.drawable.background_twilight)
+        }else{
+            BG.setBackgroundResource(R.drawable.background_night2)
+        }
+
         //상태의 수치를 변경할 때 사용
         //저장되어있는 상태 호출
 
@@ -76,8 +102,6 @@ open class PlayActivity : AppCompatActivity() {
         var tutorial = findViewById<ImageView>(R.id.tuto)
 
         //기능 변경 *********통신으로 받기***********
-        var current_time = System.currentTimeMillis()
-        var last_time : Long = 0
 
 
         var userId = MySharedPreferences.getUserId(this)
@@ -133,19 +157,107 @@ open class PlayActivity : AppCompatActivity() {
                     boredom = calcul(boredom,TimeOfChangeCondition)
                     stress = cal_stress(stress,hunger,boredom,TimeOfChangeCondition)
                     save()
-
-                    if(stress >= 50){
-                        P_state = 3
-                    }else if(hunger >= 50){
-                        P_state = 2
-                    }else if(boredom >= 50){
-                        P_state = 1
-                    }else{
-                        P_state = 0
-                    }
                     println(body)
                 }
                 override fun onFailure(call: Call<ParrotState>, t: Throwable) {
+                    println(t.message)
+                }
+
+            })
+
+        initMyApi.getPageSize(userId)
+            .enqueue(object : Callback<PageSize> {
+                override fun onResponse(
+                    call: Call<PageSize>,
+                    response: Response<PageSize>,
+                ) {
+                    var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
+                    // 통신으로 상태 받아오기
+                    var body = response.body()
+                    if(body!!.pageSize != "0")
+                    {
+                        pageSize = body!!.pageSize.toInt()
+                        println("pagesize = " + pageSize)
+                    }
+                    else{
+                        println("else this")
+                        val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                        val time = System.currentTimeMillis()
+                        var currentdate = dateFormat.format(Date(time)).toString()
+                        pageSize = 1
+                        date = currentdate
+                        pState = 0
+                        feedCount = 0
+                        feedKind = 0
+                        playType = 0
+                        playResult = 0
+                        chatCount = 0
+                        saveParrotRecord()
+                        initMyApi.sendParrotRecord(userId, pageSize.toString(), parrotRecord)
+                            .enqueue(object : Callback<ParrotRecord>{
+                                override fun onResponse(
+                                    call: Call<ParrotRecord>,
+                                    response: Response<ParrotRecord>
+                                ) {
+                                    var body = response.body()
+                                    println(body)
+                                }
+                                override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {
+                                    println(t.message)
+                                }
+                            })
+
+                    }
+                    println("PageSize = " + pageSize)
+                    initMyApi.getParrotRecord(userId, pageSize.toString())
+                        .enqueue(object : Callback<ParrotRecord> {
+                            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                            val time = System.currentTimeMillis()
+                            var currentdate = dateFormat.format(Date(time)).toString()
+                            override fun onResponse(
+                                call: Call<ParrotRecord>,
+                                response: Response<ParrotRecord>,
+                            ) {
+                                // 통신으로 상태 받아오기
+                                var body = response.body()
+                                println("body this -> " + body.toString())
+                                if(body!!.date != null)
+                                {
+                                    if(currentdate != body!!.date){
+                                        pageSize += 1
+                                        date = currentdate
+                                        feedCount = 0
+                                        feedKind = 0
+                                        playType = 0
+                                        playResult = 0
+                                        chatCount = 0
+                                    }else{
+                                        date = body!!.date
+                                        feedCount = body!!.feedCount
+                                        feedKind = body!!.feed
+                                        playType = body!!.playType
+                                        playResult = body!!.playResult
+                                        chatCount = body!!.chatCount
+                                    }
+
+                                }else{
+                                    pageSize += 1
+                                    date = currentdate
+                                    pState = 0
+                                    feedCount = 0
+                                    feedKind = 0
+                                    playType = 0
+                                    playResult = 0
+                                    chatCount = 0
+                                }
+                                saveParrotRecord()
+                            }
+                            override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {
+                                println(t.message)
+                            }
+                        })
+                }
+                override fun onFailure(call: Call<PageSize>, t: Throwable) {
                     println(t.message)
                 }
 
@@ -304,9 +416,22 @@ open class PlayActivity : AppCompatActivity() {
             MySharedPreferences.set_Time(this, time)
 
             //앵무의 상태 초기화
-            MySharedPreferences.set_condition(this, "0", "0", "0", "0", "0", "0")
+            MySharedPreferences.set_Stress(this,"0")
+            MySharedPreferences.set_Boredom(this,"0")
+            MySharedPreferences.set_Hunger(this,"0")
+            MySharedPreferences.set_Counter(this,"0")
+            MySharedPreferences.set_Affection(this,"0")
+            MySharedPreferences.set_Level(this,"0")
             MySharedPreferences.set_food(this, "1")
             MySharedPreferences.set_finish(this, "false")
+            MySharedPreferences.set_page(this, pageSize.toString())
+            MySharedPreferences.set_date(this, date)
+            MySharedPreferences.set_pState(this, P_state.toString())
+            MySharedPreferences.set_feed(this, feedKind.toString())
+            MySharedPreferences.set_feedCount(this, feedCount.toString())
+            MySharedPreferences.set_playType(this, playType.toString())
+            MySharedPreferences.set_playResult(this, playResult.toString())
+            MySharedPreferences.set_chatCount(this, chatCount.toString())
 
             editor.putBoolean("isFirst", true)
             editor.commit()
@@ -337,12 +462,18 @@ open class PlayActivity : AppCompatActivity() {
     }
     fun savedata() {
         //더 좋은 방법을 생각하기 현재 -> 매 순간 sharedpreferences를 최신화하여 저장
-        MySharedPreferences.set_condition(this,hunger.toString(),boredom.toString(),stress.toString(),affection.toString(),level.toString(),counter.toString())
+        MySharedPreferences.set_Stress(this,stress.toString())
+        MySharedPreferences.set_Boredom(this,boredom.toString())
+        MySharedPreferences.set_Hunger(this,hunger.toString())
+        MySharedPreferences.set_Counter(this,counter.toString())
+        MySharedPreferences.set_Affection(this,affection.toString())
+        MySharedPreferences.set_Level(this,level.toString())
         var current_time = System.currentTimeMillis()
         MySharedPreferences.set_Time(this, current_time)
         var userId = MySharedPreferences.getUserId(this)
         var parrotstate =
             ParrotState(hunger.toString(), stress.toString(), boredom.toString(), affection.toString(), level.toString(), counter.toString(), current_time)
+        var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
         var retrofitClient = RetrofitClient.getInstance()
         var initMyApi = RetrofitClient.getRetrofitInterface()
         initMyApi.sendParrotState(userId, parrotstate)
@@ -358,7 +489,19 @@ open class PlayActivity : AppCompatActivity() {
                 override fun onFailure(call: Call<ParrotState>, t: Throwable) {
                     println(t.message)
                 }
-
+            })
+        initMyApi.sendParrotRecord(userId, pageSize.toString(), parrotRecord)
+            .enqueue(object : Callback<ParrotRecord>{
+                override fun onResponse(
+                    call: Call<ParrotRecord>,
+                    response: Response<ParrotRecord>
+                ) {
+                    var body = response.body()
+                    println(body)
+                }
+                override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {
+                    println(t.message)
+                }
             })
         print("save")
     }
@@ -450,6 +593,16 @@ open class PlayActivity : AppCompatActivity() {
                 last_state = 0
             }
         }
-
+        MySharedPreferences.set_pState(this,P_state.toString())
+    }
+    fun saveParrotRecord() {
+        MySharedPreferences.set_page(this, pageSize.toString())
+        MySharedPreferences.set_date(this, date)
+        MySharedPreferences.set_pState(this, P_state.toString())
+        MySharedPreferences.set_feed(this, feedKind.toString())
+        MySharedPreferences.set_feedCount(this, feedCount.toString())
+        MySharedPreferences.set_playType(this, playType.toString())
+        MySharedPreferences.set_playResult(this, playResult.toString())
+        MySharedPreferences.set_chatCount(this, chatCount.toString())
     }
 }

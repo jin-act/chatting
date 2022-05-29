@@ -13,6 +13,7 @@ import com.example.ai_caht.PlayActivitys.MySharedPreferences
 import java.util.*
 import com.example.ai_caht.MainActivity
 import com.example.ai_caht.PlayActivity
+import com.example.ai_caht.test.Record.ParrotRecord
 import com.example.ai_caht.test.RetrofitClient
 import com.example.ai_caht.test.state.ParrotState
 import retrofit2.Call
@@ -73,14 +74,26 @@ class ForecdTerminationService : Service() {
         println("set_time" + current_time)
         Toast.makeText(this, "onTaskRemoved ", Toast.LENGTH_SHORT).show()
         //현재 상태 저장 -> 1. 수치 저장 0~100, 2.경과 시간 0~599 -> 0초에서 10분까지 10분이 되면 허기와 무료함 1상승 만약 허기와 무료함이 50이상일 때 스트레스도 동시에 1상승 두 조건이 동시에 만족하면 2상승
-
-
         //해당 로그인의 데이터 값
         //기능 변경 *******통신으로 보내기********
-        MySharedPreferences.set_condition(this, hunger, boredom, stress, affection, level, counter)
+        MySharedPreferences.set_Hunger(this,hunger)
+        MySharedPreferences.set_Boredom(this,boredom)
+        MySharedPreferences.set_Stress(this,stress)
+        MySharedPreferences.set_Affection(this,affection)
+        MySharedPreferences.set_Level(this,level)
+        MySharedPreferences.set_Counter(this,counter)
+        var page = MySharedPreferences.get_page(this)
+        var date = MySharedPreferences.get_date(this)
+        var pstate = MySharedPreferences.get_pState(this)
+        var feed = MySharedPreferences.get_feed(this)
+        var fcount = MySharedPreferences.get_feedCount(this)
+        var ptype = MySharedPreferences.get_playType(this)
+        var presult = MySharedPreferences.get_playResult(this)
+        var ccount = MySharedPreferences.get_chatCount(this)
         var userId = MySharedPreferences.getUserId(this)
         var parrotstate =
             ParrotState(hunger, stress, boredom, affection, level, counter, current_time)
+        var parrotRecord = ParrotRecord(page,date,pstate.toInt(),feed.toInt(),fcount.toInt(),ptype.toInt(),presult.toInt(),ccount.toInt())
         var retrofitClient = RetrofitClient.getInstance()
         var initMyApi = RetrofitClient.getRetrofitInterface()
         initMyApi.sendParrotState(userId, parrotstate)
@@ -92,12 +105,24 @@ class ForecdTerminationService : Service() {
                     var body = response.body()
                     println(body)
                 }
-
                 override fun onFailure(call: Call<ParrotState>, t: Throwable) {
                     println(t.message)
                 }
-
             })
+        initMyApi.sendParrotRecord(userId,page,parrotRecord)
+            .enqueue(object : Callback<ParrotRecord> {
+            override fun onResponse(
+                call: Call<ParrotRecord>,
+                response: Response<ParrotRecord>
+            ) {
+                var body = response.body()
+                println(body)
+            }
+            override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {
+                println(t.message)
+            }
+        })
+
         //************************************
         stopSelf() //서비스 종료
     }

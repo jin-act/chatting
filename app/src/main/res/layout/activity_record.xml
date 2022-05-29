@@ -49,6 +49,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
+                        android:id="@+id/PRV_BTN"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/left">
@@ -67,6 +68,7 @@
                         android:background="@drawable/contents_box2"
                         android:padding="7dp">
                         <TextView
+                            android:id="@+id/monthcount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="5"
@@ -92,6 +94,7 @@
                         android:background="@drawable/contents_box2"
                         android:padding="7dp">
                         <TextView
+                            android:id="@+id/daycount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="27"
@@ -119,6 +122,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
+                        android:id="@+id/Next_BTN"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/right">
@@ -177,6 +181,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/pstatecoment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12dp"
@@ -200,6 +205,7 @@
                                 android:src="@drawable/satisfy"></ImageView>
 
                             <TextView
+                                android:id="@+id/affectioncount"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:textSize="12dp"
@@ -259,6 +265,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/chatcount"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12dp"
@@ -317,6 +324,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/feedcomment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12dp"
@@ -376,6 +384,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/bestfood"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12dp"
@@ -435,6 +444,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/memorycomment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12dp"
@@ -493,6 +503,7 @@
                         </LinearLayout>
 
                         <TextView
+                            android:id="@+id/resultcomment"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textSize="12dp"
