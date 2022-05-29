@@ -10,6 +10,7 @@ object MySharedPreferences {
     val CHECK_TEST : String = "check"
     val FINISH_TEST : String = "finish"
     val IMAGE_CHECK : String = "image"
+    val TYPE_CHECK : String = "type"
 
     fun autochecked(context: Context?, input: String){
         val prefs : SharedPreferences = context!!.getSharedPreferences("auto", Context.MODE_PRIVATE)
@@ -183,13 +184,24 @@ object MySharedPreferences {
         editor.commit()
     }
 
-    fun set_type(context: Context?, input: String){
+    fun get_image(context: Context?): String {
         val prefs : SharedPreferences = context!!.getSharedPreferences(IMAGE_CHECK, Context.MODE_PRIVATE)
+        return prefs.getString("image", "").toString()
+    }
+
+    fun set_type(context: Context?, input: String){
+        val prefs : SharedPreferences = context!!.getSharedPreferences(TYPE_CHECK, Context.MODE_PRIVATE)
         val editor : SharedPreferences.Editor = prefs.edit()
         editor.clear()
         editor.putString("type", input)
         editor.commit()
     }
+
+    fun get_type(context: Context?): String {
+        val prefs : SharedPreferences = context!!.getSharedPreferences(TYPE_CHECK, Context.MODE_PRIVATE)
+        return prefs.getString("type", "").toString()
+    }
+
     fun get_page(context: Context?): String{
         val prefs : SharedPreferences = context!!.getSharedPreferences("page", Context.MODE_PRIVATE)
         return prefs.getString("Page", "").toString()
@@ -283,5 +295,4 @@ object MySharedPreferences {
         editor.putString("ChatCount", input)
         editor.commit()
     }
-
 }

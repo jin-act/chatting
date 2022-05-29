@@ -49,6 +49,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
+                        android:id="@+id/PRV_BTN"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/left">
@@ -121,6 +122,7 @@
                     android:layout_gravity="center">
 
                     <ImageView
+                        android:id="@+id/Next_BTN"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:src="@drawable/right">

@@ -40,6 +40,7 @@ import com.example.ai_caht.test.RetrofitClient
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import org.w3c.dom.Text
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -63,8 +64,28 @@ class DrawActivity:AppCompatActivity(){
         val pencil = findViewById<ImageView>(R.id.draw)
         val modify = findViewById<ImageView>(R.id.modify)
         val refresh = findViewById<ImageView>(R.id.refresh)
+        val keyword1 = findViewById<TextView>(R.id.keyword1)
+        val keyword2 = findViewById<TextView>(R.id.keyword2)
         val drawCanvas = findViewById<LinearLayout>(R.id.drawCanvas)
-
+        val type = MySharedPreferences.get_type(this)
+        when(type.toInt()){
+            0 -> {
+                keyword1.text = "비행기"
+                keyword2.text = "배"
+            }
+            1 -> {
+                keyword1.text = "새"
+                keyword2.text = "꽃"
+            }
+            2 -> {
+                keyword1.text = "건물"
+                keyword2.text = "자동차"
+            }
+            3 -> {
+                keyword1.text = "컴퓨터"
+                keyword2.text = "과일"
+            }
+        }
         val permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()){
             isGranted ->
             if(isGranted){
@@ -101,10 +122,9 @@ class DrawActivity:AppCompatActivity(){
         out_btn.setOnClickListener {
             MySharedPreferences.set_finish(this, "true")
             val bitmap = viewToBitmap(drawCanvas)
-            val number = " "
             save(bitmap, "test")
             val encodeData = bitmapEncoding(bitmap)
-            val imageRequest = ImageRequest(encodeData, number)
+            val imageRequest = ImageRequest(encodeData, type)
             var initMyApi = RetrofitClient.getRetrofitInterface()
             initMyApi.imageSend(imageRequest)?.enqueue(object : Callback<ImageResponse> {
                 override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
