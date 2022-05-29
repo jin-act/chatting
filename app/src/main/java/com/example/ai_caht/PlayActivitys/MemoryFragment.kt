@@ -1,5 +1,6 @@
 package com.example.ai_caht.PlayActivitys
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.graphics.Color
@@ -13,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.*
 import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
+import java.util.*
 
 
 class MemoryFragment : Fragment() {
@@ -26,6 +28,7 @@ class MemoryFragment : Fragment() {
         playActivity = null
     }
     var ct: Context? = null
+    @SuppressLint("SetTextI18n")
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
@@ -43,7 +46,8 @@ class MemoryFragment : Fragment() {
 
         if(check == "true"){
             layout.visibility = View.VISIBLE
-            text.text = "정답은 개야!"
+            val image = MySharedPreferences.get_image(activity)
+            text.text = "정답은 " +image+ "!"
             btn.setBackgroundColor(Color.parseColor("#777777"))
             text_color.setTextColor(Color.parseColor("#aaaaaa"))
             btn.isClickable = false
@@ -71,6 +75,9 @@ class MemoryFragment : Fragment() {
         }
 
         btn.setOnClickListener {
+            val random = Random()
+            val num = random.nextInt(4)
+            MySharedPreferences.set_type(context, num.toString())
             val intent = Intent(activity, DrawActivity::class.java)
             startActivity(intent)
             MySharedPreferences.set_finish(context, "false")
