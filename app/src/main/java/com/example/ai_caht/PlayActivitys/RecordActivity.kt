@@ -40,19 +40,7 @@ class RecordActivity : AppCompatActivity() {
         var dateresult = date.split("-")
         Maxpage = MySharedPreferences.get_page(this)
         page = Maxpage.toInt()
-        date = MySharedPreferences.get_date(this)
-        if(date != "0000-00-00"){
-            dateresult = date.split("-")
-        }
-        //처음 화면, 최종 페이지
-        stateCount = MySharedPreferences.get_pState(this)
-        chatCount = MySharedPreferences.get_chatCount(this)
-        feedCount = MySharedPreferences.get_feedCount(this)
-        BFCount = MySharedPreferences.get_feed(this)
-        MKCount = MySharedPreferences.get_playType(this)
-        MRCount = MySharedPreferences.get_playResult(this)
-        monthCount = dateresult.get(1)
-        dayCount = dateresult.get(2)
+        today()
         setText(month, day, state, chatcount, feedcount, bestfood, memorykind, memoryresult)
 
 
@@ -64,7 +52,7 @@ class RecordActivity : AppCompatActivity() {
         Next.setOnClickListener {
             //값 계산
             println("next!")
-            if(page < Maxpage.toInt()){
+            if(page < Maxpage.toInt() && page != (Maxpage.toInt()-1)){
                 page += 1
                 var parrotRecord = ParrotRecord(page.toString(),date,stateCount.toInt(),BFCount.toInt(),feedCount.toInt(),MKCount.toInt(),MRCount.toInt(),chatCount.toInt())
                 initMyApi.getParrotRecord(userId,page.toString())
@@ -94,7 +82,11 @@ class RecordActivity : AppCompatActivity() {
                         }
                     })
 
-            }else{
+            }else if(page == (Maxpage.toInt()-1)){
+                today()
+                setText(month, day, state, chatcount, feedcount, bestfood, memorykind, memoryresult)
+            }
+            else{
                 // 값이 최대라면... 현재 동작 없음
             }
         }
@@ -146,5 +138,21 @@ class RecordActivity : AppCompatActivity() {
         bestfood.setText(BFCount)
         memorykind.setText(MKCount)
         memoryresult.setText(MRCount)
+    }
+    fun today(){
+        date = MySharedPreferences.get_date(this)
+        var dateresult = date.split("-")
+        if(date != "0000-00-00"){
+            dateresult = date.split("-")
+        }
+        //처음 화면, 최종 페이지
+        stateCount = MySharedPreferences.get_pState(this)
+        chatCount = MySharedPreferences.get_chatCount(this)
+        feedCount = MySharedPreferences.get_feedCount(this)
+        BFCount = MySharedPreferences.get_feed(this)
+        MKCount = MySharedPreferences.get_playType(this)
+        MRCount = MySharedPreferences.get_playResult(this)
+        monthCount = dateresult.get(1)
+        dayCount = dateresult.get(2)
     }
 }

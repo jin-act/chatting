@@ -61,6 +61,8 @@ class feed : Fragment() {
         var stress : Int
         var boredom : Int
         var ani1 = (activity as PlayActivity).findViewById<ImageView>(R.id.ani1)
+        var FC = MySharedPreferences.get_feedCount(ct).toInt()
+        var BF = MySharedPreferences.get_feed(ct).toInt()
         if(playActivity?.hunger == null){
             hunger=0
             btn.setEnabled(false)
@@ -168,15 +170,13 @@ class feed : Fragment() {
                 stress = playActivity!!.stress
             }
             if(hunger >= 20){
-                if(MySharedPreferences.get_food(ct) == "1")
-
-                {
-                    num = ThreadLocalRandom.current().nextInt(1,5)
-                }else{
-                    num = MySharedPreferences.get_food(ct).toInt()
-                }
+                FC += 1
+                MySharedPreferences.set_feedCount(ct,FC.toString())
+                num = MySharedPreferences.get_food(ct).toInt()
                 println("want food -> " + Want_food.want_food(num))
                 if(num == sel){
+                    BF = sel
+                    MySharedPreferences.set_feed(ct,BF.toString())
                     hunger -= 50
                     stress -= 10
                     if(hunger <= 0 ) {
