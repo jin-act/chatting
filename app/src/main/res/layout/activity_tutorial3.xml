@@ -72,7 +72,7 @@
                     android:layout_gravity="center"
                     android:text="먹이주기"
                     android:textColor="#ffb830"
-                    android:textSize="16dp"></TextView>
+                    android:textSize="15dp"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="앵무에게 먹이를 주어 허기도를 낮춥니다. 좋아하는 음식을 물어보고 그것을 준다면 허기도가 크게 감소하고 애증이 증가합니다. "
                     android:textColor="#555"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="14dp"></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                     android:layout_gravity="center"
                     android:text="놀아주기"
                     android:textColor="#ffb830"
-                    android:textSize="16dp"></TextView>
+                    android:textSize="15dp"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -136,7 +136,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="앵무가 제시하는 단어의 그림을 그려주면 그것이 어떤 그림인지 맞출 것입니다. 이 활동을 통해 무료함을 낮춥니다. "
                     android:textColor="#555"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="14dp"></TextView>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -181,7 +181,7 @@
                     android:layout_gravity="center"
                     android:text="대화하기"
                     android:textColor="#ffb830"
-                    android:textSize="16dp"></TextView>
+                    android:textSize="15dp"></TextView>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="하루에 총 10번 이상의 대화를 한다면 애증이 증가합니다."
                     android:textColor="#555"
-                    android:textSize="15dp"></TextView>
+                    android:textSize="14dp"></TextView>
 
             </LinearLayout>
 
