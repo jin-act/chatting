@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff"
+    android:orientation="vertical"
+    tools:context=".TutorialActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/top"
+        android:gravity="bottom"
+        android:paddingBottom="20dp"
+        android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="모두 확인하셨다면"
+                android:textColor="#444"
+                android:fontFamily="@font/nsed"
+                android:textSize="23dp">
+            </TextView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="마지막으로 앵무의 이름을 정해주세요."
+                android:textColor="#444"
+                android:fontFamily="@font/nsed"
+                android:textSize="23dp">
+            </TextView>
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:id="@+id/middle"
+        app:layout_constraintHeight_percent="0.5"
+        app:layout_constraintTop_toBottomOf="@id/top">
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintWidth_percent="0.7"
+            android:id="@+id/ani1">
+        </ImageView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintHeight_percent="0.2"
+        app:layout_constraintTop_toBottomOf="@id/middle">
+
+        <EditText
+            android:id="@+id/et_pw"
+            android:layout_width="260dp"
+            android:layout_height="43dp"
+            android:background="@drawable/edittext_background2"
+            android:padding="10dp"
+            android:textColor="#515151"
+            android:maxLength="12"
+            android:layout_marginBottom="10dp"
+            android:textSize="13dp"/>
+        <Button
+            android:id="@+id/btn_login"
+            android:layout_width="260dp"
+            android:layout_height="43dp"
+            android:background="@drawable/okay_button"
+            android:fontFamily="@font/nsb"
+            android:text="확인"
+            android:textColor="#FFFFFF"
+            android:textSize="14dp" />
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

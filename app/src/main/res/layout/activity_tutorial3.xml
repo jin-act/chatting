@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tutorialName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -13,24 +12,24 @@
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
-        tools:layout_editor_absoluteX="-16dp">
+        app:layout_constraintVertical_bias="0.501">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nsed"
-                android:text="수치에 따라 채팅의 결과가"
+                android:text="밑에 보이는 각 기능들은"
                 android:textColor="#444"
                 android:textSize="23dp"></TextView>
 
@@ -38,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/nsed"
-                android:text="변화하는 Ai채팅 봇을 만나보세요."
+                android:text="수치들을 조절할 수 있게 합니다."
                 android:textColor="#444"
                 android:textSize="23dp"></TextView>
 
@@ -52,17 +51,26 @@
             android:paddingRight="40dp">
 
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
+                android:layout_gravity="center"
                 android:paddingTop="40dp">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/feed"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nsed"
-                    android:text="앵무의 스트레스 수치가 높다면"
+                    android:layout_gravity="center"
+                    android:text="먹이주기"
                     android:textColor="#ffb830"
                     android:textSize="16dp"></TextView>
 
@@ -70,50 +78,22 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nsb"
-                    android:text="나에게 적대적인 채팅결과를 보여주고"
+                    android:text="앵무에게 먹이를 주어 허기도를 낮춥니다. 좋아하는 음식을 물어보고 그것을 준다면 허기도가 크게 감소하고 애증이 증가합니다. "
                     android:textColor="#555"
-                    android:textSize="16dp"></TextView>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@drawable/angry"></ImageView>
-
-                <LinearLayout
+                    android:textSize="15dp"></TextView>
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
+                    android:fontFamily="@font/nsed"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:text="(하루 제한횟수 총2번)"
+                    android:textColor="#666"
+                    android:textSize="11dp"></TextView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nsed"
-                        android:text="받은 스트레스"
-                        android:textColor="#444"
-                        android:textSize="16dp"></TextView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/nsb"
-                        android:text="먹이를 주지 않으면 허기도가 증가하고 활동을 하지 않는다면 무료함이 증가하여 이것의 합산이 스트레스가 됩니다."
-                        android:textColor="#787878"
-                        android:textSize="14dp"></TextView>
-                </LinearLayout>
             </LinearLayout>
+
+
 
 
             <ImageView
@@ -125,17 +105,28 @@
                 android:layout_marginRight="20dp"
                 android:layerType="software"
                 android:src="@drawable/dash_line" />
+
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_gravity="center">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/brush"></ImageView>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
                     android:fontFamily="@font/nsed"
-                    android:text="앵무의 애정 수치가 높다면"
+                    android:layout_gravity="center"
+                    android:text="놀아주기"
                     android:textColor="#ffb830"
                     android:textSize="16dp"></TextView>
 
@@ -143,50 +134,65 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nsb"
-                    android:text="나에게 우호적인 채팅결과를 보여줍니다"
+                    android:text="앵무가 제시하는 단어의 그림을 그려주면 그것이 어떤 그림인지 맞출 것입니다. 이 활동을 통해 무료함을 낮춥니다. "
                     android:textColor="#555"
-                    android:textSize="16dp"></TextView>
+                    android:textSize="15dp"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nsed"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="5dp"
+                    android:text="(하루 제한횟수 총2번)"
+                    android:textColor="#666"
+                    android:textSize="11dp"></TextView>
+
             </LinearLayout>
 
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginBottom="30dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:layerType="software"
+                android:src="@drawable/dash_line" />
+
+
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:layout_gravity="center">
 
                 <ImageView
                     android:layout_width="30dp"
                     android:layout_height="30dp"
-                    android:src="@drawable/favorite"></ImageView>
+                    android:layout_gravity="center"
+                    android:src="@drawable/colorsms"></ImageView>
 
-                <LinearLayout
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:orientation="vertical">
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:fontFamily="@font/nsed"
+                    android:layout_gravity="center"
+                    android:text="대화하기"
+                    android:textColor="#ffb830"
+                    android:textSize="16dp"></TextView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="0dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_weight="1"
-                        android:fontFamily="@font/nsed"
-                        android:text="애증"
-                        android:textColor="#444"
-                        android:textSize="16dp"></TextView>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/nsb"
+                    android:text="하루에 총 10번 이상의 대화를 한다면 애증이 증가합니다."
+                    android:textColor="#555"
+                    android:textSize="15dp"></TextView>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:fontFamily="@font/nsb"
-                        android:text="앵무와 자주 놀아주거나 먹고 싶은 음식을 준다면 애증 수치가 증가합니다."
-                        android:textColor="#787878"
-                        android:textSize="14dp"></TextView>
-                </LinearLayout>
             </LinearLayout>
+
 
 
         </LinearLayout>

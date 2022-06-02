@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.Switch
@@ -19,6 +21,9 @@ import com.example.ai_caht.test.Record.PageSize
 import com.example.ai_caht.test.Record.ParrotRecord
 import com.example.ai_caht.test.RetrofitClient
 import com.example.ai_caht.test.state.ParrotState
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -171,13 +176,61 @@ open class PlayActivity : AppCompatActivity() {
                     call: Call<PageSize>,
                     response: Response<PageSize>,
                 ) {
-                    var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
                     // 통신으로 상태 받아오기
                     var body = response.body()
                     if(body!!.pageSize != "0")
                     {
                         pageSize = body!!.pageSize.toInt()
                         println("pagesize = " + pageSize)
+                        println("PageSize = " + pageSize)
+                        initMyApi.getParrotRecord(userId, pageSize.toString())
+                            .enqueue(object : Callback<ParrotRecord> {
+                                val dateFormat = SimpleDateFormat("yyyy-MM-dd")
+                                val time = System.currentTimeMillis()
+                                var currentdate = dateFormat.format(Date(time)).toString()
+                                override fun onResponse(
+                                    call: Call<ParrotRecord>,
+                                    response: Response<ParrotRecord>,
+                                ) {
+                                    // 통신으로 상태 받아오기
+                                    var body = response.body()
+                                    println("body this -> " + body.toString())
+                                    if(body!!.date != null)
+                                    {
+                                        if(currentdate != body!!.date){
+                                            pageSize += 1
+                                            date = currentdate
+                                            feedCount = 0
+                                            feedKind = 0
+                                            playType = 0
+                                            playResult = 0
+                                            chatCount = 0
+                                        }else{
+                                            date = body!!.date
+                                            feedCount = body!!.feedCount
+                                            feedKind = body!!.feed
+                                            playType = body!!.playType
+                                            playResult = body!!.playResult
+                                            chatCount = body!!.chatCount
+                                        }
+
+                                    }else{
+                                        pageSize += 1
+                                        date = currentdate
+                                        pState = 0
+                                        feedCount = 0
+                                        feedKind = 0
+                                        playType = 0
+                                        playResult = 0
+                                        chatCount = 0
+                                    }
+                                    saveParrotRecord()
+                                }
+                                override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {
+                                    println(t.message)
+                                }
+                            })
+
                     }
                     else{
                         println("else this")
@@ -192,6 +245,7 @@ open class PlayActivity : AppCompatActivity() {
                         playType = 0
                         playResult = 0
                         chatCount = 0
+                        var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
                         saveParrotRecord()
                         initMyApi.sendParrotRecord(userId, pageSize.toString(), parrotRecord)
                             .enqueue(object : Callback<ParrotRecord>{
@@ -206,56 +260,7 @@ open class PlayActivity : AppCompatActivity() {
                                     println(t.message)
                                 }
                             })
-
                     }
-                    println("PageSize = " + pageSize)
-                    initMyApi.getParrotRecord(userId, pageSize.toString())
-                        .enqueue(object : Callback<ParrotRecord> {
-                            val dateFormat = SimpleDateFormat("yyyy-MM-dd")
-                            val time = System.currentTimeMillis()
-                            var currentdate = dateFormat.format(Date(time)).toString()
-                            override fun onResponse(
-                                call: Call<ParrotRecord>,
-                                response: Response<ParrotRecord>,
-                            ) {
-                                // 통신으로 상태 받아오기
-                                var body = response.body()
-                                println("body this -> " + body.toString())
-                                if(body!!.date != null)
-                                {
-                                    if(currentdate != body!!.date){
-                                        pageSize += 1
-                                        date = currentdate
-                                        feedCount = 0
-                                        feedKind = 0
-                                        playType = 0
-                                        playResult = 0
-                                        chatCount = 0
-                                    }else{
-                                        date = body!!.date
-                                        feedCount = body!!.feedCount
-                                        feedKind = body!!.feed
-                                        playType = body!!.playType
-                                        playResult = body!!.playResult
-                                        chatCount = body!!.chatCount
-                                    }
-
-                                }else{
-                                    pageSize += 1
-                                    date = currentdate
-                                    pState = 0
-                                    feedCount = 0
-                                    feedKind = 0
-                                    playType = 0
-                                    playResult = 0
-                                    chatCount = 0
-                                }
-                                saveParrotRecord()
-                            }
-                            override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {
-                                println(t.message)
-                            }
-                        })
                 }
                 override fun onFailure(call: Call<PageSize>, t: Throwable) {
                     println(t.message)
@@ -313,6 +318,8 @@ open class PlayActivity : AppCompatActivity() {
             brushimg.setImageResource(R.drawable.underbar_brush)
         }
         account.setOnClickListener({
+            save()
+            savedata()
             supportFragmentManager.beginTransaction()
                     .replace(R.id.list,list())
                     .commit()

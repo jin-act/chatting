@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/tutorialName"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ffffff"
@@ -13,18 +12,18 @@
         android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
         android:paddingBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.501"
-        tools:layout_editor_absoluteX="-16dp">
+        app:layout_constraintVertical_bias="0.501">
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingLeft="40dp"
+            android:paddingRight="40dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -72,7 +71,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="나에게 적대적인 채팅결과를 보여주고"
                     android:textColor="#555"
-                    android:textSize="16dp"></TextView>
+                    android:textSize="15dp"></TextView>
             </LinearLayout>
 
             <LinearLayout
@@ -145,7 +144,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="나에게 우호적인 채팅결과를 보여줍니다"
                     android:textColor="#555"
-                    android:textSize="16dp"></TextView>
+                    android:textSize="15dp"></TextView>
             </LinearLayout>
 
             <LinearLayout
