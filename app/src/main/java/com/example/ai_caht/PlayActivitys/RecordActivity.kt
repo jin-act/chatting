@@ -83,6 +83,7 @@ class RecordActivity : AppCompatActivity() {
                     })
 
             }else if(page == (Maxpage.toInt()-1)){
+                page += 1
                 today()
                 setText(month, day, state, chatcount, feedcount, bestfood, memorykind, memoryresult)
             }

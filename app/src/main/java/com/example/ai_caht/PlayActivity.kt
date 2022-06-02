@@ -480,6 +480,12 @@ open class PlayActivity : AppCompatActivity() {
         var userId = MySharedPreferences.getUserId(this)
         var parrotstate =
             ParrotState(hunger.toString(), stress.toString(), boredom.toString(), affection.toString(), level.toString(), counter.toString(), current_time)
+        P_state = MySharedPreferences.get_pState(this).toInt()
+        feedKind = MySharedPreferences.get_feed(this).toInt()
+        feedCount = MySharedPreferences.get_feedCount(this).toInt()
+        playType = MySharedPreferences.get_playType(this).toInt()
+        playResult = MySharedPreferences.get_playResult(this).toInt()
+        chatCount = MySharedPreferences.get_chatCount(this).toInt()
         var parrotRecord = ParrotRecord(pageSize.toString(),date,P_state,feedKind,feedCount,playType,playResult,chatCount)
         var retrofitClient = RetrofitClient.getInstance()
         var initMyApi = RetrofitClient.getRetrofitInterface()
