@@ -11,8 +11,10 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.ai_caht.PlayActivitys.TutorialFragment1
 import com.example.ai_caht.PlayActivitys.TutorialFragment2
+import com.example.ai_caht.PlayActivitys.TutorialFragment3
+import com.tbuonomo.viewpagerdotsindicator.DotsIndicator
 
-private const val PAGE_NUM = 2
+private const val PAGE_NUM = 3
 
 class TutorialActivity : AppCompatActivity() {
 
@@ -21,9 +23,10 @@ class TutorialActivity : AppCompatActivity() {
         setContentView(R.layout.viewpager)
 
         val tutorial : ViewPager2 = findViewById(R.id.viewPager_tutorial)
+        val indicator : DotsIndicator = findViewById(R.id.dots_indicator)
         tutorial.adapter = ScreenSlidePagerAdapter(this)
         tutorial.orientation = ViewPager2.ORIENTATION_HORIZONTAL
-
+        indicator.attachTo(tutorial)
         //val ani1 = findViewById<ImageView>(R.id.ani1)
         //Glide.with(this).load(R.raw.animated_stand).into(ani1)
     }
@@ -43,7 +46,8 @@ class TutorialActivity : AppCompatActivity() {
         override fun createFragment(position: Int): Fragment {
             return when(position){
                 0 -> TutorialFragment1()
-                else -> TutorialFragment2()
+                1 -> TutorialFragment2()
+                else -> TutorialFragment3()
             }
         }
 
