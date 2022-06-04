@@ -60,13 +60,15 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="70dp"
                 android:gravity="center">
                 <Button
                     android:id="@+id/btn_play"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/okay_button"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="40dp"
+                    android:background="@drawable/contents_box14"
                     android:fontFamily="@font/nsb"
                     android:text="확인"
                     android:textColor="#FFFFFF"
