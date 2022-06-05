@@ -55,29 +55,35 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:gravity="right">
+                android:layout_height="110dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
                 <Button
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
+                    android:id="@+id/delete_btn"
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="40dp"
                     android:layout_gravity="center"
-                    android:layout_marginRight="5dp"
-                    android:background="@drawable/delete_box"
+                    android:background="@drawable/contents_box14"
+                    android:fontFamily="@font/nsb"
+                    android:text="확인"
+                    android:layout_marginBottom="5dp"
+                    android:textColor="#FFFFFF"
+                    android:textSize="12dp" />
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/contents_box15"
                     android:fontFamily="@font/nsb"
                     android:text="취소"
                     android:textColor="#FFFFFF"
                     android:textSize="12dp" />
-                <Button
-                    android:id="@+id/delete_btn"
-                    android:layout_width="60dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/okay_button"
-                    android:fontFamily="@font/nsb"
-                    android:text="확인"
-                    android:textColor="#FFFFFF"
-                    android:textSize="12dp" />
+
             </LinearLayout>
 
         </LinearLayout>
