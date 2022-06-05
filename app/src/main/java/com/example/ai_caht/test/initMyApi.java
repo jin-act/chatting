@@ -1,7 +1,10 @@
 package com.example.ai_caht.test;
 
+import com.example.ai_caht.test.Chat.AdapterRequest;
+import com.example.ai_caht.test.Chat.AdapterResponse;
 import com.example.ai_caht.test.Chat.ChatRequest;
 import com.example.ai_caht.test.Chat.ChatResponse;
+import com.example.ai_caht.test.Chat.IdResponse;
 import com.example.ai_caht.test.Chat.ImageRequest;
 import com.example.ai_caht.test.Chat.ImageResponse;
 import com.example.ai_caht.test.Chat.ParrotTalkRequest;
@@ -22,6 +25,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -67,5 +71,17 @@ public interface initMyApi {
 
     @POST("file/sendimage")
     Call<ImageResponse> imageSend(@Body ImageRequest imageRequest);
+
+    @GET("app/chatdata/{login_id}")
+    Call<AdapterResponse> selectAll();
+
+    @POST("app/chatdata/{login_id}")
+    Call<IdResponse> insertDB(@Body AdapterRequest adapterRequest);
+
+    @PUT("/app/chatdata/{login_id}/{chatdata_id}")
+    Call<String> updateDB(@Body AdapterRequest adapterRequest);
+
+    @DELETE("app/chatdata/{login_id}/{chatdata_id}")
+    Call<String> deleteDB();
 }
 

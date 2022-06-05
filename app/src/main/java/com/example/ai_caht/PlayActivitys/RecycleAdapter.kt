@@ -16,6 +16,8 @@ import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ListItemBinding
+import com.example.ai_caht.test.Chat.AdapterRequest
+import com.example.ai_caht.test.Chat.AdapterResponse
 import com.example.ai_caht.test.Chat.ChatRequest
 import com.example.ai_caht.test.Chat.ChatResponse
 import com.example.ai_caht.test.RetrofitClient
@@ -72,9 +74,11 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         holder.itemView.setOnLongClickListener {
             for(i :Int in 0 until itemCount){
                 rdoCheck = true
-                helper?.update_db(comments.get(i))
+                //helper?.update_db(comments.get(i))
+                radiobtn_on(comments.get(i))
                 comments.clear()
-                comments.addAll(helper!!.select_db())
+                //comments.addAll(helper!!.select_db())
+                select_chat()
                 notifyDataSetChanged()
             }
             true
@@ -83,6 +87,64 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
 
     override fun getItemCount(): Int {
         return comments.size
+    }
+
+    fun radiobtn_on(chatLayout: ChatLayout){
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        val adapterRequest = AdapterRequest(chatLayout.profile, chatLayout.contents, chatLayout.position,
+                chatLayout.time, chatLayout.visibility, chatLayout.textBox, View.VISIBLE, chatLayout.timeText)
+
+        initMyApi.updateDB(adapterRequest)?.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                //통신 성공
+                if (response.isSuccessful) {
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
+    }
+
+    fun select_chat(){
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        initMyApi.selectAll()?.enqueue(object : Callback<AdapterResponse> {
+            override fun onResponse(call: Call<AdapterResponse>, response: Response<AdapterResponse>) {
+                //통신 성공
+                if (response.isSuccessful) {
+                    val list = mutableListOf<ChatLayout>()
+                    val body = response.body()
+                    val id = body!!.id
+                    val profile = body.profile
+                    val contents = body.contents
+                    val position = body.position
+                    val time = body.time
+                    val visibility = body.visibility
+                    val textBox = body.textBox
+                    val radio = body.radio
+                    val timeText = body.timeText
+                    list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio, timeText))
+                    comments.addAll(list)
+                }
+            }
+
+            override fun onFailure(call: Call<AdapterResponse?>, t: Throwable) {
+                val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
     }
 }
 

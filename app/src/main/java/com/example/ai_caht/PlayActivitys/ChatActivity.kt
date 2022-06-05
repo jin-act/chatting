@@ -17,8 +17,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ActivityChatEditBinding
-import com.example.ai_caht.test.Chat.ChatRequest
-import com.example.ai_caht.test.Chat.ChatResponse
 import com.example.ai_caht.test.Login.LoginResponse
 import com.example.ai_caht.test.RetrofitClient
 import com.example.ai_caht.test.initMyApi
@@ -29,9 +27,9 @@ import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 import com.example.ai_caht.*
-import com.example.ai_caht.test.Chat.ParrotTalkRequest
-import com.example.ai_caht.test.Chat.ParrotTalkResponse
+import com.example.ai_caht.test.Chat.*
 import com.google.android.material.snackbar.Snackbar
+import org.json.JSONTokener
 import kotlin.concurrent.timer
 
 class ChatActivity : AppCompatActivity() {
@@ -66,9 +64,11 @@ class ChatActivity : AppCompatActivity() {
         RecyclerViewSet()
         adapter.comments.clear()
         for(i :Int in 0 until adapter.itemCount) {
-            helper.update_db2(adapter.comments.get(i))
+            //helper.update_db2(adapter.comments.get(i))
+            radiobtn_off(adapter.comments.get(i))
         }
-        adapter.comments.addAll(helper.select_db())
+        //adapter.comments.addAll(helper.select_db())
+        select_chat()
         whole_layout.setOnClickListener {
             HideKeyBoard()
         }
@@ -171,12 +171,15 @@ class ChatActivity : AppCompatActivity() {
             var ChatEdit = findViewById<EditText>(R.id.inputchat)
             val chat: String = ChatEdit?.getText().toString()
             val chat_db = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
-            helper.insert_db(chat_db)
+            //helper.insert_db(chat_db)
+            insert_chat(chat_db)
             if(chat.equals(food_text)){
                 val chat_db = ChatLayout(null, R.drawable.ballon2, "저는 " +food+ "가 좋아요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                helper.insert_db(chat_db)
+                //helper.insert_db(chat_db)
+                insert_chat(chat_db)
                 adapter.comments.clear()
-                adapter.comments.addAll(helper.select_db())
+                //adapter.comments.addAll(helper.select_db())
+                select_chat()
                 adapter.notifyDataSetChanged()
             }
             else {
@@ -230,9 +233,11 @@ class ChatActivity : AppCompatActivity() {
                                 })
                             }
                             for (i: Int in 0 until adapter.itemCount) {
-                                helper.update_db2(adapter.comments.get(i))
+                                //helper.update_db2(adapter.comments.get(i))
+                                radiobtn_off(adapter.comments.get(i))
                                 adapter.comments.clear()
-                                adapter.comments.addAll(helper.select_db())
+                                select_chat()
+                                //adapter.comments.addAll(helper.select_db())
                                 adapter.notifyDataSetChanged()
                             }
                             list.clear()
@@ -251,9 +256,11 @@ class ChatActivity : AppCompatActivity() {
         if(adapter.rdoCheck){
             for (i: Int in 0 until adapter.itemCount) {
                 adapter.rdoCheck = false
-                helper.update_db2(adapter.comments.get(i))
+                //helper.update_db2(adapter.comments.get(i))
+                radiobtn_off(adapter.comments.get(i))
                 adapter.comments.clear()
-                adapter.comments.addAll(helper.select_db())
+                //adapter.comments.addAll(helper.select_db())
+                select_chat()
                 adapter.notifyDataSetChanged()
             }
         }
@@ -302,13 +309,17 @@ class ChatActivity : AppCompatActivity() {
                     btn_send.setOnClickListener {
                         val chat: String = ChatEdit?.getText().toString()
                         val chat_me = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
-                        helper.insert_db(chat_me)
+                        insert_chat(chat_me)
+                        //helper.insert_db(chat_me)
                         adapter.comments.clear()
-                        adapter.comments.addAll(helper.select_db())
+                        //adapter.comments.addAll(helper.select_db())
+                        select_chat()
                         val chat_db2 = ChatLayout(null, R.drawable.ballon2, ai_answer, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                        helper.insert_db(chat_db2)
+                        //insert_db(chat_db2)
+                        insert_chat(chat_db2)
                         adapter.comments.clear()
-                        adapter.comments.addAll(helper.select_db())
+                        //adapter.comments.addAll(helper.select_db())
+                        select_chat()
                         RecyclerViewSet()
                         ChatEdit.setText(null)
                         HideKeyBoard()
@@ -382,14 +393,17 @@ class ChatActivity : AppCompatActivity() {
                     //aichat = aichat.replace("answer :","")
                     if (aichat == null){
                         val chat_db = ChatLayout(null, R.drawable.ballon2, "못 알아들었어요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                        helper.insert_db(chat_db)
+                        //helper.insert_db(chat_db)
+                        insert_chat(chat_db)
                     }
                     else {
                         val chat_db = ChatLayout(null, R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                        helper.insert_db(chat_db)
+                        //helper.insert_db(chat_db)
+                        insert_chat(chat_db)
                     }
                     adapter.comments.clear()
-                    adapter.comments.addAll(helper.select_db())
+                    select_chat()
+                    //adapter.comments.addAll(helper.select_db())
                     //chatList.add(ChatLayout(null, R.drawable.ballon2, aichat, Gravity.START, curTime, View.VISIBLE))
                     //BotChat.setText(aichat)
                     RecyclerViewSet()
@@ -410,6 +424,89 @@ class ChatActivity : AppCompatActivity() {
         })
     }
 
+    fun select_chat(){
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        initMyApi.selectAll()?.enqueue(object : Callback<AdapterResponse> {
+            override fun onResponse(call: Call<AdapterResponse>, response: Response<AdapterResponse>) {
+                //통신 성공
+                if (response.isSuccessful) {
+                    val list = mutableListOf<ChatLayout>()
+                    val body = response.body()
+                    val id = body!!.id
+                    val profile = body.profile
+                    val contents = body.contents
+                    val position = body.position
+                    val time = body.time
+                    val visibility = body.visibility
+                    val textBox = body.textBox
+                    val radio = body.radio
+                    val timeText = body.timeText
+                    list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio, timeText))
+                    adapter.comments.addAll(list)
+                }
+            }
+
+            override fun onFailure(call: Call<AdapterResponse?>, t: Throwable) {
+                val builder = AlertDialog.Builder(this@ChatActivity)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
+    }
+
+    fun insert_chat(chatLayout :ChatLayout){
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        val adapterRequest = AdapterRequest(chatLayout.profile, chatLayout.contents, chatLayout.position,
+        chatLayout.time, chatLayout.visibility, chatLayout.textBox, chatLayout.radio, chatLayout.timeText)
+
+        initMyApi.insertDB(adapterRequest)?.enqueue(object : Callback<IdResponse> {
+            override fun onResponse(call: Call<IdResponse>, response: Response<IdResponse>) {
+                //통신 성공
+                if (response.isSuccessful) {
+                    val body = response.body()
+                    val id = body!!.id
+                }
+            }
+
+            override fun onFailure(call: Call<IdResponse?>, t: Throwable) {
+                val builder = AlertDialog.Builder(this@ChatActivity)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
+    }
+
+    fun radiobtn_off(chatLayout: ChatLayout){
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        val adapterRequest = AdapterRequest(chatLayout.profile, chatLayout.contents, chatLayout.position,
+                chatLayout.time, chatLayout.visibility, chatLayout.textBox, View.GONE, chatLayout.timeText)
+
+        initMyApi.updateDB(adapterRequest)?.enqueue(object : Callback<String> {
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                //통신 성공
+                if (response.isSuccessful) {
+                }
+            }
+
+            override fun onFailure(call: Call<String?>, t: Throwable) {
+                val builder = AlertDialog.Builder(this@ChatActivity)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
+    }
 }
 
 
