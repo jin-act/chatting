@@ -16,6 +16,8 @@ import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ListItemBinding
+import com.example.ai_caht.test.Chat.AdapterRequest
+import com.example.ai_caht.test.Chat.AdapterResponse
 import com.example.ai_caht.test.Chat.ChatRequest
 import com.example.ai_caht.test.Chat.ChatResponse
 import com.example.ai_caht.test.RetrofitClient
@@ -32,6 +34,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
     var helper:DBHelper? = null
     var list = ArrayList<Int>()
     var data = ArrayList<String>()
+    var id = ArrayList<Long>()
     var rdoCheck :Boolean = false
     var check :Boolean = false
 
@@ -56,6 +59,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
             if(holder.radio_btn.isChecked && !list.contains(position)){
                 list.add(position)
                 data.add(comments.get(position).contents)
+                comments.get(position).id?.let { it1 -> id.add(it1) }
                 list.sortDescending()
                 holder.radio_btn.isChecked = true
                 //Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
@@ -64,25 +68,75 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
                 list.remove(position)
                 list.sortDescending()
                 data.remove(comments.get(position).contents)
+                id.remove(comments.get(position).id)
                 holder.radio_btn.isChecked = false
                 //Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
         holder.itemView.setOnLongClickListener {
+            rdoCheck = true
+            radiobtn_on()
+            true
+            /*
             for(i :Int in 0 until itemCount){
                 rdoCheck = true
-                helper?.update_db(comments.get(i))
+                //helper?.update_db(comments.get(i))
+                radiobtn_on(comments.get(i))
                 comments.clear()
-                comments.addAll(helper!!.select_db())
+                //comments.addAll(helper!!.select_db())
+                select_chat()
                 notifyDataSetChanged()
             }
             true
+            */
         }
     }
 
     override fun getItemCount(): Int {
         return comments.size
+    }
+
+    fun radiobtn_on(){
+        var initMyApi = RetrofitClient.getRetrofitInterface()
+        val userId = MySharedPreferences.getUserId(context)
+        initMyApi.selectAll(userId)?.enqueue(object : Callback<List<AdapterResponse>> {
+            override fun onResponse(call: Call<List<AdapterResponse>>, response: Response<List<AdapterResponse>>) {
+                //통신 성공
+                if (response.isSuccessful) {
+                    val list = mutableListOf<ChatLayout>()
+                    val body = response.body()
+                    if (body != null) {
+                        for(i in body) {
+                            val id = i.id
+                            val profile = i.profile
+                            val contents = i.contents
+                            val position = i.position
+                            val time = i.time
+                            val visibility = i.visibility
+                            val textBox = i.textBox
+                            val radio = View.VISIBLE
+                            val timeText = i.timeText
+                            list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio, timeText))
+                            println(list.toString())
+                            comments.clear()
+                            comments.addAll(list)
+                        }
+                    }
+                    notifyDataSetChanged()
+                }
+            }
+
+            override fun onFailure(call: Call<List<AdapterResponse>?>, t: Throwable) {
+                val builder = androidx.appcompat.app.AlertDialog.Builder(context)
+                println(t.message)
+                builder.setTitle("알림")
+                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
+                        .setPositiveButton("확인", null)
+                        .create()
+                        .show()
+            }
+        })
     }
 }
 

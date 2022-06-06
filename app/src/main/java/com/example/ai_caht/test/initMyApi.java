@@ -1,7 +1,10 @@
 package com.example.ai_caht.test;
 
+import com.example.ai_caht.test.Chat.AdapterRequest;
+import com.example.ai_caht.test.Chat.AdapterResponse;
 import com.example.ai_caht.test.Chat.ChatRequest;
 import com.example.ai_caht.test.Chat.ChatResponse;
+import com.example.ai_caht.test.Chat.IdResponse;
 import com.example.ai_caht.test.Chat.ImageRequest;
 import com.example.ai_caht.test.Chat.ImageResponse;
 import com.example.ai_caht.test.Chat.ParrotTalkRequest;
@@ -14,6 +17,8 @@ import com.example.ai_caht.test.Signup.SignupRequest;
 import com.example.ai_caht.test.Signup.SignupResponse;
 import com.example.ai_caht.test.state.ParrotState;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -22,6 +27,7 @@ import retrofit2.http.GET;
 import retrofit2.http.HTTP;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 
@@ -67,5 +73,17 @@ public interface initMyApi {
 
     @POST("file/sendimage")
     Call<ImageResponse> imageSend(@Body ImageRequest imageRequest);
+
+    @GET("app/chatdata/{login_id}")
+    Call<List<AdapterResponse>> selectAll(@Path("login_id") String login_id);
+
+    @POST("app/chatdata/{login_id}")
+    Call<IdResponse> insertDB(@Path("login_id") String login_id, @Body AdapterRequest adapterRequest);
+
+    @PUT("/app/chatdata/{login_id}")
+    Call<String> updateDB(@Path("login_id") String login_id, @Body AdapterRequest adapterRequest);
+
+    @DELETE("app/chatdata/{login_id}/{chatdata_id}")
+    Call<String> deleteDB(@Path("login_id") String login_id, @Path("chatdata_id") String chatdata_id);
 }
 
