@@ -41,7 +41,7 @@ class ChatActivity : AppCompatActivity() {
     val adapter = RecycleAdapter(this)
     private val context = this
     var userID: String = ""
-    var food_num: String = ""
+    var food_num: String = "1"
     var food: String = ""
     val food_text: String = "뭐 먹을래?"
     var hunger: Int = 0
