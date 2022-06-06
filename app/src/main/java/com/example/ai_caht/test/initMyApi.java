@@ -17,6 +17,8 @@ import com.example.ai_caht.test.Signup.SignupRequest;
 import com.example.ai_caht.test.Signup.SignupResponse;
 import com.example.ai_caht.test.state.ParrotState;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -73,15 +75,15 @@ public interface initMyApi {
     Call<ImageResponse> imageSend(@Body ImageRequest imageRequest);
 
     @GET("app/chatdata/{login_id}")
-    Call<AdapterResponse> selectAll();
+    Call<List<AdapterResponse>> selectAll(@Path("login_id") String login_id);
 
     @POST("app/chatdata/{login_id}")
-    Call<IdResponse> insertDB(@Body AdapterRequest adapterRequest);
+    Call<IdResponse> insertDB(@Path("login_id") String login_id, @Body AdapterRequest adapterRequest);
 
-    @PUT("/app/chatdata/{login_id}/{chatdata_id}")
-    Call<String> updateDB(@Body AdapterRequest adapterRequest);
+    @PUT("/app/chatdata/{login_id}")
+    Call<String> updateDB(@Path("login_id") String login_id, @Body AdapterRequest adapterRequest);
 
     @DELETE("app/chatdata/{login_id}/{chatdata_id}")
-    Call<String> deleteDB();
+    Call<String> deleteDB(@Path("login_id") String login_id, @Path("chatdata_id") String chatdata_id);
 }
 

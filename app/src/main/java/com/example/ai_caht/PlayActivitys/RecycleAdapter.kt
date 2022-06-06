@@ -34,6 +34,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
     var helper:DBHelper? = null
     var list = ArrayList<Int>()
     var data = ArrayList<String>()
+    var id = ArrayList<Long>()
     var rdoCheck :Boolean = false
     var check :Boolean = false
 
@@ -58,6 +59,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
             if(holder.radio_btn.isChecked && !list.contains(position)){
                 list.add(position)
                 data.add(comments.get(position).contents)
+                comments.get(position).id?.let { it1 -> id.add(it1) }
                 list.sortDescending()
                 holder.radio_btn.isChecked = true
                 //Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
@@ -66,12 +68,17 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
                 list.remove(position)
                 list.sortDescending()
                 data.remove(comments.get(position).contents)
+                id.remove(comments.get(position).id)
                 holder.radio_btn.isChecked = false
                 //Toast.makeText(context, data.toString(), Toast.LENGTH_SHORT).show()
             }
         }
 
         holder.itemView.setOnLongClickListener {
+            rdoCheck = true
+            radiobtn_on()
+            true
+            /*
             for(i :Int in 0 until itemCount){
                 rdoCheck = true
                 //helper?.update_db(comments.get(i))
@@ -82,6 +89,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
                 notifyDataSetChanged()
             }
             true
+            */
         }
     }
 
@@ -89,53 +97,37 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         return comments.size
     }
 
-    fun radiobtn_on(chatLayout: ChatLayout){
+    fun radiobtn_on(){
         var initMyApi = RetrofitClient.getRetrofitInterface()
-        val adapterRequest = AdapterRequest(chatLayout.profile, chatLayout.contents, chatLayout.position,
-                chatLayout.time, chatLayout.visibility, chatLayout.textBox, View.VISIBLE, chatLayout.timeText)
-
-        initMyApi.updateDB(adapterRequest)?.enqueue(object : Callback<String> {
-            override fun onResponse(call: Call<String>, response: Response<String>) {
-                //통신 성공
-                if (response.isSuccessful) {
-                }
-            }
-
-            override fun onFailure(call: Call<String?>, t: Throwable) {
-                val builder = androidx.appcompat.app.AlertDialog.Builder(context)
-                println(t.message)
-                builder.setTitle("알림")
-                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
-                        .setPositiveButton("확인", null)
-                        .create()
-                        .show()
-            }
-        })
-    }
-
-    fun select_chat(){
-        var initMyApi = RetrofitClient.getRetrofitInterface()
-        initMyApi.selectAll()?.enqueue(object : Callback<AdapterResponse> {
-            override fun onResponse(call: Call<AdapterResponse>, response: Response<AdapterResponse>) {
+        val userId = MySharedPreferences.getUserId(context)
+        initMyApi.selectAll(userId)?.enqueue(object : Callback<List<AdapterResponse>> {
+            override fun onResponse(call: Call<List<AdapterResponse>>, response: Response<List<AdapterResponse>>) {
                 //통신 성공
                 if (response.isSuccessful) {
                     val list = mutableListOf<ChatLayout>()
                     val body = response.body()
-                    val id = body!!.id
-                    val profile = body.profile
-                    val contents = body.contents
-                    val position = body.position
-                    val time = body.time
-                    val visibility = body.visibility
-                    val textBox = body.textBox
-                    val radio = body.radio
-                    val timeText = body.timeText
-                    list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio, timeText))
-                    comments.addAll(list)
+                    if (body != null) {
+                        for(i in body) {
+                            val id = i.id
+                            val profile = i.profile
+                            val contents = i.contents
+                            val position = i.position
+                            val time = i.time
+                            val visibility = i.visibility
+                            val textBox = i.textBox
+                            val radio = View.VISIBLE
+                            val timeText = i.timeText
+                            list.add(ChatLayout(id, profile, contents, position, time, visibility, textBox, radio, timeText))
+                            println(list.toString())
+                            comments.clear()
+                            comments.addAll(list)
+                        }
+                    }
+                    notifyDataSetChanged()
                 }
             }
 
-            override fun onFailure(call: Call<AdapterResponse?>, t: Throwable) {
+            override fun onFailure(call: Call<List<AdapterResponse>?>, t: Throwable) {
                 val builder = androidx.appcompat.app.AlertDialog.Builder(context)
                 println(t.message)
                 builder.setTitle("알림")
