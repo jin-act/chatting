@@ -75,6 +75,7 @@ class ChatActivity : AppCompatActivity() {
             HideKeyBoard()
         }
         val check = MySharedPreferences.get_check(context)
+
         /*
         userID = MySharedPreferences.getUserId(context)
         food_num = MySharedPreferences.get_food(context)
@@ -97,7 +98,8 @@ class ChatActivity : AppCompatActivity() {
         }
         else{
             condition = "보통"
-        }*/
+        }
+        */
 
         if(check != "true"){
             start_message()
