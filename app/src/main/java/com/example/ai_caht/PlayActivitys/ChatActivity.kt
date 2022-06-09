@@ -76,14 +76,13 @@ class ChatActivity : AppCompatActivity() {
         }
         val check = MySharedPreferences.get_check(context)
 
-        /*
         userID = MySharedPreferences.getUserId(context)
         food_num = MySharedPreferences.get_food(context)
         food = Want_food.want_food(food_num.toInt())
         hunger = MySharedPreferences.get_Hunger(context).toInt()
         boredem = MySharedPreferences.ger_Boredom(context).toInt()
         stress = MySharedPreferences.get_Stress(context).toInt()
-        // Toast.makeText(context, hunger, Toast.LENGTH_SHORT).show()
+
         if(stress >= 50){
             condition = "스트레스"
         }
@@ -99,98 +98,9 @@ class ChatActivity : AppCompatActivity() {
         else{
             condition = "보통"
         }
-        */
 
         if(check != "true"){
-            start_message()
-        }
-
-        /*
-        val handlerTask = object : Runnable{
-            override fun run() {
-                val time = System.currentTimeMillis()
-                val dateFormat = SimpleDateFormat("a hh:mm")
-                val curTime = dateFormat.format(Date(time)).toString()
-                val parrotTalk = ParrotTalkRequest(condition)
-                var initMyApi = RetrofitClient.getRetrofitInterface()
-                //Toast.makeText(context, "15초 경과", Toast.LENGTH_SHORT).show()
-                initMyApi.parrotTalk(parrotTalk)?.enqueue(object : Callback<ParrotTalkResponse> {
-                    override fun onResponse(call: Call<ParrotTalkResponse>, response: Response<ParrotTalkResponse>) {
-                        //통신 성공
-                        if(response.isSuccessful) {
-                            val body = response.body()
-                            val ai_question = body!!.question
-                            val ai_answer = body.answer
-                            val chat_db = ChatLayout(null, R.drawable.ballon2, ai_question, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                            helper.insert_db(chat_db)
-                            adapter.comments.clear()
-                            adapter.comments.addAll(helper.select_db())
-                            RecyclerViewSet()
-
-                            btn_send.setOnClickListener {
-                                cond = true
-                                val chat: String = ChatEdit?.getText().toString()
-                                val chat_me = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
-                                helper.insert_db(chat_me)
-                                adapter.comments.clear()
-                                adapter.comments.addAll(helper.select_db())
-                                val chat_db2 = ChatLayout(null, R.drawable.ballon2, ai_answer, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                                helper.insert_db(chat_db2)
-                                adapter.comments.clear()
-                                adapter.comments.addAll(helper.select_db())
-                                RecyclerViewSet()
-                                ChatEdit.setText(null)
-                                HideKeyBoard()
-                                finish()
-                                startActivity(intent)
-                            }
-                        }
-                    }
-
-                        override fun onFailure(call: Call<ParrotTalkResponse?>, t: Throwable) {
-                            val builder = AlertDialog.Builder(this@ChatActivity)
-                            println(t.message)
-                            builder.setTitle("알림")
-                                    .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
-                                    .setPositiveButton("확인", null)
-                                    .create()
-                                    .show()
-                        }
-                    })
-            }
-        }
-
-        if(!adapter.rdoCheck) {
-            //Toast.makeText(context, adapter.rdoCheck.toString(), Toast.LENGTH_SHORT).show()
-            Handler(Looper.getMainLooper()).postDelayed(handlerTask, 60000)
-        }
-
-        if(adapter.rdoCheck){
-            //Toast.makeText(context, adapter.rdoCheck.toString(), Toast.LENGTH_SHORT).show()
-            Handler(Looper.getMainLooper()).removeCallbacksAndMessages(handlerTask)
-        } */
-
-        btn_send.setOnClickListener {
-            val time = System.currentTimeMillis()
-            val dateFormat = SimpleDateFormat("a hh:mm")
-            val curTime = dateFormat.format(Date(time)).toString()
-            var ChatEdit = findViewById<EditText>(R.id.inputchat)
-            val chat: String = ChatEdit?.getText().toString()
-            val chat_db = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
-            insert_chat(chat_db)
-            chatCount += 1
-            MySharedPreferences.set_chatCount(context, chatCount.toString())
-            if(chat.equals(food_text)){
-                val chat_db = ChatLayout(null, R.drawable.ballon2, "저는 " +food+ "가 좋아요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                insert_chat(chat_db)
-                select_chat()
-                adapter.notifyDataSetChanged()
-            }
-            else {
-                ChatResponse()
-            }
-            ChatEdit.setText(null)
-            HideKeyBoard()
+            status_message()
         }
 
         ChatEdit.setOnClickListener {
@@ -213,7 +123,10 @@ class ChatActivity : AppCompatActivity() {
                                 val str = data.next()
                                 adapter.comments.remove(adapter.comments.get(str))
                                 adapter.notifyDataSetChanged()
-                                select_chat()
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    select_chat()
+                                }, 500)
+
                             }
                             for (i in 0 until list_size) {
                                 val chatRequest = ChatRequest(data_list[i], userID)
@@ -277,73 +190,114 @@ class ChatActivity : AppCompatActivity() {
         super.onStop()
     }
 
-    fun start_message() {
+    fun status_message(){
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("a hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
-        val parrotTalk = ParrotTalkRequest(condition)
+        val parrotTalk = condition
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
         var btn_send = findViewById<Button>(R.id.sendchatbtn)
-        var initMyApi = RetrofitClient.getRetrofitInterface()
-        initMyApi.parrotTalk(parrotTalk)?.enqueue(object : Callback<ParrotTalkResponse> {
-            override fun onResponse(call: Call<ParrotTalkResponse>, response: Response<ParrotTalkResponse>) {
-                //통신 성공
-                if(response.isSuccessful) {
-                    val body = response.body()
-                    val ai_question = body!!.question
-                    val ai_answer = body.answer
-                    /*
-                    val chat_db = ChatLayout(null, R.drawable.ballon2, ai_question, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                    helper.insert_db(chat_db)
-                    adapter.comments.clear()
-                    adapter.comments.addAll(helper.select_db())
-                    RecyclerViewSet()
-                    */
+        var current_condition = ""
+        when(parrotTalk){
+            "스트레스" -> {
+                current_condition = "앵무는 스트레스가 쌓여 있어요"
+            }
+            "배고픔" ->{
+                current_condition = "앵무는 배가 고파요"
+            }
+            "심심함" ->{
+                current_condition = "앵무는 심심한듯 합니다"
+            }
+            else ->{
+                current_condition = "앵무는 기분이 좋은듯 합니다"
+            }
+        }
+        Toast.makeText(context, current_condition, Toast.LENGTH_SHORT).show()
 
-                    btn_send.setOnClickListener {
-                        val chat: String = ChatEdit?.getText().toString()
-                        val chat_me = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
-                        insert_chat(chat_me)
-                        //helper.insert_db(chat_me)
-                        //adapter.comments.addAll(helper.select_db())
+        /*
+        val status = ChatLayout(null, R.drawable.ballon2, current_condition, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+        insert_chat(status)
+        Handler(Looper.getMainLooper()).postDelayed({
+            select_chat()
+        }, 500)
+        */
+
+        btn_send.setOnClickListener {
+            val chat: String = ChatEdit?.getText().toString()
+            val chat_me = ChatLayout(null, R.drawable.ballon2, chat, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
+            HideKeyBoard()
+            ChatEdit.setText(null)
+            insert_chat(chat_me)
+            if(chat.equals(food_text)){
+                val chat_food = ChatLayout(null, R.drawable.ballon2, "저는 " +food+ "가 좋아요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    insert_chat(chat_food)
+                }, 1000)
+                Handler(Looper.getMainLooper()).postDelayed({
+                    select_chat()
+                }, 1500)
+                adapter.notifyDataSetChanged()
+            }
+            else {
+                when (parrotTalk) {
+                    "스트레스" -> {
+                        val chat_stress = ChatLayout(null, R.drawable.ballon2, "아무말도 하기 싫어요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            insert_chat(chat_stress)
+                        }, 1000)
                         Handler(Looper.getMainLooper()).postDelayed({
                             select_chat()
-                        }, 500)
-                        val chat_db2 = ChatLayout(null, R.drawable.ballon2, ai_answer, Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
-                        insert_chat(chat_db2)
-                        Handler(Looper.getMainLooper()).postDelayed({
-                            select_chat()
-                        }, 500)
-                        adapter.comments.clear()
-                        RecyclerViewSet()
-                        ChatEdit.setText(null)
-                        HideKeyBoard()
-                        MySharedPreferences.set_check(context, "true")
-                        finish()
-                        startActivity(intent)
+                        }, 1500)
+                        btn_send.setOnClickListener {
+                            val chat2: String = ChatEdit?.getText().toString()
+                            val chat_me2 = ChatLayout(null, R.drawable.ballon2, chat2, Gravity.END, curTime, View.INVISIBLE, R.drawable.contents_box10, View.INVISIBLE, Gravity.END)
+                            HideKeyBoard()
+                            ChatEdit.setText(null)
+                            insert_chat(chat_me2)
+                            if(chat2.equals(food_text)){
+                                val chat_food = ChatLayout(null, R.drawable.ballon2, "저는 " +food+ "가 좋아요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    insert_chat(chat_food)
+                                }, 1000)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    select_chat()
+                                }, 1500)
+                                adapter.notifyDataSetChanged()
+                            }
+                            else {
+                                val chat_stress2 = ChatLayout(null, R.drawable.ballon2, ".....", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5, View.GONE, Gravity.START)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    insert_chat(chat_stress2)
+                                }, 1000)
+                                Handler(Looper.getMainLooper()).postDelayed({
+                                    select_chat()
+                                }, 1500)
+                                btn_send.setOnClickListener {
+                                    Toast.makeText(context, "앵무의 스트레스 수치가 높아 대화하기를 싫어합니다", Toast.LENGTH_SHORT).show()
+                                    val intent = Intent(this@ChatActivity, PlayActivity::class.java)
+                                    startActivity(intent)
+                                }
+                            }
+                        }
+                    }
+                    "배고픔" -> {
+                        ChatResponse()
+                    }
+                    "심심함" -> {
+                        ChatResponse()
+                    }
+                    else -> {
+                        ChatResponse()
                     }
                 }
             }
-
-            override fun onFailure(call: Call<ParrotTalkResponse?>, t: Throwable) {
-                val builder = AlertDialog.Builder(this@ChatActivity)
-                println(t.message)
-                builder.setTitle("알림")
-                        .setMessage("예상치 못한 오류입니다.\n 고객센터에 문의바랍니다.")
-                        .setPositiveButton("확인", null)
-                        .create()
-                        .show()
-            }
-        })
+        }
     }
 
     fun Initaialize(){
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("a hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
-        with(chatList){
-            chatList.add(ChatLayout(null, R.drawable.ballon2,"반가워요", Gravity.START, curTime, View.VISIBLE, R.drawable.contents_box5,View.GONE, Gravity.START))
-        }
     }
 
     fun RecyclerViewSet(){

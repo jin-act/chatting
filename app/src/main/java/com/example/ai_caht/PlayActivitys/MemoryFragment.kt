@@ -47,7 +47,12 @@ class MemoryFragment : Fragment() {
         if(check == "true"){
             layout.visibility = View.VISIBLE
             val image = MySharedPreferences.get_image(activity)
-            text.text = "정답은 " +image+ "!"
+            if(image.equals("통신에러")){
+                text.text = "통신에러 다시 시도해주세요"
+            }
+            else {
+                text.text = "정답은 " + image + "!"
+            }
             btn.setBackgroundColor(Color.parseColor("#777777"))
             text_color.setTextColor(Color.parseColor("#aaaaaa"))
             btn.isClickable = false

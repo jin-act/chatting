@@ -10,10 +10,8 @@ import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.media.Image
 import android.net.Uri
-import android.os.Build
+import android.os.*
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.provider.Settings
 import android.util.AttributeSet
@@ -126,16 +124,26 @@ class DrawActivity:AppCompatActivity(){
             val encodeData = bitmapEncoding(bitmap)
             val imageRequest = ImageRequest(encodeData, type)
             var initMyApi = RetrofitClient.getRetrofitInterface()
+            Toast.makeText(this@DrawActivity, "처리중입니다", Toast.LENGTH_SHORT).show()
             initMyApi.imageSend(imageRequest)?.enqueue(object : Callback<ImageResponse> {
                 override fun onResponse(call: Call<ImageResponse>, response: Response<ImageResponse>) {
                     //통신 성공
                     if (response.isSuccessful) {
-                        val body = response.body()
-                        val image = body!!.image
-                        MySharedPreferences.set_image(this@DrawActivity, image)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            val body = response.body()
+                            val image = body?.image
+                            if(image == null){
+                                MySharedPreferences.set_image(this@DrawActivity, "통신에러")
+                            }
+                            else {
+                                MySharedPreferences.set_image(this@DrawActivity, image)
+                            }
+                        }, 3000)
+                        Handler(Looper.getMainLooper()).postDelayed({
+                            val intent = Intent(this@DrawActivity, PlayActivity::class.java)
+                            startActivity(intent)
+                        }, 4000)
 
-                        val intent = Intent(this@DrawActivity, PlayActivity::class.java)
-                        startActivity(intent)
                     }
                 }
 
@@ -162,7 +170,6 @@ class DrawActivity:AppCompatActivity(){
     }
 
     fun save(bitmap: Bitmap, name: String){
-        Toast.makeText(this, bitmap.toString(), Toast.LENGTH_SHORT).show()
         val storage = File(this.cacheDir, "images")
         storage.mkdirs()
         val fileName = "$name.jpg"
