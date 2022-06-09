@@ -128,7 +128,7 @@
                     android:textColor="#555"
                     android:layout_marginBottom="5dp"
                     android:textSize="14dp"></TextView>
-                <!--<TextView
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nsed"
@@ -136,7 +136,7 @@
                     android:layout_marginTop="5dp"
                     android:text="(하루 제한횟수 총2번)"
                     android:textColor="#444"
-                    android:textSize="11dp"></TextView>-->
+                    android:textSize="11dp"></TextView>
 
             </LinearLayout>
 

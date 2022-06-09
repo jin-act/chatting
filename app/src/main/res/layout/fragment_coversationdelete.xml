@@ -71,7 +71,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="확인"
                     android:textColor="#FFFFFF"
-                    android:textSize="12dp" />
+                    android:textSize="13dp" />
 
                 <Button
                     android:layout_width="match_parent"
@@ -83,7 +83,7 @@
                     android:fontFamily="@font/nsb"
                     android:text="취소"
                     android:textColor="#FFFFFF"
-                    android:textSize="12dp" />
+                    android:textSize="13dp" />
 
             </LinearLayout>
 
