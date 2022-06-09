@@ -16,40 +16,40 @@
         <LinearLayout
             android:layout_width="250dp"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:background="@drawable/contents_box">
+            android:background="@drawable/contents_box"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:gravity="left">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nsed"
-                    android:textSize="16dp"
                     android:layout_marginLeft="20dp"
-                    android:textColor="#333333"
                     android:layout_marginTop="20dp"
-                    android:text="대화내용 삭제">
-                </TextView>
+                    android:fontFamily="@font/nsed"
+                    android:text="대화내용 삭제"
+                    android:textColor="#333333"
+                    android:textSize="16dp"></TextView>
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
+                android:layout_weight="1"
                 android:gravity="center"
-                android:orientation="vertical"
-                android:layout_weight="1">
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nsb"
-                    android:textSize="13dp"
-                    android:textColor="#6E6E6E"
                     android:layout_marginTop="10dp"
-                    android:text="대화 내용을 삭제하시겠습니까?">
-                </TextView>
+                    android:fontFamily="@font/nsb"
+                    android:text="대화 내용을 삭제하시겠습니까?"
+                    android:textColor="#6E6E6E"
+                    android:textSize="13dp"></TextView>
 
             </LinearLayout>
 
@@ -62,22 +62,23 @@
                 <Button
                     android:id="@+id/delete_btn"
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginBottom="5dp"
                     android:background="@drawable/contents_box14"
                     android:fontFamily="@font/nsb"
                     android:text="확인"
-                    android:layout_marginBottom="5dp"
                     android:textColor="#FFFFFF"
                     android:textSize="12dp" />
+
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginRight="20dp"
                     android:layout_height="40dp"
                     android:layout_gravity="center"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
                     android:background="@drawable/contents_box15"
                     android:fontFamily="@font/nsb"
                     android:text="취소"
