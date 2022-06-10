@@ -60,6 +60,9 @@ class ChatActivity : AppCompatActivity() {
         var whole_layout = findViewById<ConstraintLayout>(R.id.whole_layout)
         var btn_remove = findViewById<Button>(R.id.remove_btn)
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
+        var deleteLayout = findViewById<LinearLayout>(R.id.delete_layout)
+        var chatLayout = findViewById<LinearLayout>(R.id.edittext)
+
         //var UserChat = findViewById<TextView>(R.id.userchat)
         Initaialize()
         RecyclerViewSet()

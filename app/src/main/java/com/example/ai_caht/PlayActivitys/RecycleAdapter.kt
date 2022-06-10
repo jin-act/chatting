@@ -14,6 +14,7 @@ import androidx.cardview.widget.CardView
 import androidx.core.view.isVisible
 import androidx.core.view.marginLeft
 import androidx.recyclerview.widget.RecyclerView
+import com.example.ai_caht.PlayActivity
 import com.example.ai_caht.R
 import com.example.ai_caht.databinding.ListItemBinding
 import com.example.ai_caht.test.Chat.AdapterRequest
@@ -76,6 +77,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
 
         holder.itemView.setOnLongClickListener {
             rdoCheck = true
+
             radiobtn_on()
             true
             /*
@@ -149,6 +151,7 @@ class ChatViewHolder(view: View): RecyclerView.ViewHolder(view){
     val layout_box: LinearLayout = view.findViewById(R.id.layout_box)
     val radio_btn: RadioButton = view.findViewById(R.id.radio_btn)
     val textTime: LinearLayout = view.findViewById(R.id.layout_time)
+
     //val layout_main: LinearLayout = view.findViewById(R.id.layout_main)
 
 }
