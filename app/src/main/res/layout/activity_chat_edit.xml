@@ -25,6 +25,7 @@
         android:orientation="horizontal"
         android:background="#FFFFFF"
         android:id="@+id/edittext"
+        android:visibility="visible"
         app:layout_constraintHeight_percent="0.07"
         app:layout_constraintBottom_toBottomOf="parent">
 

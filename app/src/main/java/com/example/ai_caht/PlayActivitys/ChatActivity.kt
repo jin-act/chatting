@@ -61,7 +61,6 @@ class ChatActivity : AppCompatActivity() {
         var btn_remove = findViewById<Button>(R.id.remove_btn)
         var ChatEdit = findViewById<EditText>(R.id.inputchat)
         var deleteLayout = findViewById<LinearLayout>(R.id.delete_layout)
-        var chatLayout = findViewById<LinearLayout>(R.id.edittext)
 
         //var UserChat = findViewById<TextView>(R.id.userchat)
         Initaialize()
@@ -295,6 +294,14 @@ class ChatActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    fun delete_button_set(){
+        var deleteLayout = findViewById<LinearLayout>(R.id.delete_layout)
+        var chatLayout = findViewById<LinearLayout>(R.id.edittext)
+
+        deleteLayout.visibility = View.VISIBLE
+        chatLayout.visibility = View.INVISIBLE
     }
 
     fun Initaialize(){

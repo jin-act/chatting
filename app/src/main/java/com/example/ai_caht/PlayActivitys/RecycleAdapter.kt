@@ -38,6 +38,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
     var id = ArrayList<Long>()
     var rdoCheck :Boolean = false
     var check :Boolean = false
+    private val activity : ChatActivity = context as ChatActivity
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -57,6 +58,7 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
         holder.textTime.gravity = text.timeText
 
         holder.radio_btn.setOnClickListener {
+            activity.delete_button_set()
             if(holder.radio_btn.isChecked && !list.contains(position)){
                 list.add(position)
                 data.add(comments.get(position).contents)
