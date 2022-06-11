@@ -71,6 +71,9 @@ class MemoryFragment : Fragment() {
 
         ok_btn.setOnClickListener {
             Toast.makeText(context, "정답", Toast.LENGTH_SHORT).show()
+            // 상태 변경
+            playActivity?.stress = 0
+            playActivity?.boredom = 0
             var timerTask: Timer? = null
             var time = 0
             timerTask = timer(period = 10) {	// timer() 호출
@@ -112,6 +115,9 @@ class MemoryFragment : Fragment() {
 
         no_btn.setOnClickListener {
             Toast.makeText(context, "오답", Toast.LENGTH_SHORT).show()
+            // 상태 변경
+            playActivity?.stress = 0
+            playActivity?.boredom = 0
             var timerTask: Timer? = null
             var time = 0
             timerTask = timer(period = 10) {	// timer() 호출
