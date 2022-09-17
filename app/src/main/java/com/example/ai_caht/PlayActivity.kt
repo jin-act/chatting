@@ -39,7 +39,7 @@ open class PlayActivity : AppCompatActivity() {
     var level = 0
     var affection = 0
     var counter = 0.0
-    val C_time = 2 // 상태가 1증가하는 시간 실제 작동 시간은 15분으로 구상중이며, 배고픔이나 지루함 기준으로 0에서 100까지 1500분 즉 25시간이 필요하다.
+    val C_time = 900 // 상태가 1증가하는 시간 실제 작동 시간은 15분으로 구상중이며, 배고픔이나 지루함 기준으로 0에서 100까지 1500분 즉 25시간이 필요하다.
     var result : Long = 0
     var TimeOfChangeCondition = 0
     var TOCC_Counter : Long = 0
