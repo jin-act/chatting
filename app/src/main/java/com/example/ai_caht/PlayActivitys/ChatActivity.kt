@@ -283,13 +283,13 @@ class ChatActivity : AppCompatActivity() {
                         }
                     }
                     "배고픔" -> {
-                        ChatResponse()
+                        ChatResponse(chat)
                     }
                     "심심함" -> {
-                        ChatResponse()
+                        ChatResponse(chat)
                     }
                     else -> {
-                        ChatResponse()
+                        ChatResponse(chat)
                     }
                 }
             }
@@ -328,14 +328,15 @@ class ChatActivity : AppCompatActivity() {
         }
     }
 
-    fun ChatResponse(){
+    fun ChatResponse(chat :String){
         val time = System.currentTimeMillis()
         val dateFormat = SimpleDateFormat("a hh:mm")
         val curTime = dateFormat.format(Date(time)).toString()
-        var ChatEdit = findViewById<EditText>(R.id.inputchat)
-        val chat: String = ChatEdit.getText().toString().trim { it <= ' ' }
+        //var chatEdit = findViewById<EditText>(R.id.inputchat)
+        //val chat: String = chatEdit.text.toString().trim { it <= ' ' }
         //String userPassword = passwordText.getText().toString().trim();
         val chatRequest = ChatRequest(chat, userID)
+        Toast.makeText(this, chat, Toast.LENGTH_SHORT).show()
         //retrofit 생성
         var retrofitClient = RetrofitClient.getInstance()
         var initMyApi = RetrofitClient.getRetrofitInterface()

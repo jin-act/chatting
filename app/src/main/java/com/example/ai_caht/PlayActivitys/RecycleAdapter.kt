@@ -40,6 +40,11 @@ class RecycleAdapter(val context: Context) : RecyclerView.Adapter<ChatViewHolder
     var check :Boolean = false
     private val activity : ChatActivity = context as ChatActivity
 
+    @Override
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return ChatViewHolder(view)
