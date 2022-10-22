@@ -12,7 +12,7 @@ public class RetrofitClient {
     private static RetrofitClient instance = null;
     private static initMyApi initMyApi;
     //사용하고 있는 서버 BASE 주소
-    private static String baseUrl = "http://ec2-54-180-19-63.ap-northeast-2.compute.amazonaws.com:8080/";
+    private static String baseUrl = "https://aiparrot.shop/";
 
 
 
