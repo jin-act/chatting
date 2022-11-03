@@ -39,6 +39,7 @@ class status : Fragment() {
         var T_stress = view.findViewById<TextView>(R.id.textstress)
         var stress = view.findViewById<ProgressBar>(R.id.stress)
         var stat_view = view.findViewById<TextView>(R.id.Stat_TView)
+        var pname = view.findViewById<TextView>(R.id.Pname)
         var stressbar = 0
         var hunger = 0
         var boredom = 0

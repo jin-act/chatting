@@ -46,7 +46,7 @@ open class PlayActivity : AppCompatActivity() {
     var timerTask: Timer? = null
     var P_state = 0
     var last_state = 0
-    var pageSize = 0
+    var pageSize = 1
     var date = "0000-00-00"
     var pState = 0
     var feedCount = 0
@@ -195,8 +195,7 @@ open class PlayActivity : AppCompatActivity() {
                                     // 통신으로 상태 받아오기
                                     var body = response.body()
                                     println("body this -> " + body.toString())
-                                    if(body!!.date != null)
-                                    {
+                                    try{
                                         if(currentdate != body!!.date){
                                             pageSize += 1
                                             date = currentdate
@@ -213,17 +212,18 @@ open class PlayActivity : AppCompatActivity() {
                                             playResult = body!!.playResult
                                             chatCount = body!!.chatCount
                                         }
-
-                                    }else{
-                                        pageSize += 1
-                                        date = currentdate
-                                        pState = 0
-                                        feedCount = 0
-                                        feedKind = 0
-                                        playType = 0
-                                        playResult = 0
-                                        chatCount = 0
+                                    } catch(e: NullPointerException){
+                                        println("Catch!!")
+                                    pageSize = 1
+                                    date = currentdate
+                                    pState = 0
+                                    feedCount = 0
+                                    feedKind = 0
+                                    playType = 0
+                                    playResult = 0
+                                    chatCount = 0
                                     }
+
                                     saveParrotRecord()
                                 }
                                 override fun onFailure(call: Call<ParrotRecord>, t: Throwable) {

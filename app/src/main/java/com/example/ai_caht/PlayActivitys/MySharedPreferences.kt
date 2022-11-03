@@ -2,7 +2,6 @@ package com.example.ai_caht.PlayActivitys
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.widget.Toast
 import java.util.*
 
 object MySharedPreferences {
